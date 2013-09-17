@@ -60,6 +60,7 @@
             this.txtSourceCode.Size = new System.Drawing.Size(558, 356);
             this.txtSourceCode.TabIndex = 2;
             this.txtSourceCode.WordWrap = false;
+            this.txtSourceCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSourceCode_KeyDown);
             // 
             // cbCodeTemplates
             // 

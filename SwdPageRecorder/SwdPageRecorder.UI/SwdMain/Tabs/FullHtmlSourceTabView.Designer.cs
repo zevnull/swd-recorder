@@ -45,6 +45,7 @@
             this.txtHtmlPageSource.Size = new System.Drawing.Size(548, 356);
             this.txtHtmlPageSource.TabIndex = 3;
             this.txtHtmlPageSource.WordWrap = false;
+            this.txtHtmlPageSource.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHtmlPageSource_KeyDown);
             // 
             // btnGetHtmlSource
             // 

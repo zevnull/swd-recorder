@@ -15,8 +15,8 @@ namespace SwdPageRecorder.UI
         
         public static SwdMainView Run(SwdMainView mainForm)
         {
-            
-            Application.EnableVisualStyles();
+
+            Application.EnableVisualStyles(); 
             Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
 
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
@@ -30,7 +30,7 @@ namespace SwdPageRecorder.UI
         [STAThread]
         static void Main()
         {
-
+            
             Application.SetCompatibleTextRenderingDefault(false);
 
             var mainForm = new SwdMainView();

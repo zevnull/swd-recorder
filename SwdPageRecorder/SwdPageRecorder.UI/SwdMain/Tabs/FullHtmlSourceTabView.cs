@@ -29,5 +29,13 @@ namespace SwdPageRecorder.UI
         {
             txtHtmlPageSource.Lines = htmlLines;
         }
+
+        private void txtHtmlPageSource_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.A)
+            {
+                txtHtmlPageSource.SelectAll();
+            }
+        }
     }
 }

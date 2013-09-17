@@ -57,5 +57,13 @@ namespace SwdPageRecorder.UI
         {
             MessageBox.Show("Please, select a code template from the list");
         }
+
+        private void txtSourceCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.A)
+            {
+                txtSourceCode.SelectAll();
+            }
+        }
     }
 }
