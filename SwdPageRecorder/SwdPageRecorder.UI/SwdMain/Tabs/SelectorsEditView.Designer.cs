@@ -78,15 +78,16 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox2.Controls.Add(this.btnReadElementProperties);
             this.groupBox2.Controls.Add(this.tbElementDetails);
             this.groupBox2.Controls.Add(this.btnCopyWebElement);
             this.groupBox2.Controls.Add(this.btnHighlightWebElementInBrowser);
             this.groupBox2.Controls.Add(this.btnNewWebElement);
             this.groupBox2.Controls.Add(this.btnUpdateDeclaration);
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
+            this.groupBox2.Location = new System.Drawing.Point(1, 1);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(732, 169);
+            this.groupBox2.Size = new System.Drawing.Size(734, 180);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "WebElement";
@@ -94,7 +95,7 @@
             // btnReadElementProperties
             // 
             this.btnReadElementProperties.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReadElementProperties.Location = new System.Drawing.Point(645, 103);
+            this.btnReadElementProperties.Location = new System.Drawing.Point(645, 109);
             this.btnReadElementProperties.Name = "btnReadElementProperties";
             this.btnReadElementProperties.Size = new System.Drawing.Size(85, 23);
             this.btnReadElementProperties.TabIndex = 18;
@@ -104,7 +105,6 @@
             // 
             // tbElementDetails
             // 
-            this.tbElementDetails.Alignment = System.Windows.Forms.TabAlignment.Right;
             this.tbElementDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -114,7 +114,7 @@
             this.tbElementDetails.Multiline = true;
             this.tbElementDetails.Name = "tbElementDetails";
             this.tbElementDetails.SelectedIndex = 0;
-            this.tbElementDetails.Size = new System.Drawing.Size(625, 149);
+            this.tbElementDetails.Size = new System.Drawing.Size(638, 165);
             this.tbElementDetails.TabIndex = 17;
             // 
             // tabPage1
@@ -130,10 +130,10 @@
             this.tabPage1.Controls.Add(this.txtOtherLocator);
             this.tabPage1.Controls.Add(this.rbtnOtherLocator);
             this.tabPage1.Controls.Add(this.ddlOtherLocator);
-            this.tabPage1.Location = new System.Drawing.Point(4, 4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(598, 141);
+            this.tabPage1.Size = new System.Drawing.Size(630, 139);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Selectors";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -154,7 +154,7 @@
             this.txtCssSelector.Font = new System.Drawing.Font("Lucida Console", 9.75F);
             this.txtCssSelector.Location = new System.Drawing.Point(132, 61);
             this.txtCssSelector.Name = "txtCssSelector";
-            this.txtCssSelector.Size = new System.Drawing.Size(460, 20);
+            this.txtCssSelector.Size = new System.Drawing.Size(492, 20);
             this.txtCssSelector.TabIndex = 1;
             this.txtCssSelector.Enter += new System.EventHandler(this.txtCssSelector_Enter);
             // 
@@ -185,7 +185,7 @@
             this.txtXPath.Font = new System.Drawing.Font("Lucida Console", 9.75F);
             this.txtXPath.Location = new System.Drawing.Point(132, 84);
             this.txtXPath.Name = "txtXPath";
-            this.txtXPath.Size = new System.Drawing.Size(460, 20);
+            this.txtXPath.Size = new System.Drawing.Size(492, 20);
             this.txtXPath.TabIndex = 4;
             this.txtXPath.Enter += new System.EventHandler(this.txtXPath_Enter);
             // 
@@ -196,7 +196,7 @@
             this.txtWebElementName.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWebElementName.Location = new System.Drawing.Point(132, 10);
             this.txtWebElementName.Name = "txtWebElementName";
-            this.txtWebElementName.Size = new System.Drawing.Size(460, 20);
+            this.txtWebElementName.Size = new System.Drawing.Size(492, 20);
             this.txtWebElementName.TabIndex = 11;
             // 
             // rbtnHtmlId
@@ -218,7 +218,7 @@
             this.txtHtmlId.Font = new System.Drawing.Font("Lucida Console", 9.75F);
             this.txtHtmlId.Location = new System.Drawing.Point(132, 36);
             this.txtHtmlId.Name = "txtHtmlId";
-            this.txtHtmlId.Size = new System.Drawing.Size(460, 20);
+            this.txtHtmlId.Size = new System.Drawing.Size(492, 20);
             this.txtHtmlId.TabIndex = 6;
             this.txtHtmlId.Enter += new System.EventHandler(this.txtHtmlId_Enter);
             // 
@@ -229,7 +229,7 @@
             this.txtOtherLocator.Font = new System.Drawing.Font("Lucida Console", 9.75F);
             this.txtOtherLocator.Location = new System.Drawing.Point(132, 112);
             this.txtOtherLocator.Name = "txtOtherLocator";
-            this.txtOtherLocator.Size = new System.Drawing.Size(460, 20);
+            this.txtOtherLocator.Size = new System.Drawing.Size(492, 20);
             this.txtOtherLocator.TabIndex = 9;
             this.txtOtherLocator.Enter += new System.EventHandler(this.txtOtherLocator_Enter);
             // 
@@ -266,10 +266,10 @@
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Controls.Add(this.txtPropHtmlTag);
             this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(609, 141);
+            this.tabPage2.Size = new System.Drawing.Size(630, 148);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Properties";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -298,7 +298,7 @@
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(554, 113);
+            this.button2.Location = new System.Drawing.Point(575, 113);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(47, 23);
             this.button2.TabIndex = 20;
@@ -310,7 +310,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Enabled = false;
-            this.label9.Location = new System.Drawing.Point(318, 99);
+            this.label9.Location = new System.Drawing.Point(339, 99);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(122, 13);
             this.label9.TabIndex = 19;
@@ -321,7 +321,7 @@
             this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox7.Enabled = false;
             this.textBox7.Font = new System.Drawing.Font("Lucida Console", 9.75F);
-            this.textBox7.Location = new System.Drawing.Point(312, 115);
+            this.textBox7.Location = new System.Drawing.Point(333, 115);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(238, 20);
             this.textBox7.TabIndex = 18;
@@ -376,7 +376,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtPropArg1);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(312, 3);
+            this.groupBox1.Location = new System.Drawing.Point(333, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(291, 91);
             this.groupBox1.TabIndex = 13;
@@ -460,7 +460,7 @@
             // btnCopyWebElement
             // 
             this.btnCopyWebElement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCopyWebElement.Location = new System.Drawing.Point(645, 42);
+            this.btnCopyWebElement.Location = new System.Drawing.Point(645, 39);
             this.btnCopyWebElement.Name = "btnCopyWebElement";
             this.btnCopyWebElement.Size = new System.Drawing.Size(85, 23);
             this.btnCopyWebElement.TabIndex = 16;
@@ -471,7 +471,7 @@
             // btnHighlightWebElementInBrowser
             // 
             this.btnHighlightWebElementInBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHighlightWebElementInBrowser.Location = new System.Drawing.Point(645, 76);
+            this.btnHighlightWebElementInBrowser.Location = new System.Drawing.Point(645, 75);
             this.btnHighlightWebElementInBrowser.Name = "btnHighlightWebElementInBrowser";
             this.btnHighlightWebElementInBrowser.Size = new System.Drawing.Size(85, 23);
             this.btnHighlightWebElementInBrowser.TabIndex = 15;
@@ -482,7 +482,7 @@
             // btnNewWebElement
             // 
             this.btnNewWebElement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewWebElement.Location = new System.Drawing.Point(645, 17);
+            this.btnNewWebElement.Location = new System.Drawing.Point(645, 12);
             this.btnNewWebElement.Name = "btnNewWebElement";
             this.btnNewWebElement.Size = new System.Drawing.Size(85, 23);
             this.btnNewWebElement.TabIndex = 14;
@@ -493,7 +493,7 @@
             // btnUpdateDeclaration
             // 
             this.btnUpdateDeclaration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdateDeclaration.Location = new System.Drawing.Point(645, 137);
+            this.btnUpdateDeclaration.Location = new System.Drawing.Point(645, 149);
             this.btnUpdateDeclaration.Name = "btnUpdateDeclaration";
             this.btnUpdateDeclaration.Size = new System.Drawing.Size(85, 23);
             this.btnUpdateDeclaration.TabIndex = 13;
@@ -505,10 +505,10 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Controls.Add(this.groupBox2);
             this.Name = "SelectorsEditView";
-            this.Size = new System.Drawing.Size(736, 175);
+            this.Size = new System.Drawing.Size(736, 182);
             this.groupBox2.ResumeLayout(false);
             this.tbElementDetails.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

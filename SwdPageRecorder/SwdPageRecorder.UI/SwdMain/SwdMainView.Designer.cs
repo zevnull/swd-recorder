@@ -41,12 +41,12 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.browserSettingsTab1 = new SwdPageRecorder.UI.BrowserSettingsTabView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.selectorsEditView = new SwdPageRecorder.UI.SelectorsEditView();
-            this.htmlDomTesterView1 = new SwdPageRecorder.UI.HtmlDomTesterView();
             this.grpVisualSearch = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnStartVisualSearch = new System.Windows.Forms.Button();
             this.txtVisualSearchResult = new System.Windows.Forms.TextBox();
+            this.selectorsEditView = new SwdPageRecorder.UI.SelectorsEditView();
+            this.htmlDomTesterView1 = new SwdPageRecorder.UI.HtmlDomTesterView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.pageObjectSourceCodeView1 = new SwdPageRecorder.UI.PageObjectSourceCodeView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -117,7 +117,8 @@
             // 
             // pnlLoadingBar
             // 
-            this.pnlLoadingBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pnlLoadingBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlLoadingBar.BackColor = System.Drawing.Color.Black;
             this.pnlLoadingBar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlLoadingBar.Controls.Add(this.label2);
             this.pnlLoadingBar.Controls.Add(this.pictureBox1);
@@ -130,8 +131,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Black;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(24, 2);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 16);
@@ -164,7 +166,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pageObjectDefinitionView);
-            this.splitContainer1.Size = new System.Drawing.Size(1002, 450);
+            this.splitContainer1.Size = new System.Drawing.Size(1002, 430);
             this.splitContainer1.SplitterDistance = 748;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -178,7 +180,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(748, 450);
+            this.tabControl1.Size = new System.Drawing.Size(748, 430);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -187,7 +189,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(740, 424);
+            this.tabPage1.Size = new System.Drawing.Size(740, 404);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Browser Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -199,42 +201,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.browserSettingsTab1.Location = new System.Drawing.Point(6, 6);
             this.browserSettingsTab1.Name = "browserSettingsTab1";
-            this.browserSettingsTab1.Size = new System.Drawing.Size(728, 412);
+            this.browserSettingsTab1.Size = new System.Drawing.Size(728, 392);
             this.browserSettingsTab1.TabIndex = 0;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.grpVisualSearch);
             this.tabPage2.Controls.Add(this.selectorsEditView);
             this.tabPage2.Controls.Add(this.htmlDomTesterView1);
-            this.tabPage2.Controls.Add(this.grpVisualSearch);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(740, 424);
+            this.tabPage2.Size = new System.Drawing.Size(740, 404);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Locators";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // selectorsEditView
-            // 
-            this.selectorsEditView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.selectorsEditView.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.selectorsEditView.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.selectorsEditView.Location = new System.Drawing.Point(3, 6);
-            this.selectorsEditView.Name = "selectorsEditView";
-            this.selectorsEditView.Size = new System.Drawing.Size(731, 179);
-            this.selectorsEditView.TabIndex = 6;
-            // 
-            // htmlDomTesterView1
-            // 
-            this.htmlDomTesterView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.htmlDomTesterView1.Location = new System.Drawing.Point(2, 251);
-            this.htmlDomTesterView1.Name = "htmlDomTesterView1";
-            this.htmlDomTesterView1.Size = new System.Drawing.Size(739, 174);
-            this.htmlDomTesterView1.TabIndex = 5;
             // 
             // grpVisualSearch
             // 
@@ -244,7 +225,7 @@
             this.grpVisualSearch.Controls.Add(this.btnStartVisualSearch);
             this.grpVisualSearch.Controls.Add(this.txtVisualSearchResult);
             this.grpVisualSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.grpVisualSearch.Location = new System.Drawing.Point(6, 185);
+            this.grpVisualSearch.Location = new System.Drawing.Point(6, 184);
             this.grpVisualSearch.Name = "grpVisualSearch";
             this.grpVisualSearch.Size = new System.Drawing.Size(727, 61);
             this.grpVisualSearch.TabIndex = 4;
@@ -264,7 +245,7 @@
             // btnStartVisualSearch
             // 
             this.btnStartVisualSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartVisualSearch.Location = new System.Drawing.Point(640, 18);
+            this.btnStartVisualSearch.Location = new System.Drawing.Point(640, 20);
             this.btnStartVisualSearch.Name = "btnStartVisualSearch";
             this.btnStartVisualSearch.Size = new System.Drawing.Size(75, 23);
             this.btnStartVisualSearch.TabIndex = 1;
@@ -281,13 +262,34 @@
             this.txtVisualSearchResult.Size = new System.Drawing.Size(602, 20);
             this.txtVisualSearchResult.TabIndex = 0;
             // 
+            // selectorsEditView
+            // 
+            this.selectorsEditView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectorsEditView.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.selectorsEditView.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.selectorsEditView.Location = new System.Drawing.Point(3, 2);
+            this.selectorsEditView.Name = "selectorsEditView";
+            this.selectorsEditView.Size = new System.Drawing.Size(731, 179);
+            this.selectorsEditView.TabIndex = 6;
+            // 
+            // htmlDomTesterView1
+            // 
+            this.htmlDomTesterView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.htmlDomTesterView1.Location = new System.Drawing.Point(6, 246);
+            this.htmlDomTesterView1.Name = "htmlDomTesterView1";
+            this.htmlDomTesterView1.Size = new System.Drawing.Size(727, 159);
+            this.htmlDomTesterView1.TabIndex = 5;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.pageObjectSourceCodeView1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(740, 424);
+            this.tabPage3.Size = new System.Drawing.Size(740, 404);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Source Code";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -299,7 +301,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pageObjectSourceCodeView1.Location = new System.Drawing.Point(2, 0);
             this.pageObjectSourceCodeView1.Name = "pageObjectSourceCodeView1";
-            this.pageObjectSourceCodeView1.Size = new System.Drawing.Size(732, 418);
+            this.pageObjectSourceCodeView1.Size = new System.Drawing.Size(732, 398);
             this.pageObjectSourceCodeView1.TabIndex = 0;
             // 
             // tabPage4
@@ -308,7 +310,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(740, 424);
+            this.tabPage4.Size = new System.Drawing.Size(740, 404);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "HTML Source";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -320,7 +322,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fullHtmlSourceTabView1.Location = new System.Drawing.Point(6, 6);
             this.fullHtmlSourceTabView1.Name = "fullHtmlSourceTabView1";
-            this.fullHtmlSourceTabView1.Size = new System.Drawing.Size(728, 412);
+            this.fullHtmlSourceTabView1.Size = new System.Drawing.Size(728, 392);
             this.fullHtmlSourceTabView1.TabIndex = 0;
             // 
             // pageObjectDefinitionView
@@ -330,14 +332,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pageObjectDefinitionView.Location = new System.Drawing.Point(3, 3);
             this.pageObjectDefinitionView.Name = "pageObjectDefinitionView";
-            this.pageObjectDefinitionView.Size = new System.Drawing.Size(244, 440);
+            this.pageObjectDefinitionView.Size = new System.Drawing.Size(244, 420);
             this.pageObjectDefinitionView.TabIndex = 2;
             // 
             // SwdMainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1014, 512);
+            this.ClientSize = new System.Drawing.Size(1014, 492);
             this.Controls.Add(this.pnlLoadingBar);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox1);
