@@ -33,7 +33,7 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btnBrowser_Go = new System.Windows.Forms.Button();
             this.txtBrowserUrl = new System.Windows.Forms.TextBox();
-            this.splitContainer1 = new MySplitContainer();
+            this.splitContainer1 = new SwdPageRecorder.UI.MySplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.browserSettingsTab1 = new SwdPageRecorder.UI.BrowserSettingsTabView();
@@ -226,7 +226,7 @@
             // btnStartVisualSearch
             // 
             this.btnStartVisualSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartVisualSearch.Location = new System.Drawing.Point(640, 16);
+            this.btnStartVisualSearch.Location = new System.Drawing.Point(640, 18);
             this.btnStartVisualSearch.Name = "btnStartVisualSearch";
             this.btnStartVisualSearch.Size = new System.Drawing.Size(75, 23);
             this.btnStartVisualSearch.TabIndex = 1;

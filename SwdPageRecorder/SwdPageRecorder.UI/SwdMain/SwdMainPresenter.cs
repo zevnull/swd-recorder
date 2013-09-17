@@ -75,14 +75,14 @@ namespace SwdPageRecorder.UI
             }
         }
 
-        bool stopVisualSearch = false;
+        bool webElementExplorerStarted = false;
 
         public void VisualSearch_UpdateSearchResult()
         {
             try
             {
                 MyLog.Write("VisualSearch_UpdateSearchResult: Started");
-                while (stopVisualSearch == false)
+                while (webElementExplorerStarted == true)
                 {
                     try
                     {
@@ -112,8 +112,8 @@ namespace SwdPageRecorder.UI
 
         internal void StopVisualSearch()
         {
-            stopVisualSearch = true;
             view.VisualSearchStopped();
+            webElementExplorerStarted = false;
         }
 
         internal void StartVisualSearch()
@@ -125,7 +125,7 @@ namespace SwdPageRecorder.UI
                 visualSearchWorker = null;
             }
 
-            stopVisualSearch = false;
+            webElementExplorerStarted = true;
 
             visualSearchWorker = new Thread(VisualSearch_UpdateSearchResult);
             visualSearchWorker.IsBackground = true;
@@ -144,7 +144,7 @@ namespace SwdPageRecorder.UI
         
         internal void ChangeVisualSearchRunningState()
         {
-            if (stopVisualSearch)
+            if (webElementExplorerStarted)
             {
                 StopVisualSearch();
             }

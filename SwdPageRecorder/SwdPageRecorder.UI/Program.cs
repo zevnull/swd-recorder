@@ -17,6 +17,7 @@ namespace SwdPageRecorder.UI
         {
             
             Application.EnableVisualStyles();
+            Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
 
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
@@ -29,11 +30,19 @@ namespace SwdPageRecorder.UI
         [STAThread]
         static void Main()
         {
-            
+
             Application.SetCompatibleTextRenderingDefault(false);
 
             var mainForm = new SwdMainView();
             Run(mainForm);
+        }
+
+        internal class ThreadExceptionHandler
+        {
+            public void ApplicationThreadException(object sender, ThreadExceptionEventArgs e)
+            {
+                MessageBox.Show(e.Exception.Message);
+            }
         }
 
 
