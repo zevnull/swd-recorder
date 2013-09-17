@@ -163,5 +163,17 @@ namespace SwdPageRecorder.UI
             view.grpVisualSearch.Enabled = shouldControlBeEnabled;
 
         }
+
+        public void DisplayLoadingIndicator(bool showLoading)
+        {
+            if (showLoading)
+            {
+                view.ShowGlobalLoading();
+            }
+            else
+            {
+                view.HideGlobalLoading();
+            }
+        }
     }
 }

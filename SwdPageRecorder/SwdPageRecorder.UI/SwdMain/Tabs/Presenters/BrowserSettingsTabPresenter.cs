@@ -85,25 +85,60 @@ namespace SwdPageRecorder.UI
             
             wasBrowserStarted = false;
             bool startFailure = false;
+            bool threadFinished = false;
             view.DisableDriverStartButton();
+            
+            Presenters.SwdMainPresenter.DisplayLoadingIndicator(true);
+
+            Exception threadException = null;
+            
+            Thread t1 = new Thread(
+            () =>
+            {
+                try
+                {
+                    SwdBrowser.Initialize(browserOptions);
+                    wasBrowserStarted = true;
+                }
+                catch(Exception e)
+                {
+                    startFailure = true;
+                    threadException = e;
+                }
+                finally
+                {
+                    threadFinished = true;
+                }
+            });
+
+
             try
             {
-                SwdBrowser.Initialize(browserOptions);
-                wasBrowserStarted = true;
+                t1.Start();
+
+                while (!threadFinished)
+                {
+                    Application.DoEvents();
+                }
             }
             catch
             {
-                startFailure = true;
                 throw;
             }
             finally
             {
+                Presenters.SwdMainPresenter.DisplayLoadingIndicator(false);
+                view.EnableDriverStartButton();
+
                 if (!startFailure)
                 {
                     SetDesiredCapabilities(browserOptions);
                     view.DriverWasStarted();
                 }
-                view.EnableDriverStartButton();
+                if (threadException != null)
+                {
+                    throw threadException;
+                }
             }
         }
 

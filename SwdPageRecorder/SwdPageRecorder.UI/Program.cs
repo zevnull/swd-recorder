@@ -27,6 +27,7 @@ namespace SwdPageRecorder.UI
             return mainForm;
         }
 
+
         [STAThread]
         static void Main()
         {
@@ -41,10 +42,10 @@ namespace SwdPageRecorder.UI
         {
             public void ApplicationThreadException(object sender, ThreadExceptionEventArgs e)
             {
-                MessageBox.Show(e.Exception.Message);
+                MyLog.Exception(e.Exception);
+                MessageBox.Show(e.Exception.Message, "SWD Page Recorder - Error");
             }
         }
-
 
 
         private static void CurrentDomain_ProcessExit(object sender, EventArgs e)

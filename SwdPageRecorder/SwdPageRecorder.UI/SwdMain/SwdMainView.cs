@@ -108,5 +108,40 @@ namespace SwdPageRecorder.UI
         }
 
 
+
+        internal void ShowGlobalLoading()
+        {
+
+            var action = (MethodInvoker)delegate
+            {
+                pnlLoadingBar.Visible = true;
+            };
+
+            if (pnlLoadingBar.InvokeRequired)
+            {
+                pnlLoadingBar.Invoke(action);
+            }
+            else
+            {
+                action();
+            }
+        }
+
+        internal void HideGlobalLoading()
+        {
+            var action = (MethodInvoker)delegate
+            {
+                pnlLoadingBar.Visible = false;
+            };
+
+            if (pnlLoadingBar.InvokeRequired)
+            {
+                pnlLoadingBar.Invoke(action);
+            }
+            else
+            {
+                action();
+            }
+        }
     }
 }

@@ -95,6 +95,11 @@
     <Compile Include="IPresenter.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="Presenters.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SwdMain\Tabs\Model\ChromeDesiredCapabilitiesData.cs" />
     <Compile Include="SwdMain\Tabs\Model\IEDesiredCapabilitiesData.cs" />
     <Compile Include="SwdMain\UserNotifications.cs" />
@@ -161,6 +166,10 @@
     <Compile Include="Utils.cs" />
     <Compile Include="SwdMain\WebElementLocator.cs" />
     <Compile Include="WinFromsExtensions.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="SwdMain\SwdMainView.resx">
       <DependentUpon>SwdMainView.cs</DependentUpon>
     </EmbeddedResource>
@@ -247,6 +256,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\loading-indicator.gif" />
     <Content Include="swd-recorder.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
