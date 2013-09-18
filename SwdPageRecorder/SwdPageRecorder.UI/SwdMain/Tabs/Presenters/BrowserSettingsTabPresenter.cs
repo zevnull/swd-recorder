@@ -84,62 +84,31 @@ namespace SwdPageRecorder.UI
             }
             
             wasBrowserStarted = false;
-            bool startFailure = false;
-            bool threadFinished = false;
+            
             view.DisableDriverStartButton();
             
-            Presenters.SwdMainPresenter.DisplayLoadingIndicator(true);
+            Exception threadException;
 
-            Exception threadException = null;
+            bool isSuccessful =  UIActions.PerformSlowOperation(
+                                "Operation: Start new WebDriver instance",
+                                () =>
+                                {
+                                    SwdBrowser.Initialize(browserOptions);
+                                    wasBrowserStarted = true;
+                                },
+                                    out threadException,
+                                    null,
+                                    TimeSpan.FromMinutes(10)
+                                );
             
-            Thread t1 = new Thread(
-            () =>
+            view.EnableDriverStartButton();
+
+            if (isSuccessful)
             {
-                try
-                {
-                    SwdBrowser.Initialize(browserOptions);
-                    wasBrowserStarted = true;
-                }
-                catch(Exception e)
-                {
-                    startFailure = true;
-                    threadException = e;
-                }
-                finally
-                {
-                    threadFinished = true;
-                }
-            });
-
-
-            try
-            {
-                t1.Start();
-
-                while (!threadFinished)
-                {
-                    Application.DoEvents();
-                }
+                SetDesiredCapabilities(browserOptions);
+                view.DriverWasStarted();
             }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                Presenters.SwdMainPresenter.DisplayLoadingIndicator(false);
-                view.EnableDriverStartButton();
-
-                if (!startFailure)
-                {
-                    SetDesiredCapabilities(browserOptions);
-                    view.DriverWasStarted();
-                }
-                if (threadException != null)
-                {
-                    throw threadException;
-                }
-            }
+            else if (threadException != null) throw threadException;
         }
 
         private void SetDesiredCapabilities(WebDriverOptions browserOptions)
@@ -164,9 +133,24 @@ namespace SwdPageRecorder.UI
         public void StopDriver()
         {
             view.DisableDriverStartButton();
-            SwdBrowser.CloseDriver();
+            
+            view.DriverIsStopping();
+
+            Exception threadException;
+
+            UIActions.PerformSlowOperation(
+                        "Operation: Stop WebDriver instance",
+                        () =>
+                        {
+                            SwdBrowser.CloseDriver();
+                        },
+                            out threadException,
+                            null,
+                            TimeSpan.FromMinutes(10)
+                        );
+
             view.EnableDriverStartButton();
-            view.DriverWasStopped();
+            
             wasBrowserStarted = false;
         }
 

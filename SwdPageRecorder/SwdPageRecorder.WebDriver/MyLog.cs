@@ -19,5 +19,10 @@ namespace SwdPageRecorder.WebDriver
         {
             logger.Info(message);
         }
+
+        public static void Error(string errorMessage)
+        {
+            logger.Error(errorMessage);
+        }
     }
 }

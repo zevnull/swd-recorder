@@ -117,7 +117,7 @@ namespace SwdPageRecorder.UI
 
         }
         
-        internal void DriverWasStopped()
+        internal void DriverIsStopping()
         {
             SetControlsState("Start", true);
             SetDesiredCapsAvailability(false);

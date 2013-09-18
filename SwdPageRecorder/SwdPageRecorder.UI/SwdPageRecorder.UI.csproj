@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="SwdMain\Tabs\Model\ChromeDesiredCapabilitiesData.cs" />
     <Compile Include="SwdMain\Tabs\Model\IEDesiredCapabilitiesData.cs" />
+    <Compile Include="SwdMain\UIActions.cs" />
     <Compile Include="SwdMain\UserNotifications.cs" />
     <Compile Include="SwdMain\WebElementHtmlAttributes.cs" />
     <Compile Include="SwdMain\SerializableDictionary.cs" />

@@ -50,7 +50,7 @@
             // btnTestLocator
             // 
             this.btnTestLocator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTestLocator.Location = new System.Drawing.Point(664, 11);
+            this.btnTestLocator.Location = new System.Drawing.Point(656, 11);
             this.btnTestLocator.Name = "btnTestLocator";
             this.btnTestLocator.Size = new System.Drawing.Size(75, 23);
             this.btnTestLocator.TabIndex = 2;
