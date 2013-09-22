@@ -127,7 +127,7 @@ return xpath;
                 [
                   {
                     "Key": "href",
-                    "Value": "http://dou.ua/forums/"
+                    "Value": "http://example.com"
                   },
                   {
                     "Key": "class",
@@ -166,7 +166,9 @@ return xpath;
             ", currentElement);
 
             MyLog.Write("JSON:\n" + json);
-            List<KeyValuePair<string, string>> attributesList = JsonConvert.DeserializeObject<List<KeyValuePair<string, string>>>(json);
+            
+            var attributesList = DeserializeAttributesFromJson(json);
+
             foreach (var attr in attributesList)
             {
                 result.Add(attr.Key, attr.Value);
@@ -177,5 +179,12 @@ return xpath;
             return result;
             
         }
+
+        public static ElementAttributesList DeserializeAttributesFromJson(string json)
+        {
+            var attributesList = JsonConvert.DeserializeObject<ElementAttributesList>(json);
+            return attributesList;
+        }
+
     }
 }
