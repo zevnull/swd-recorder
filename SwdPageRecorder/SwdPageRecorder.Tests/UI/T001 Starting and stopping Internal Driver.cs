@@ -196,14 +196,22 @@ namespace SwdPageRecorder.Tests.UI.BrowserSettings
         public void TearDown()
         {
 
-            Console.WriteLine("Terminatiog");
-            SWDRecorder_Program.CloseApplication();
-            //Helper.WFAction(MainForm, () => MainForm.Close());
-            _mainForm = null;
-            if (thread != null) thread.Abort();
-            thread = null;
-            GC.WaitForFullGCComplete();
-            Console.WriteLine("Terminated");
+            try
+            {
+                SWDRecorder_Program.CloseApplication();
+
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                _mainForm = null;
+                if (thread != null) thread.Abort();
+                thread = null;
+                GC.WaitForFullGCComplete();
+            }
 
         }
 
