@@ -28,6 +28,14 @@ namespace SwdPageRecorder.UI
         }
 
 
+        public static void CloseApplication()
+        {
+            Application.Exit();
+        }
+
+
+
+
         [STAThread]
         static void Main()
         {
@@ -57,6 +65,8 @@ namespace SwdPageRecorder.UI
         {
             SwdBrowser.CloseDriver();
         }
+
+
 
     }
 }

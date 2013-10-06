@@ -216,5 +216,16 @@ namespace SwdPageRecorder.UI
             view.SetTestResult(result, isOk);
 
         }
+
+        public void SetBrowserStartupSettings(WebDriverOptions browserOptions)
+        {
+                        
+            view.SetBrowserStartupSettings(browserOptions);
+        }
+
+        public void ClickStart()
+        {
+            view.ClickOnStartButton();
+        }
     }
 }

@@ -15,25 +15,21 @@ using System.Windows.Forms;
 using System.Threading;
 
 using SwdPageRecorder.WebDriver;
-
+using System.Diagnostics;
 
 namespace SwdPageRecorder.Tests.UI.BrowserSettings
 {
     
-    [TestFixture]
-    public class T001_Starting_and_stopping_Internal_Driver
+    public static class Helper 
     {
-
-        SwdMainView _mainForm = null;
-        Thread thread;
-
-        public void WaitFor(Func<bool> testAction, TimeSpan waitTime)
+        public static void WaitFor(Func<bool> testAction, TimeSpan waitTime)
         {
-            DateTime waitForDate = DateTime.Now + waitTime;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
 
-            while (DateTime.Now < waitForDate)
+            while (sw.Elapsed < waitTime)
             {
-                try 
+                try
                 {
                     bool successful = testAction();
                     if (successful)
@@ -41,17 +37,15 @@ namespace SwdPageRecorder.Tests.UI.BrowserSettings
                         return;
                     }
                 }
-                catch {};
+                catch { };
                 Thread.Sleep(1);
             }
 
-            if (DateTime.Now >= waitForDate) throw new TimeoutException();
-
+            if (sw.Elapsed >= waitTime) throw new TimeoutException();
 
         }
 
-
-        public void WFAction<T>(T control, Action action) where T : Control
+        public static void WFAction<T>(T control, Action action) where T : Control
         {
             if (control.InvokeRequired)
             {
@@ -63,6 +57,14 @@ namespace SwdPageRecorder.Tests.UI.BrowserSettings
             }
         }
 
+    }
+    
+    [TestFixture]
+    public class T001_Starting_and_stopping_Internal_Driver
+    {
+
+        SwdMainView _mainForm = null;
+        Thread thread;
 
 
         SwdMainView MainForm
@@ -72,13 +74,16 @@ namespace SwdPageRecorder.Tests.UI.BrowserSettings
 
                 if (_mainForm == null)
                 {
-                    _mainForm = new SwdMainView();
+
+                    ManualResetEvent started = new ManualResetEvent(false);
                     thread = new Thread(delegate()
                         {
+                            _mainForm = new SwdMainView(started);
                             SWDRecorder_Program.Run(_mainForm);
                         });
 
                     thread.Start();
+                    started.WaitOne(TimeSpan.FromSeconds(30));
                 }
                 
                 return _mainForm;
@@ -148,13 +153,15 @@ namespace SwdPageRecorder.Tests.UI.BrowserSettings
         {
             var browserOptions = new WebDriverOptions()
             {
-                BrowserName = WebDriverOptions.browser_Firefox,
+                BrowserName = WebDriverOptions.browser_PhantomJS,
                 IsRemote = false,
                 RemoteUrl = "",
             };
 
+            MainForm.browserSettingsTab1.Presenter.SetBrowserStartupSettings(browserOptions);
+            MainForm.browserSettingsTab1.Presenter.ClickStart();
             
-            MainForm.browserSettingsTab1.Presenter.StartNewBrowser(browserOptions);
+            //MainForm.browserSettingsTab1.Presenter.StartNewBrowser(browserOptions);
             
         }
 
@@ -182,15 +189,22 @@ namespace SwdPageRecorder.Tests.UI.BrowserSettings
 
         private void PrepareApplication()
         {
-            //MainForm.Visible = false;
+            MainForm.Visible = true;
         }
 
         [TearDown]
         public void TearDown()
         {
-            WFAction(MainForm, () => MainForm.Close());
+
+            Console.WriteLine("Terminatiog");
+            SWDRecorder_Program.CloseApplication();
+            //Helper.WFAction(MainForm, () => MainForm.Close());
             _mainForm = null;
             if (thread != null) thread.Abort();
+            thread = null;
+            GC.WaitForFullGCComplete();
+            Console.WriteLine("Terminated");
+
         }
 
 

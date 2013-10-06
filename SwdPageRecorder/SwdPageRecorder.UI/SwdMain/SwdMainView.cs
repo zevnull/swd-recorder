@@ -17,6 +17,7 @@ namespace SwdPageRecorder.UI
     public partial class SwdMainView : Form, IView
     {
         private SwdMainPresenter presenter = null;
+        private System.Threading.ManualResetEvent startedEvent;
         
         public SwdMainView()
         {
@@ -24,6 +25,11 @@ namespace SwdPageRecorder.UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             presenter = Presenters.SwdMainPresenter;
             presenter.InitView(this);
+        }
+
+        public SwdMainView(System.Threading.ManualResetEvent startedEvent) : this()
+        {
+            this.startedEvent = startedEvent;
         }
 
 
@@ -142,6 +148,11 @@ namespace SwdPageRecorder.UI
             {
                 action();
             }
+        }
+
+        private void SwdMainView_Shown(object sender, EventArgs e)
+        {
+            if (startedEvent != null) startedEvent.Set();
         }
     }
 }

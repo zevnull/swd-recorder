@@ -159,5 +159,35 @@ namespace SwdPageRecorder.UI
             lblRemoteHubStatus.Text = result;
             lblRemoteHubStatus.ForeColor = (isOk) ? Color.Green : Color.Red;
         }
+
+        internal void SetBrowserStartupSettings(WebDriverOptions browserOptions)
+        {
+            Action action = new Action(() =>
+            {
+                chkUseRemoteHub.Checked = browserOptions.IsRemote;
+
+                var index = ddlBrowserToStart.Items.IndexOf(browserOptions.BrowserName);
+
+                ddlBrowserToStart.SelectedIndex = index;
+
+
+                txtRemoteHubUrl.Text = browserOptions.RemoteUrl;
+            });
+
+            if (this.InvokeRequired)
+            {
+                this.Invoke(action);
+            }
+            else
+            {
+                action();
+            }
+
+        }
+
+        internal void ClickOnStartButton()
+        {
+            btnStartWebDriver.DoInvokeAction(() => btnStartWebDriver.PerformClick());
+        }
     }
 }
