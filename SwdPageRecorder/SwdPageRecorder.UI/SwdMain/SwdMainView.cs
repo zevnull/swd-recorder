@@ -154,5 +154,12 @@ namespace SwdPageRecorder.UI
         {
             if (startedEvent != null) startedEvent.Set();
         }
+
+        internal void SetDriverDependingControlsEnabled(bool shouldControlBeEnabled)
+        {
+            txtBrowserUrl.DoInvokeAction(   () => txtBrowserUrl.Enabled = shouldControlBeEnabled);
+            btnBrowser_Go.DoInvokeAction(   () =>  btnBrowser_Go.Enabled = shouldControlBeEnabled);
+            grpVisualSearch.DoInvokeAction( () =>  grpVisualSearch.Enabled = shouldControlBeEnabled);
+        }
     }
 }

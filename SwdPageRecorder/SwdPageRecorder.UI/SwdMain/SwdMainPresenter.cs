@@ -157,11 +157,7 @@ namespace SwdPageRecorder.UI
         internal void InitControls()
         {
             var shouldControlBeEnabled = SwdBrowser.IsWorking;
-
-            view.txtBrowserUrl.Enabled = shouldControlBeEnabled;
-            view.btnBrowser_Go.Enabled = shouldControlBeEnabled;
-            view.grpVisualSearch.Enabled = shouldControlBeEnabled;
-
+            view.SetDriverDependingControlsEnabled(shouldControlBeEnabled);
         }
 
         public void DisplayLoadingIndicator(bool showLoading)

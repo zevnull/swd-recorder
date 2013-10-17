@@ -39,7 +39,7 @@ namespace SwdPageRecorder.UI
 
         private void SetDesiredCapsAvailability(bool enabled)
         {
-            grpDesiredCaps.Enabled = enabled;
+            grpDesiredCaps.DoInvokeAction( () => grpDesiredCaps.Enabled = enabled);
         }
 
         private void btnStartWebDriver_Click(object sender, EventArgs e)
@@ -56,14 +56,8 @@ namespace SwdPageRecorder.UI
 
         private void HandleRemoteDriverSettingsEnabledStatus()
         {
-            if (chkUseRemoteHub.Checked)
-            {
-                grpRemoteConnection.Enabled = true;
-            }
-            else
-            {
-                grpRemoteConnection.Enabled = false;
-            }
+            grpRemoteConnection.DoInvokeAction(
+                    () => grpRemoteConnection.Enabled = chkUseRemoteHub.Checked); 
 
             ChangeBrowsersList(chkUseRemoteHub.Checked);
         }
@@ -107,14 +101,13 @@ namespace SwdPageRecorder.UI
 
         private void SetControlsState(string startButtonCaption, bool isEnabled)
         {
-            btnStartWebDriver.Text = startButtonCaption;
+            btnStartWebDriver.DoInvokeAction(() => btnStartWebDriver.Text = startButtonCaption);
 
             foreach (var control in driverControls)
             {
-                control.Enabled = isEnabled;
+                btnStartWebDriver.DoInvokeAction(() => control.Enabled = isEnabled);
             }
             HandleRemoteDriverSettingsEnabledStatus();
-
         }
         
         internal void DriverIsStopping()
@@ -131,17 +124,18 @@ namespace SwdPageRecorder.UI
 
         internal void DisableDriverStartButton()
         {
-            btnStartWebDriver.Enabled = false;
+            btnStartWebDriver.DoInvokeAction( () =>  btnStartWebDriver.Enabled = false);
         }
 
         internal void EnableDriverStartButton()
         {
-            btnStartWebDriver.Enabled = true;
+            btnStartWebDriver.DoInvokeAction(() => btnStartWebDriver.Enabled = true);
         }
 
         internal void SetStatus(string status)
         {
-            lblWebDriverStatus.Text = status;
+
+            lblWebDriverStatus.DoInvokeAction(() => lblWebDriverStatus.Text = status);
         }
 
         private void btnLoadCapabilities_Click(object sender, EventArgs e)
@@ -169,7 +163,6 @@ namespace SwdPageRecorder.UI
                 var index = ddlBrowserToStart.Items.IndexOf(browserOptions.BrowserName);
 
                 ddlBrowserToStart.SelectedIndex = index;
-
 
                 txtRemoteHubUrl.Text = browserOptions.RemoteUrl;
             });
