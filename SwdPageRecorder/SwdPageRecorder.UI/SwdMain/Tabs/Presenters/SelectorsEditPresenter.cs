@@ -95,7 +95,25 @@ namespace SwdPageRecorder.UI
         public void UpdateWebElementWithAdditionalProperties(WebElementDefinition element)
         {
             var by = Utils.ByFromLocatorSearchMethod(element.HowToSearch, element.Locator);
-            var attributes = SwdBrowser.ReadElementAttributes(by);
+            var attributes = new Dictionary<string, string>();
+            try
+            {
+                attributes = SwdBrowser.ReadElementAttributes(by);
+            }
+            catch(Exception e)
+            {
+                string errorMsg = string.Format(
+                                "UpdateWebElementWithAdditionalProperties:\n" +
+                                "Failed to find element: How={0};   Locator={1}\n" + 
+                                "With exception:\n {2}"
+                                , element.HowToSearch.ToString()
+                                , element.Locator.ToString()
+                                , e.Message
+                                
+                                );
+                MyLog.Error(errorMsg);
+            }
+                
 
             if (attributes.Count == 0) return;
 

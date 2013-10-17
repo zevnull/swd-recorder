@@ -139,8 +139,11 @@ return xpath;
             var result = new Dictionary<string, string>();
 
             var elements = webDriver.FindElements(by);
-            
-            if (elements.Count == 0) return null;
+
+            if (elements.Count == 0)
+            {
+                throw new NotFoundException("ReadElementAttributes: Element was not found" + by.ToString());
+            }
 
             var currentElement = elements[0];
 
