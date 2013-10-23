@@ -1,0 +1,30 @@
+﻿@functions{
+    string QuoteLocator(string locator)
+    {
+        locator = locator.Replace("\"", "\"\"");
+        locator = locator.Replace("{", "{{");
+        locator = locator.Replace("}", "}}");
+        return locator;
+    }
+}
+
+using Swd.Core;
+using Swd.Core.Pages;
+using Swd.Core.WebDriver;
+
+using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium;
+
+namespace Demo.TestProject
+{
+    public class DemoSWDPageObject : CorePage
+    {
+        @foreach (var element in @Model.WebElementDefinitions ) 
+        {
+            <text>
+                [FindsBy(How=How.@Raw(@element.How), Using = @@"@Raw(@QuoteLocator(@element.Locator))")]
+                protected IWebElement @Raw(@element.Name) { get; set; }
+            </text>
+        }
+    }
+}
