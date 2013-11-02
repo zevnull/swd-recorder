@@ -5,8 +5,7 @@
 @rem Global variables
 
 set SlnPath=..\SwdPageRecorder\SwdPageRecorder.sln
-set BinPath=..\Bin
-set SwdUiPath=%BinPath%\SwdPageRecorder.UI
+set SwdUiPath=..\Bin
 
 set EnableNuGetPackageRestore=true
 
