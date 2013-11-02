@@ -1,3 +1,8 @@
+#Custom WebDriver
+
+SwdPageRecorder/webdrivers/*.exe
+SwdPageRecorder/webdrivers/*.jar
+
 #Tools
 
 tools/nunit
