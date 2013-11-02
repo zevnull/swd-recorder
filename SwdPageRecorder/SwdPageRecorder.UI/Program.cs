@@ -17,11 +17,11 @@ namespace SwdPageRecorder.UI
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
-            //Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
-            //Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
-            //AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
 
+            Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
+            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
+                        
             var mainForm = new SwdMainView();
             Application.Run(mainForm);
         }

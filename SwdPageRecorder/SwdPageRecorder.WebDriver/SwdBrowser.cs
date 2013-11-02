@@ -168,5 +168,15 @@ namespace SwdPageRecorder.WebDriver
                 CloseDriver();
             }
         }
+
+        public static void RunStandaloneServer()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void RunStandaloneServer(string pathToStartUpBatFile)
+        {
+            SeleniumServerProcess.Launch(pathToStartUpBatFile);
+        }
     }
 }

@@ -1,42 +1,27 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TestStack.White;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.Finders;
-using TestStack.White.UIItems.WindowItems;
-
+using System.Reflection;
+using System.IO;
 
 namespace SwdPageRecorder.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class MyTest
     {
-        [TestMethod]
-        public void TestMethod1()
+
+        static public string AssemblyDirectory
         {
-            Application app = Application.Launch(@"D:\projects_current\swd-recorder\Bin\SwdPageRecorder.UI.exe");
-            var mainWin = app.GetWindows().First( w => w.Title.StartsWith("SWD"));
-
-            var button = mainWin.Get<Button>(SearchCriteria.ByText("Start"));
-
-            button.RaiseClickEvent();
-
-            var waitingIndicator = mainWin.Get<Label>("lblLoadingInProgress");
-
-            System.Threading.Thread.Sleep(1000);
-
-            while (waitingIndicator.Visible)
+            get
             {
-                System.Threading.Thread.Sleep(100);
+                string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+                UriBuilder uri = new UriBuilder(codeBase);
+                string path = Uri.UnescapeDataString(uri.Path);
+                return Path.GetDirectoryName(path);
             }
-
-            app.Close();
-
-            
-
         }
 
+        
         private TestContext testContextInstance;
 
         /// <summary>
@@ -60,16 +45,24 @@ namespace SwdPageRecorder.Tests
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
+        [ClassInitialize]
+        public static void MyClassInitialize(TestContext testContext) 
+        {
+
+        
+        }
         //
         // Use ClassCleanup to run code after all tests in a class have run
         // [ClassCleanup()]
         // public static void MyClassCleanup() { }
         //
         // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
+        [TestInitialize()]
+        public void MyTestInitialize() 
+        {
+            Console.WriteLine(AssemblyDirectory);
+            Directory.SetCurrentDirectory(AssemblyDirectory);
+        }
         //
         // Use TestCleanup to run code after each test has run
         // [TestCleanup()]
