@@ -10,34 +10,28 @@ namespace SwdPageRecorder.UI
 {
     public static class SWDRecorder_Program
     {
-
-     
         
-        public static SwdMainView Run(SwdMainView mainForm)
-        {
-
-            Application.EnableVisualStyles(); 
-            Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
-
-            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
-            AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
-
-            
-            Application.Run(mainForm);
-            return mainForm;
-        }
-
-
-
-
         [STAThread]
         static void Main()
         {
-            
-            Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = new SwdMainView();
-            Run(mainForm);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            
+            Application.ThreadException += new ThreadExceptionHandler().ApplicationThreadException;
+            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
+
+            try
+            {
+                var mainForm = new SwdMainView();
+                //Application.Run(mainForm);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                throw;
+            }
         }
 
         internal class ThreadExceptionHandler

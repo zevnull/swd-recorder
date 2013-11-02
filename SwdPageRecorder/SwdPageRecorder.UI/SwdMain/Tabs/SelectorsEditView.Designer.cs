@@ -193,7 +193,7 @@
             // 
             this.txtWebElementName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtWebElementName.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWebElementName.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtWebElementName.Location = new System.Drawing.Point(132, 10);
             this.txtWebElementName.Name = "txtWebElementName";
             this.txtWebElementName.Size = new System.Drawing.Size(492, 20);
@@ -226,7 +226,7 @@
             // 
             this.txtOtherLocator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOtherLocator.Font = new System.Drawing.Font("Lucida Console", 9.75F);
+            this.txtOtherLocator.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtOtherLocator.Location = new System.Drawing.Point(132, 112);
             this.txtOtherLocator.Name = "txtOtherLocator";
             this.txtOtherLocator.Size = new System.Drawing.Size(492, 20);
