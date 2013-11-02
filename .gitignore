@@ -1,7 +1,9 @@
 #Custom WebDriver
 
-SwdPageRecorder/webdrivers/*.exe
-SwdPageRecorder/webdrivers/*.jar
+chromedriver.exe
+IEDriverServer.exe
+phantomjs.exe
+selenium-server-standalone-*
 
 #Tools
 
