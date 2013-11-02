@@ -58,7 +58,7 @@ namespace SwdPageRecorder.UI
 
 
         public bool wasBrowserStarted = false;
-        public void StartNewBrowser(WebDriverOptions browserOptions)
+        public void StartNewBrowser(WebDriverOptions browserOptions, bool startSeleniumServerIfNotStarted)
         {
             if (wasBrowserStarted)
             {
@@ -66,22 +66,36 @@ namespace SwdPageRecorder.UI
             }
             else
             {
+                if (startSeleniumServerIfNotStarted
+                && !SeleniumServerProcess.IsRunning(browserOptions.RemoteUrl))
+                {
+                    Exception outException;
+                    bool isOk = UIActions.PerformSlowOperation(
+                                "Operation: Start local RemoteWebDriver Server",
+                                () =>
+                                {
+                                    SeleniumServerProcess.Launch("start_selenium_server.bat");
+                                    TestRemoteHub(browserOptions.RemoteUrl);
+                                },
+                                    out outException,
+                                    null,
+                                    TimeSpan.FromMinutes(2)
+                                );
+
+                    if (!isOk)
+                    {
+                        MyLog.Error("Failed to start local Selenium Server");
+                        if (outException != null) throw outException;
+                    }
+
+                }
+                
                 StartDriver(browserOptions);
             }
         }
 
         public void StartDriver(WebDriverOptions browserOptions)
         {
-            
-            if (browserOptions.BrowserName == WebDriverOptions.browser_Firefox
-                && browserOptions.IsRemote == false)
-            {
-                if (Workaround.Is_Firefox_Supported_for_Internal_driver_execution().ShouldBeApplied)
-                {
-                    UserNotifications.NotifyUserAboutWorkaround(Workaround.Is_Firefox_Supported_for_Internal_driver_execution());
-                    return;
-                }
-            }
             
             wasBrowserStarted = false;
             
@@ -197,7 +211,7 @@ namespace SwdPageRecorder.UI
             InitDesiredCapabilities();
         }
 
-        internal void TestRemoteHub(string url)
+        public bool TestRemoteHub(string url)
         {
             var client = new WebClient();
             string result = "OK";
@@ -214,7 +228,7 @@ namespace SwdPageRecorder.UI
                 result = "FAILED: " + e.Message;
             }
             view.SetTestResult(result, isOk);
-
+            return isOk;
         }
 
         public void SetBrowserStartupSettings(WebDriverOptions browserOptions)

@@ -44,14 +44,18 @@ namespace SwdPageRecorder.UI
 
         private void btnStartWebDriver_Click(object sender, EventArgs e)
         {
+            var isRemoteDriver = chkUseRemoteHub.Checked;
+            var startSeleniumServerIfNotStarted = chkAutomaticallyStartServer.Checked;
+
             var browserOptions = new WebDriverOptions()
             {
                 BrowserName = ddlBrowserToStart.SelectedItem as string,
-                IsRemote = chkUseRemoteHub.Checked,
+                IsRemote = isRemoteDriver,
                 RemoteUrl = txtRemoteHubUrl.Text,
             };
 
-            Presenter.StartNewBrowser(browserOptions); 
+
+            Presenter.StartNewBrowser(browserOptions, startSeleniumServerIfNotStarted); 
         }
 
         private void HandleRemoteDriverSettingsEnabledStatus()

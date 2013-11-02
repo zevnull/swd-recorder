@@ -2,7 +2,12 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
+
 using SwdPageRecorder.WebDriver;
+
+using FluentAssertions;
 
 namespace SwdPageRecorder.Tests.Integration.SwdWebDriver
 {
@@ -14,7 +19,7 @@ namespace SwdPageRecorder.Tests.Integration.SwdWebDriver
         {
             WebDriverOptions options = new WebDriverOptions()
             {
-                 BrowserName = WebDriverOptions.browser_PhantomJS,
+                 BrowserName = WebDriverOptions.browser_HtmlUnitWithJavaScript,
                  IsRemote = true,
                  RemoteUrl = "http://localhost:4444/wd/hub/",
             };
@@ -22,7 +27,11 @@ namespace SwdPageRecorder.Tests.Integration.SwdWebDriver
             SwdBrowser.RunStandaloneServer("start_selenium_server.bat");
 
 
-            //SwdBrowser.Initialize(options);
+            SwdBrowser.Initialize(options);
+
+            var rempteDriver = (RemoteWebDriver) SwdBrowser.GetDriver();
+
+            rempteDriver.Capabilities.BrowserName.Should().Be("htmlunit");
         }
 
     }

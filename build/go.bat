@@ -53,6 +53,8 @@ copy %SwdUiPath%\NLog.config SwdPageRecorder_Latest\*.* /y >>%STDOUT_DEFAULT%
 
 copy ..\license.md SwdPageRecorder_Latest\license.txt /y >>%STDOUT_DEFAULT%
 
+copy %SwdUiPath%\start_selenium_server.bat SwdPageRecorder_Latest\start_selenium_server.bat /y >>%STDOUT_DEFAULT%
+
 @REM # Copy WebDriver DLL files
 
 copy %SwdUiPath%\WebDriver.dll SwdPageRecorder_Latest\*.* /y >>%STDOUT_DEFAULT%

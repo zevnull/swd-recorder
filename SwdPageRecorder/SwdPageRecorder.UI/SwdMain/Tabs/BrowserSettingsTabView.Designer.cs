@@ -43,6 +43,7 @@
             this.grpDesiredCaps = new System.Windows.Forms.GroupBox();
             this.btnLoadCapabilities = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.chkAutomaticallyStartServer = new System.Windows.Forms.CheckBox();
             this.grpRemoteConnection.SuspendLayout();
             this.grpDesiredCaps.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +72,7 @@
             // 
             this.grpRemoteConnection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpRemoteConnection.Controls.Add(this.chkAutomaticallyStartServer);
             this.grpRemoteConnection.Controls.Add(this.lblRemoteHubStatus);
             this.grpRemoteConnection.Controls.Add(this.label1);
             this.grpRemoteConnection.Controls.Add(this.btnTestRemoteHub);
@@ -207,6 +209,16 @@
             this.label4.Text = "Note: if you are going to use a browser other than Firefox, please download appro" +
     "priate driver executable and put it near the SWD Page Recorder";
             // 
+            // chkAutomaticallyStartServer
+            // 
+            this.chkAutomaticallyStartServer.AutoSize = true;
+            this.chkAutomaticallyStartServer.Location = new System.Drawing.Point(73, 72);
+            this.chkAutomaticallyStartServer.Name = "chkAutomaticallyStartServer";
+            this.chkAutomaticallyStartServer.Size = new System.Drawing.Size(325, 17);
+            this.chkAutomaticallyStartServer.TabIndex = 5;
+            this.chkAutomaticallyStartServer.Text = "Run \"start_selenium_server.bat\" if Remote Driver is unavailable";
+            this.chkAutomaticallyStartServer.UseVisualStyleBackColor = true;
+            // 
             // BrowserSettingsTabView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -245,5 +257,6 @@
         public System.Windows.Forms.PropertyGrid grdDesiredCapabilities;
         private System.Windows.Forms.Button btnLoadCapabilities;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox chkAutomaticallyStartServer;
     }
 }
