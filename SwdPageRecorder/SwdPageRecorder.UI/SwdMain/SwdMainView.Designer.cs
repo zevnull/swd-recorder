@@ -345,7 +345,7 @@
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SwdMainView";
-            this.Text = "SWD Page Recorder v0.1 beta 1";
+            this.Text = "SWD Page Recorder v0.1 beta 1 (November 03, 2013)";
             this.Shown += new System.EventHandler(this.SwdMainView_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
