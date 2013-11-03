@@ -28,10 +28,10 @@
   };
 
   getPathTo = function(element) {
-    var elementTagName, ix, sibling, siblingTagName, siblings, _i, _len;
+    var ELEMENT_NODE_TYPE, elementTagName, ix, sibling, siblingTagName, siblings, _i, _len;
     elementTagName = element.tagName.toLowerCase();
     if (element.id && document.getElementById(element.id) === element) {
-      return 'id("#{element.id}")';
+      return "id(\"" + element.id + "\")";
     } else if (element.name && document.getElementsByName(element.name).length === 1) {
       return "//" + elementTagName + "[@name='" + element.name + "']";
     } else if (elementTagName === "input" && getInputElementsByTypeAndValue("submit", element.value).length === 1) {
@@ -51,8 +51,12 @@
     }
     ix = 0;
     siblings = element.parentNode.childNodes;
+    ELEMENT_NODE_TYPE = 1;
     for (_i = 0, _len = siblings.length; _i < _len; _i++) {
       sibling = siblings[_i];
+      if (sibling.nodeType !== ELEMENT_NODE_TYPE) {
+        continue;
+      }
       if (sibling === element) {
         return "" + (getPathTo(element.parentNode)) + "/" + elementTagName + "[" + (ix + 1) + "]";
       }
@@ -156,36 +160,9 @@
     return false;
   };
 
-  addStyle(".highlight { background-color:silver !important}");
-
-  addStyle("table#SWDTable {             background-color:white;             border-collapse:collapse;           }                       table#SWDTable,table#SWDTable th, table#SWDTable td  {             font-family: Verdana, Arial;             font-size: 10pt;             padding-left:10pt;             padding-right:10pt;             border-bottom: 1px solid black;            }");
-
-  addStyle("input#SwdPR_PopUp_CodeIDText {             display:table-cell;             width:95%;          }");
-
-  addStyle("span#SwdPR_PopUp_CloseButton {              display:table-cell;             width:10px;             border: 2px solid #c2c2c2;             padding: 1px 5px;             top: -20px;             background-color: #980000;             border-radius: 20px;             font-size: 15px;             font-weight: bold;             color: white;text-decoration: none; cursor:pointer;           }");
-
-  addStyle("div#SwdPR_PopUp {             display:none;           }           div#SwdPR_PopUp_Element_Name {             display:table;             width: 100%;           }");
-
-  createElementForm();
-
   prev = void 0;
 
   window.Swd_prevActiveElement = void 0;
-
-  if (document.body.addEventListener) {
-    document.body.addEventListener('mouseover', handler, false);
-    document.addEventListener('contextmenu', rightClickHandler, false);
-  } else if (document.body.attachEvent) {
-    document.body.attachEvent('mouseover', function(e) {
-      return handler(e || window.event);
-    });
-    document.body.attachEvent('oncontextmenu', function(e) {
-      return rightClickHandler(e || window.event);
-    });
-  } else {
-    document.body.onmouseover = handler;
-    document.body.onmouseover = rightClickHandler;
-  }
 
   handler = function(event) {
     if (event.target === document.body || (prev && prev === event.target)) {
@@ -225,6 +202,33 @@
       return preventEvent(event);
     }
   };
+
+  addStyle(".highlight { background-color:silver !important}");
+
+  addStyle("table#SWDTable {             background-color:white;             border-collapse:collapse;           }                       table#SWDTable,table#SWDTable th, table#SWDTable td  {             font-family: Verdana, Arial;             font-size: 10pt;             padding-left:10pt;             padding-right:10pt;             border-bottom: 1px solid black;            }");
+
+  addStyle("input#SwdPR_PopUp_CodeIDText {             display:table-cell;             width:95%;          }");
+
+  addStyle("span#SwdPR_PopUp_CloseButton {              display:table-cell;             width:10px;             border: 2px solid #c2c2c2;             padding: 1px 5px;             top: -20px;             background-color: #980000;             border-radius: 20px;             font-size: 15px;             font-weight: bold;             color: white;text-decoration: none; cursor:pointer;           }");
+
+  addStyle("div#SwdPR_PopUp {             display:none;           }           div#SwdPR_PopUp_Element_Name {             display:table;             width: 100%;           }");
+
+  createElementForm();
+
+  if (document.body.addEventListener) {
+    document.body.addEventListener('mouseover', handler, false);
+    document.addEventListener('contextmenu', rightClickHandler, false);
+  } else if (document.body.attachEvent) {
+    document.body.attachEvent('mouseover', function(e) {
+      return handler(e || window.event);
+    });
+    document.body.attachEvent('oncontextmenu', function(e) {
+      return rightClickHandler(e || window.event);
+    });
+  } else {
+    document.body.onmouseover = handler;
+    document.body.onmouseover = rightClickHandler;
+  }
 
   window.swd_visual_search_injected = "swd_visual_search_injected";
 

@@ -1,4 +1,4 @@
-﻿showPos = (event, xpath) ->
+showPos = (event, xpath) ->
 
     el = document.getElementById('SwdPR_PopUp');
     

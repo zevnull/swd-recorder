@@ -1,5 +1,4 @@
-﻿handler = (event) ->
-    
+handler = (event) ->
     return if event.target is document.body or (prev and prev is event.target)
 
     if prev

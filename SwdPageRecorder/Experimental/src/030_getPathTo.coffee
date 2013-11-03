@@ -1,9 +1,9 @@
-﻿getPathTo = (element) ->
+getPathTo = (element) ->
     elementTagName = element.tagName.toLowerCase()
 
     # Check if node has ID and this ID is unique over the document
     if element.id and document.getElementById(element.id) is element
-        return 'id("#{element.id}")'
+        return "id(\"#{element.id}\")"
 
     # Check element name
     else if element.name and document.getElementsByName(element.name).length is 1
@@ -28,13 +28,18 @@
     ix = 0
     siblings = element.parentNode.childNodes
 
+    ELEMENT_NODE_TYPE = 1
+
     for sibling in siblings
+        
+        continue if sibling.nodeType isnt ELEMENT_NODE_TYPE
+
         if sibling is element
             return "#{getPathTo(element.parentNode)}/#{elementTagName}[#{ix + 1}]"
         
         siblingTagName = sibling.tagName.toLowerCase()
         elementTagName = element.tagName.toLowerCase()
 
-        ix++ if sibling.nodeType is 1 and  siblingTagName is elementTagName
+        ix++ if sibling.nodeType is 1 and siblingTagName is elementTagName
 
             

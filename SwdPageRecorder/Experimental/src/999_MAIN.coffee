@@ -1,5 +1,4 @@
-﻿
-addStyle ".highlight { background-color:silver !important}"
+﻿addStyle ".highlight { background-color:silver !important}"
 addStyle "table#SWDTable { 
             background-color:white; 
             border-collapse:collapse;
@@ -42,10 +41,6 @@ addStyle "div#SwdPR_PopUp {
 
 createElementForm()
 
-
-prev = undefined
-window.Swd_prevActiveElement = undefined
-
 if document.body.addEventListener
     document.body.addEventListener 'mouseover',   handler,           false
     document.addEventListener      'contextmenu', rightClickHandler, false
@@ -57,3 +52,6 @@ else if document.body.attachEvent
 else
     document.body.onmouseover = handler
     document.body.onmouseover = rightClickHandler
+
+
+window.swd_visual_search_injected = "swd_visual_search_injected"

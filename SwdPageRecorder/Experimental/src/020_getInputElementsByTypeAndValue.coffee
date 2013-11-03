@@ -1,4 +1,4 @@
-﻿getInputElementsByTypeAndValue = (inputType, inputValue) ->
+getInputElementsByTypeAndValue = (inputType, inputValue) ->
     allDocumentInputElements = document.getElementsByTagName('input')
 
     result = new Array();
