@@ -1,6 +1,7 @@
 ﻿(function () {
     // =================== XPATH 
 
+    // 010
     function pseudoGuid() {
         var result = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
         result = result.replace(/[xy]/g, function(c) 
@@ -12,6 +13,7 @@
         return result;
     }
 
+    // 020
     function getInputElementsByTypeAndValue(inputType, inputValue) {
         var inputs = document.getElementsByTagName('input');
 
@@ -25,6 +27,7 @@
         return result;
     }
 
+    // 030
     function getPathTo(element) {
         var elementTagName = element.tagName.toLowerCase();
 
@@ -67,7 +70,7 @@
                 ix++;
         }
     }
-
+    // 040
     function getPageXY(element) {
         var x = 0, y = 0;
         while (element) {
@@ -80,6 +83,7 @@
     // ==========================
 
     // ====== SHOW DIV Coords==============
+    // 050
     function showPos(event, xpath) {
         
         var el, x, y;
@@ -113,6 +117,7 @@
     }
 
 
+    // 060
     function createElementForm() {
         //Create an input type dynamically.   
         var element = document.createElement("div");
