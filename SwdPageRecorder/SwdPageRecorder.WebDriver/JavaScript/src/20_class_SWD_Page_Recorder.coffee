@@ -1,9 +1,15 @@
 ﻿class SWD_Page_Recorder
 
+    # ComputedProperties
+    getMainWinElement : -> document.getElementById('SwdPR_PopUp')
+
+
+    
+    
     # TODO: Description 
     displaySwdForm : (x, y) ->
 
-        el = document.getElementById('SwdPR_PopUp');
+        el = @getMainWinElement();
 
         el.style.background = "white"
         el.style.position = "absolute"

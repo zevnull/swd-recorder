@@ -19,6 +19,27 @@ addStyle "input#SwdPR_PopUp_CodeIDText {
             width:95%;
           }"
 
+
+
+addStyle "span#SwdPR_PopUp_CloseButton {  
+            display:table-cell;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -o-border-radius: 4px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            color: white;
+            background-color: #980000;
+            cursor: pointer;
+            font-size: 10pt;
+            padding: 0px 2px;
+            font-weight: bold;
+            position: absolute;
+            right: 3px;
+            top: 8px;
+          }"
+
+###
 addStyle "span#SwdPR_PopUp_CloseButton {  
             display:table-cell; 
             width:10px; 
@@ -31,7 +52,7 @@ addStyle "span#SwdPR_PopUp_CloseButton {
             font-weight: bold; 
             color: white;text-decoration: none; cursor:pointer; 
           }"
-
+###
 addStyle "div#SwdPR_PopUp { 
             display:none; 
           } 
