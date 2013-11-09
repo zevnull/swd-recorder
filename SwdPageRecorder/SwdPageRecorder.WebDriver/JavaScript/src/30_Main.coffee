@@ -1,4 +1,6 @@
-﻿addStyle ".highlight { background-color:silver !important}"
+﻿############################## MAIN ############################################
+
+addStyle ".highlight { background-color:silver !important}"
 addStyle "table#SWDTable { 
             background-color:white; 
             border-collapse:collapse;
@@ -39,8 +41,6 @@ addStyle "div#SwdPR_PopUp {
           }"
 
 
-createElementForm()
-
 if document.body.addEventListener
     document.body.addEventListener 'mouseover',   handler,           false
     document.addEventListener      'contextmenu', rightClickHandler, false
@@ -54,4 +54,5 @@ else
     document.body.onmouseover = rightClickHandler
 
 
-window.swd_visual_search_injected = "swd_visual_search_injected"
+window.SWD_Page_Recorder = new SWD_Page_Recorder()
+window.SWD_Page_Recorder.createElementForm()
