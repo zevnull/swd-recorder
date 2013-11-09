@@ -29,18 +29,8 @@ namespace SwdPageRecorder.WebDriver.SwdBrowserUtils
 
         public static string ReadJavaScriptFromFile(string filePath)
         {
-            string result = "";
             string contents = File.ReadAllText(filePath);
-
-
-            // Replace comments
-            contents = Regex.Replace(contents, @"(/\*[^/]+\*/)", @"");
-            contents = Regex.Replace(contents, @"(\s//[^/\n]+)", @"");
-
-            // Replace newlines
-            result = Regex.Replace(contents, @"\r\n|\n", @" ");
-
-            return result;
+            return contents;
         }
 
 

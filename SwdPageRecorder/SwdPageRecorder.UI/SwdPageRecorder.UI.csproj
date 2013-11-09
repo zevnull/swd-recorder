@@ -192,7 +192,9 @@
     <EmbeddedResource Include="SwdMain\Tabs\SelectorsEditView.resx">
       <DependentUpon>SelectorsEditView.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="CodeTemplates\[CSharp] Explicit Finders - Driver.FindElement%28By%29.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
