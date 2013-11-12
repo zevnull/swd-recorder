@@ -1,15 +1,27 @@
 ﻿# TODO: Description 
+say = (something) -> console.log something
+
+dbg = (something) -> console.log "DBG:" + something
+
+hello = (something) -> dbg "(begin): " + something
+bye   = (something) -> dbg "(end): " + something
+
+# TODO: Description 
 pseudoGuid = () ->
+    hello "pseudoGuid"
+
     result = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
     result = result.replace /[xy]/g, (re_match) ->
                         random_value = Math.random() * 16 | 0
                         replacement = if re_match is 'x' then  random_value else random_value & 0x3 | 0x8
                         return replacement.toString(16)
 
+    bye "pseudoGuid"
     return result
 
 # TODO: Description 
 getInputElementsByTypeAndValue = (inputType, inputValue) ->
+    hello "getInputElementsByTypeAndValue"
     allDocumentInputElements = document.getElementsByTagName('input')
 
     result = new Array();
@@ -18,6 +30,7 @@ getInputElementsByTypeAndValue = (inputType, inputValue) ->
         if inputElement.type is inputType and inputElement.value is inputValue
             result.push inputElement
 
+    bye "getInputElementsByTypeAndValue"
     return result;
 
 # TODO: Description 
@@ -112,10 +125,10 @@ window.Swd_prevActiveElement = undefined
 
 # TODO: Description
 handler = (event) ->
-   return if event.target is document.body or (prev and prev is event.target)
+   return if event.target is document.body or prev is event.target
 
    if prev
-       prev.className = prev.className.replace(/\bhighlight\b/, '')
+       prev.className = prev.className.replace(/\s?\bhighlight\b/, '')
        prev = undefined
 
    if event.target and event.ctrlKey
