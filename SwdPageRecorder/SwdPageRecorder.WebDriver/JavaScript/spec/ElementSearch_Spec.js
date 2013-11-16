@@ -2,7 +2,9 @@
 (function() {
   describe("Element Search", function() {
     return describe("When pseudoGuid is generated", function() {
-      return it("should do something", function() {});
+      return it("should do something", function() {
+        return console.log("Hello!");
+      });
     });
   });
 

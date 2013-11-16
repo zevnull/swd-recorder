@@ -36,7 +36,7 @@
             this.pnlLoadingBar = new System.Windows.Forms.Panel();
             this.lblLoadingInProgress = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.splitContainer1 = new SwdPageRecorder.UI.MySplitContainer();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.browserSettingsTab1 = new SwdPageRecorder.UI.BrowserSettingsTabView();
@@ -85,12 +85,12 @@
             // 
             this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(892, 18);
+            this.linkLabel1.Location = new System.Drawing.Point(803, 23);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(92, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(181, 13);
             this.linkLabel1.TabIndex = 2;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "??? Project Home";
+            this.linkLabel1.Text = "Visit project\'s home: SWD-Tools.com";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // btnBrowser_Go
@@ -382,7 +382,7 @@
         public System.Windows.Forms.Button btnBrowser_Go;
         public PageObjectDefinitionView pageObjectDefinitionView;
         private PageObjectSourceCodeView pageObjectSourceCodeView1;
-        private MySplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
         public BrowserSettingsTabView browserSettingsTab1;
         public HtmlDomTesterView htmlDomTesterView1;
         public FullHtmlSourceTabView fullHtmlSourceTabView1;

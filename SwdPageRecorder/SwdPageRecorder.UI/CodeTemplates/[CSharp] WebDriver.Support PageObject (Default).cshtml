@@ -12,9 +12,20 @@ public class Page
 {
     @foreach (var element in @Model.WebElementDefinitions ) 
     {
-        <text>
-            [FindsBy(How=How.@Raw(@element.How), Using = @@"@Raw(@QuoteLocator(@element.Locator))")]
-            protected IWebElement @Raw(@element.Name) { get; set; }
-        </text>
+        
+        if(element.ReturnsCollection) 
+        {        
+    <text>
+    [FindsBy(How=How.@Raw(@element.How), Using = @@"@Raw(@QuoteLocator(@element.Locator))")]
+    protected IList<IWebElement> @Raw(@element.Name) { get; set; }
+    </text>
+        }
+        else 
+        {
+    <text>
+    [FindsBy(How=How.@Raw(@element.How), Using = @@"@Raw(@QuoteLocator(@element.Locator))")]
+    protected IWebElement @Raw(@element.Name) { get; set; }
+    </text>
+        }
     }
 }

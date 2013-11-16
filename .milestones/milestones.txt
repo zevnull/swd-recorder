@@ -3,7 +3,7 @@ Milestones
 --------------------------------------------------
 RELESE 0.1
 --------------------------------------------------
-[-] ! DoInvokeAction(   () => for all multithreading controls
+[-] !DoInvokeAction(   () => for all multithreading controls
 [-] Linux!
     [-] Disable the posibility to select embeded driver. All work unstable. 
         No any reason to allow starting them

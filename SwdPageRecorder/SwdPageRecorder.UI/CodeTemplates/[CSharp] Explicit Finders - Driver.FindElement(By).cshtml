@@ -32,12 +32,26 @@ public class Page
 
 @foreach (var element in @Model.WebElementDefinitions ) 
 {
+    if(element.ReturnsCollection) 
+    {
+    <text>
+    protected IList<IWebElement> @Raw(@element.Name)
+    {
+        get { return Driver.FindElements(By.@Raw(@GetCSharpBy(@element.How)) (@@"@Raw(@QuoteLocator(@element.Locator))") ); }
+    }
+    </text>
+
+    }
+    else
+    {
     <text>
     protected IWebElement @Raw(@element.Name)
     {
         get { return Driver.FindElement(By.@Raw(@GetCSharpBy(@element.How)) (@@"@Raw(@QuoteLocator(@element.Locator))") ); }
     }
     </text>
+    }
+
 } 
 
 }

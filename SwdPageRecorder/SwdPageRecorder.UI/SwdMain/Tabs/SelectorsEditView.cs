@@ -38,7 +38,9 @@ namespace SwdPageRecorder.UI
             this.presenter = Presenters.SelectorsEditPresenter;
             presenter.InitWithView(this);
             InitOtherLocatorDropDown();
+
         }
+
 
         private void InitOtherLocatorDropDown()
         {
@@ -96,6 +98,8 @@ namespace SwdPageRecorder.UI
                 Name = txtWebElementName.Text,
                 HowToSearch = GetLocatorSearchMethod(),
                 Locator = GetLocatorText(),
+                
+                ReturnsCollection = chkReturnsListOfWebElements.Checked,
 
                 // Properties
                 HtmlTag = txtPropHtmlTag.Text,
@@ -148,6 +152,8 @@ namespace SwdPageRecorder.UI
             txtPropArg1.Clear();
             txtPropArg2.Clear();
             txtPropArg3.Clear();
+
+            chkReturnsListOfWebElements.Checked = false;
 
         }
 
@@ -258,6 +264,8 @@ namespace SwdPageRecorder.UI
                     }
                     break;
             }
+
+            chkReturnsListOfWebElements.Checked = formData.ReturnsCollection;
 
             UpdateElementPropertiesForm(formData);
 

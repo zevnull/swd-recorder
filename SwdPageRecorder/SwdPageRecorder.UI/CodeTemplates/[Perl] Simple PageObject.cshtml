@@ -66,16 +66,25 @@ sub driver {
  
 @foreach (var element in @Model.WebElementDefinitions ) 
 {
- 
- 
-<text>
 
+if(element.ReturnsCollection) 
+{
+<text>
+sub @Raw(@element.Name) {
+    return shift->driver->find_elements(q!@Raw(@element.Locator)!, "@Raw(@PerlHow(@element.How))");
+}
+</text>
+}
+else 
+{
+<text>
 sub @Raw(@element.Name) {
     return shift->driver->find_element(q!@Raw(@element.Locator)!, "@Raw(@PerlHow(@element.How))");
 }
-
 </text>
 
+} 
+ 
         
 }
 

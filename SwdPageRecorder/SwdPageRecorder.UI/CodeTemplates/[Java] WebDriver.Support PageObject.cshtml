@@ -26,9 +26,19 @@ public class Page
 {
     @foreach (var element in @Model.WebElementDefinitions ) 
     {
+        if(element.ReturnsCollection) 
+        {        
+        <text>
+            @@FindBy(how=How.@Raw(@JavaHow(@element.How)), using="@Raw(@QuoteLocator(@element.Locator))")
+            private List<WebElement> @Raw(@element.Name);
+        </text>
+        }
+        else 
+        {
         <text>
             @@FindBy(how=How.@Raw(@JavaHow(@element.How)), using="@Raw(@QuoteLocator(@element.Locator))")
             private WebElement @Raw(@element.Name);
         </text>
+        }
     }
 }

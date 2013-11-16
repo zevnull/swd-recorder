@@ -30,7 +30,7 @@
         {
             this.btnTestLocator = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.splitContainer1 = new SwdPageRecorder.UI.MySplitContainer();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tvHtmlDoc = new System.Windows.Forms.TreeView();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -175,7 +175,7 @@
 
         #endregion
 
-        private MySplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
         public System.Windows.Forms.TreeView tvHtmlDoc;
         public System.Windows.Forms.TabControl tabControl2;
         public System.Windows.Forms.TabPage tabPage5;
