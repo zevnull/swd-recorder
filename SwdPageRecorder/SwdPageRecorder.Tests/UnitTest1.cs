@@ -24,7 +24,7 @@ namespace SwdPageRecorder.Tests
 
             var waitingIndicator = mainWin.Get<Label>("lblLoadingInProgress");
 
-            System.Threading.Thread.Sleep(1000);
+            UglySleep(1000);
 
             while (waitingIndicator.Visible)
             {
@@ -35,6 +35,11 @@ namespace SwdPageRecorder.Tests
 
             
 
+        }
+
+        private static void UglySleep(int miliseconds)
+        {
+            System.Threading.Thread.Sleep(miliseconds);
         }
 
         private TestContext testContextInstance;
