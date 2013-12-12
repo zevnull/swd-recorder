@@ -40,7 +40,19 @@ namespace SwdPageRecorder.UI
             // Subscribe to WebDriverUtils events
             SwdBrowser.OnDriverStarted += InitControls;
             SwdBrowser.OnDriverClosed += InitControls;
+
+            SwdBrowser.OnDriverStarted += RefreshSwitchToList;
+            
             InitControls();
+
+
+
+
+        }
+
+        private void RefreshSwitchToList()
+        {
+            throw new NotImplementedException();
         }
 
 

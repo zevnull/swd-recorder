@@ -34,5 +34,12 @@ namespace SwdPageRecorder.Tests.Integration.SwdWebDriver
             rempteDriver.Capabilities.BrowserName.Should().Be("htmlunit");
         }
 
+        [TestMethod]
+        // Enumerate windows and frames
+        public void test()
+        {
+            this.Should().Be("Failed");
+        }
+
     }
 }

@@ -41,7 +41,13 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.browserSettingsTab1 = new SwdPageRecorder.UI.BrowserSettingsTabView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.grpSwitchTo = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbFrames = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbWindows = new System.Windows.Forms.ComboBox();
             this.grpVisualSearch = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnStartVisualSearch = new System.Windows.Forms.Button();
             this.txtVisualSearchResult = new System.Windows.Forms.TextBox();
@@ -62,6 +68,7 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.grpSwitchTo.SuspendLayout();
             this.grpVisualSearch.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -206,6 +213,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.grpSwitchTo);
             this.tabPage2.Controls.Add(this.grpVisualSearch);
             this.tabPage2.Controls.Add(this.selectorsEditView);
             this.tabPage2.Controls.Add(this.htmlDomTesterView1);
@@ -217,35 +225,95 @@
             this.tabPage2.Text = "Locators";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // grpSwitchTo
+            // 
+            this.grpSwitchTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpSwitchTo.Controls.Add(this.label4);
+            this.grpSwitchTo.Controls.Add(this.cbFrames);
+            this.grpSwitchTo.Controls.Add(this.label3);
+            this.grpSwitchTo.Controls.Add(this.cbWindows);
+            this.grpSwitchTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.grpSwitchTo.Location = new System.Drawing.Point(418, 184);
+            this.grpSwitchTo.Name = "grpSwitchTo";
+            this.grpSwitchTo.Size = new System.Drawing.Size(315, 76);
+            this.grpSwitchTo.TabIndex = 5;
+            this.grpSwitchTo.TabStop = false;
+            this.grpSwitchTo.Text = "SwitchTo (Search Context)";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 48);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Frame:";
+            // 
+            // cbFrames
+            // 
+            this.cbFrames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFrames.FormattingEnabled = true;
+            this.cbFrames.Location = new System.Drawing.Point(79, 45);
+            this.cbFrames.Name = "cbFrames";
+            this.cbFrames.Size = new System.Drawing.Size(230, 21);
+            this.cbFrames.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 21);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Window:";
+            // 
+            // cbWindows
+            // 
+            this.cbWindows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWindows.FormattingEnabled = true;
+            this.cbWindows.Location = new System.Drawing.Point(79, 18);
+            this.cbWindows.Name = "cbWindows";
+            this.cbWindows.Size = new System.Drawing.Size(230, 21);
+            this.cbWindows.TabIndex = 0;
+            // 
             // grpVisualSearch
             // 
             this.grpVisualSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpVisualSearch.Controls.Add(this.label2);
             this.grpVisualSearch.Controls.Add(this.label1);
             this.grpVisualSearch.Controls.Add(this.btnStartVisualSearch);
             this.grpVisualSearch.Controls.Add(this.txtVisualSearchResult);
             this.grpVisualSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.grpVisualSearch.Location = new System.Drawing.Point(6, 184);
             this.grpVisualSearch.Name = "grpVisualSearch";
-            this.grpVisualSearch.Size = new System.Drawing.Size(727, 61);
+            this.grpVisualSearch.Size = new System.Drawing.Size(406, 76);
             this.grpVisualSearch.TabIndex = 4;
             this.grpVisualSearch.TabStop = false;
-            this.grpVisualSearch.Text = "In-Browser Web Element Explorer";
+            this.grpVisualSearch.Text = "WebBrowser Web Element Explorer";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(27, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(287, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Use Ctrl + RightClick to invoke WebElement properties form";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 42);
+            this.label1.Location = new System.Drawing.Point(4, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(550, 13);
+            this.label1.Size = new System.Drawing.Size(270, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Tip: In the Web-Browser: Use Ctrl to highlight elements. Use Ctrl + RightClick to" +
-    " invoke WebElement properties form";
+            this.label1.Text = "Tip: In the Web-Browser: Use Ctrl to highlight elements. ";
             // 
             // btnStartVisualSearch
             // 
             this.btnStartVisualSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartVisualSearch.Location = new System.Drawing.Point(640, 20);
+            this.btnStartVisualSearch.Location = new System.Drawing.Point(325, 18);
             this.btnStartVisualSearch.Name = "btnStartVisualSearch";
             this.btnStartVisualSearch.Size = new System.Drawing.Size(75, 23);
             this.btnStartVisualSearch.TabIndex = 1;
@@ -259,7 +327,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtVisualSearchResult.Location = new System.Drawing.Point(6, 20);
             this.txtVisualSearchResult.Name = "txtVisualSearchResult";
-            this.txtVisualSearchResult.Size = new System.Drawing.Size(602, 20);
+            this.txtVisualSearchResult.Size = new System.Drawing.Size(313, 20);
             this.txtVisualSearchResult.TabIndex = 0;
             // 
             // selectorsEditView
@@ -278,9 +346,9 @@
             this.htmlDomTesterView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.htmlDomTesterView1.Location = new System.Drawing.Point(6, 246);
+            this.htmlDomTesterView1.Location = new System.Drawing.Point(6, 260);
             this.htmlDomTesterView1.Name = "htmlDomTesterView1";
-            this.htmlDomTesterView1.Size = new System.Drawing.Size(727, 159);
+            this.htmlDomTesterView1.Size = new System.Drawing.Size(727, 145);
             this.htmlDomTesterView1.TabIndex = 5;
             // 
             // tabPage3
@@ -359,6 +427,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.grpSwitchTo.ResumeLayout(false);
+            this.grpSwitchTo.PerformLayout();
             this.grpVisualSearch.ResumeLayout(false);
             this.grpVisualSearch.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -392,6 +462,12 @@
         private System.Windows.Forms.Panel pnlLoadingBar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblLoadingInProgress;
+        public System.Windows.Forms.GroupBox grpSwitchTo;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbWindows;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbFrames;
         
 
     }
