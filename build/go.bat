@@ -9,7 +9,7 @@ set SwdUiPath=..\Bin
 
 set EnableNuGetPackageRestore=true
 
-set STDOUT_DEFAULT=nul
+set STDOUT_DEFAULT=build.log
 @rem =====================
 
 echo Hello! >%STDOUT_DEFAULT%
@@ -56,6 +56,9 @@ copy ..\license.md SwdPageRecorder_Latest\license.txt /y >>%STDOUT_DEFAULT%
 copy %SwdUiPath%\start_selenium_server.bat SwdPageRecorder_Latest\start_selenium_server.bat /y >>%STDOUT_DEFAULT%
 
 copy %SwdUiPath%\SwdPageRecorder.UI.exe.config SwdPageRecorder_Latest\SwdPageRecorder.exe.config /y >>%STDOUT_DEFAULT%
+
+copy %SwdUiPath%\sample_ParserWebElements.js SwdPageRecorder_Latest\*.* /y >>%STDOUT_DEFAULT%
+copy %SwdUiPath%\sample_ParserWebElements.lib.json2.js SwdPageRecorder_Latest\*.* /y >>%STDOUT_DEFAULT%
 
 @REM # Copy WebDriver DLL files
 

@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeGeneration\ExternalGenerator.cs" />
     <Compile Include="Env\EnvInfo.cs" />
     <Compile Include="FeaturesAndWorkarounds\Workaround.cs" />
     <Compile Include="IPresenter.cs" />
@@ -218,6 +219,9 @@
     <None Include="CodeTemplates\[Ruby] PageObject Gem.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="CodeTemplates\[ZZZ] Experimental Run External Tool.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -259,6 +263,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon3.ico" />
+    <Content Include="sample_ParserWebElements.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sample_ParserWebElements.lib.json2.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="transparent_icon.ico" />
     <None Include="Resources\loading-indicator.gif" />
   </ItemGroup>
