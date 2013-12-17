@@ -72,6 +72,15 @@ namespace SwdPageRecorder.UI
             }
         }
 
-        
+
+        private static JavascriptEditorTabPresenter _javascriptEditorTabPresenter = null;
+        public static JavascriptEditorTabPresenter JavascriptEditorTabPresenter
+        {
+            get
+            {
+                return (_javascriptEditorTabPresenter = _javascriptEditorTabPresenter ?? new JavascriptEditorTabPresenter());
+            }
+        }
+
     }
 }

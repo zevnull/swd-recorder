@@ -100,8 +100,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SwdMain\Tabs\JavaScriptEditorView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SwdMain\Tabs\JavaScriptEditorView.Designer.cs">
+      <DependentUpon>JavaScriptEditorView.cs</DependentUpon>
+    </Compile>
     <Compile Include="SwdMain\Tabs\Model\ChromeDesiredCapabilitiesData.cs" />
     <Compile Include="SwdMain\Tabs\Model\IEDesiredCapabilitiesData.cs" />
+    <Compile Include="SwdMain\Tabs\Presenters\JavascriptEditorTabPresenter.cs" />
     <Compile Include="SwdMain\UIActions.cs" />
     <Compile Include="SwdMain\UserNotifications.cs" />
     <Compile Include="SwdMain\WebElementHtmlAttributes.cs" />
@@ -176,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SwdMain\Tabs\BrowserSettingsTabView.resx">
       <DependentUpon>BrowserSettingsTabView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SwdMain\Tabs\JavaScriptEditorView.resx">
+      <DependentUpon>JavaScriptEditorView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SwdMain\Tabs\PageObjectSourceCodeView.resx">
       <DependentUpon>PageObjectSourceCodeView.cs</DependentUpon>
