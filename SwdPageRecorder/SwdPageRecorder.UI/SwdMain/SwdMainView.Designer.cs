@@ -125,7 +125,7 @@
             this.txtBrowserUrl.Name = "txtBrowserUrl";
             this.txtBrowserUrl.Size = new System.Drawing.Size(637, 20);
             this.txtBrowserUrl.TabIndex = 0;
-            this.txtBrowserUrl.Text = "http://www.yahoo.com";
+            this.txtBrowserUrl.Text = "http://swd-tools.com";
             this.txtBrowserUrl.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBrowserUrl_KeyUp);
             // 
             // pnlLoadingBar
