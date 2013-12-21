@@ -162,5 +162,50 @@ namespace SwdPageRecorder.UI
             grpVisualSearch.DoInvokeAction( () =>  grpVisualSearch.Enabled = shouldControlBeEnabled);
             grpSwitchTo.DoInvokeAction(     () => grpSwitchTo.Enabled = shouldControlBeEnabled);
         }
+
+        internal void UpdateBrowserWindowsList(BrowserWindow[] currentWindows, string currentWindowHandle)
+        {
+            ddlWindows.Items.Clear();
+            ddlWindows.Items.AddRange(currentWindows);
+
+            ddlWindows.SelectedItem = currentWindows.First(win => (win.WindowHandle == currentWindowHandle));
+        }
+
+        internal void UpdatePageFramesList(BrowserPageFrame[] currentPageFrames)
+        {
+            ddlFrames.Items.Clear();
+            ddlFrames.Items.AddRange(currentPageFrames);
+
+            ddlFrames.SelectedItem = currentPageFrames.First();
+
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            presenter.RefreshSwitchToList();
+        }
+
+        internal void SetInitialRefreshMessageForSwitchToControls()
+        {
+            ddlFrames.Enabled = false;
+            ddlWindows.Enabled = false;
+
+            ddlWindows.Text = "Press Refresh button";
+            ddlFrames.Text = "... please";
+
+
+        }
+
+        internal void EnableSwitchToControls()
+        {
+            ddlFrames.Enabled = true;
+            ddlWindows.Enabled = true;
+        }
+
+        internal void DisableSwitchToControls()
+        {
+            ddlFrames.Enabled = false;
+            ddlWindows.Enabled = false;
+        }
     }
 }

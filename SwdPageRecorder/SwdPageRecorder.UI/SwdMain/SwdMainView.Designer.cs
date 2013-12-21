@@ -42,11 +42,13 @@
             this.browserSettingsTab1 = new SwdPageRecorder.UI.BrowserSettingsTabView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.grpSwitchTo = new System.Windows.Forms.GroupBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.cbFrames = new System.Windows.Forms.ComboBox();
+            this.ddlFrames = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbWindows = new System.Windows.Forms.ComboBox();
+            this.ddlWindows = new System.Windows.Forms.ComboBox();
             this.grpVisualSearch = new System.Windows.Forms.GroupBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnStartVisualSearch = new System.Windows.Forms.Button();
@@ -58,8 +60,8 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.fullHtmlSourceTabView1 = new SwdPageRecorder.UI.FullHtmlSourceTabView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.pageObjectDefinitionView = new SwdPageRecorder.UI.PageObjectDefinitionView();
             this.javaScriptEditorView1 = new SwdPageRecorder.UI.JavaScriptEditorView();
+            this.pageObjectDefinitionView = new SwdPageRecorder.UI.PageObjectDefinitionView();
             this.groupBox1.SuspendLayout();
             this.pnlLoadingBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -72,6 +74,7 @@
             this.tabPage2.SuspendLayout();
             this.grpSwitchTo.SuspendLayout();
             this.grpVisualSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -232,10 +235,11 @@
             // grpSwitchTo
             // 
             this.grpSwitchTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpSwitchTo.Controls.Add(this.btnRefresh);
             this.grpSwitchTo.Controls.Add(this.label4);
-            this.grpSwitchTo.Controls.Add(this.cbFrames);
+            this.grpSwitchTo.Controls.Add(this.ddlFrames);
             this.grpSwitchTo.Controls.Add(this.label3);
-            this.grpSwitchTo.Controls.Add(this.cbWindows);
+            this.grpSwitchTo.Controls.Add(this.ddlWindows);
             this.grpSwitchTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.grpSwitchTo.Location = new System.Drawing.Point(418, 184);
             this.grpSwitchTo.Name = "grpSwitchTo";
@@ -243,6 +247,16 @@
             this.grpSwitchTo.TabIndex = 5;
             this.grpSwitchTo.TabStop = false;
             this.grpSwitchTo.Text = "SwitchTo (Search Context)";
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(259, 44);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(54, 23);
+            this.btnRefresh.TabIndex = 4;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // label4
             // 
@@ -253,14 +267,14 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Frame:";
             // 
-            // cbFrames
+            // ddlFrames
             // 
-            this.cbFrames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFrames.FormattingEnabled = true;
-            this.cbFrames.Location = new System.Drawing.Point(79, 45);
-            this.cbFrames.Name = "cbFrames";
-            this.cbFrames.Size = new System.Drawing.Size(230, 21);
-            this.cbFrames.TabIndex = 2;
+            this.ddlFrames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlFrames.FormattingEnabled = true;
+            this.ddlFrames.Location = new System.Drawing.Point(61, 45);
+            this.ddlFrames.Name = "ddlFrames";
+            this.ddlFrames.Size = new System.Drawing.Size(192, 21);
+            this.ddlFrames.TabIndex = 2;
             // 
             // label3
             // 
@@ -271,19 +285,20 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Window:";
             // 
-            // cbWindows
+            // ddlWindows
             // 
-            this.cbWindows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbWindows.FormattingEnabled = true;
-            this.cbWindows.Location = new System.Drawing.Point(79, 18);
-            this.cbWindows.Name = "cbWindows";
-            this.cbWindows.Size = new System.Drawing.Size(230, 21);
-            this.cbWindows.TabIndex = 0;
+            this.ddlWindows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlWindows.FormattingEnabled = true;
+            this.ddlWindows.Location = new System.Drawing.Point(61, 18);
+            this.ddlWindows.Name = "ddlWindows";
+            this.ddlWindows.Size = new System.Drawing.Size(248, 21);
+            this.ddlWindows.TabIndex = 0;
             // 
             // grpVisualSearch
             // 
             this.grpVisualSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpVisualSearch.Controls.Add(this.pictureBox2);
             this.grpVisualSearch.Controls.Add(this.label2);
             this.grpVisualSearch.Controls.Add(this.label1);
             this.grpVisualSearch.Controls.Add(this.btnStartVisualSearch);
@@ -296,10 +311,20 @@
             this.grpVisualSearch.TabStop = false;
             this.grpVisualSearch.Text = "WebBrowser Web Element Explorer";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(7, 45);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(21, 24);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 57);
+            this.label2.Location = new System.Drawing.Point(32, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(287, 13);
             this.label2.TabIndex = 3;
@@ -308,7 +333,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 43);
+            this.label1.Location = new System.Drawing.Point(32, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(270, 13);
             this.label1.TabIndex = 2;
@@ -408,16 +433,6 @@
             this.tabPage5.Text = "JavaScript";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // pageObjectDefinitionView
-            // 
-            this.pageObjectDefinitionView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pageObjectDefinitionView.Location = new System.Drawing.Point(3, 3);
-            this.pageObjectDefinitionView.Name = "pageObjectDefinitionView";
-            this.pageObjectDefinitionView.Size = new System.Drawing.Size(244, 420);
-            this.pageObjectDefinitionView.TabIndex = 2;
-            // 
             // javaScriptEditorView1
             // 
             this.javaScriptEditorView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -427,6 +442,16 @@
             this.javaScriptEditorView1.Name = "javaScriptEditorView1";
             this.javaScriptEditorView1.Size = new System.Drawing.Size(732, 395);
             this.javaScriptEditorView1.TabIndex = 0;
+            // 
+            // pageObjectDefinitionView
+            // 
+            this.pageObjectDefinitionView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pageObjectDefinitionView.Location = new System.Drawing.Point(3, 3);
+            this.pageObjectDefinitionView.Name = "pageObjectDefinitionView";
+            this.pageObjectDefinitionView.Size = new System.Drawing.Size(244, 420);
+            this.pageObjectDefinitionView.TabIndex = 2;
             // 
             // SwdMainView
             // 
@@ -456,6 +481,7 @@
             this.grpSwitchTo.PerformLayout();
             this.grpVisualSearch.ResumeLayout(false);
             this.grpVisualSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
@@ -490,12 +516,14 @@
         private System.Windows.Forms.Label lblLoadingInProgress;
         public System.Windows.Forms.GroupBox grpSwitchTo;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbWindows;
+        private System.Windows.Forms.ComboBox ddlWindows;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbFrames;
+        private System.Windows.Forms.ComboBox ddlFrames;
         private System.Windows.Forms.TabPage tabPage5;
         private JavaScriptEditorView javaScriptEditorView1;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.PictureBox pictureBox2;
         
 
     }

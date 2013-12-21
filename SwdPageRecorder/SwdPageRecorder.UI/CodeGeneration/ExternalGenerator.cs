@@ -25,9 +25,10 @@ namespace SwdPageRecorder.UI.CodeGeneration
             compiler.StartInfo.RedirectStandardOutput = true;
             compiler.Start();
 
-            return compiler.StandardOutput.ReadToEnd();
+            string output = compiler.StandardOutput.ReadToEnd();
 
             compiler.WaitForExit();
+            return output;
         }
     }
 }

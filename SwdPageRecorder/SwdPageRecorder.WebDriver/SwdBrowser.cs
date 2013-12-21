@@ -292,5 +292,10 @@ namespace SwdPageRecorder.WebDriver
                 GoToFrame(frame.ParentFrame, ref frameStack);
             }
         }
+
+        public static string GetCurrentWindowHandle()
+        {
+            return GetDriver().CurrentWindowHandle;
+        }
     }
 }

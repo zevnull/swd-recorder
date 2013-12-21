@@ -41,18 +41,73 @@ namespace SwdPageRecorder.UI
             SwdBrowser.OnDriverStarted += InitControls;
             SwdBrowser.OnDriverClosed += InitControls;
 
-            SwdBrowser.OnDriverStarted += RefreshSwitchToList;
+            SwdBrowser.OnDriverStarted += InitSwitchToControls;
             
             InitControls();
-
-
-
-
         }
 
-        private void RefreshSwitchToList()
+        private void InitSwitchToControls()
         {
-            throw new NotImplementedException();
+            
+            view.SetInitialRefreshMessageForSwitchToControls();
+        }
+
+        public void RefreshSwitchToList()
+        {
+            
+            
+            
+            if (SwdBrowser.IsWorking)
+            {
+                Exception outException;
+                bool isOk = false;
+
+                isOk = UIActions.PerformSlowOperation(
+                            "Operation: Refresh All Windows List",
+                            () =>
+                            {
+                                BrowserWindow[] currentWindows = SwdBrowser.GetBrowserWindows();
+                                string currentWindowHandle = SwdBrowser.GetCurrentWindowHandle();
+                                view.UpdateBrowserWindowsList(currentWindows, currentWindowHandle);
+                            },
+                                out outException,
+                                null,
+                                TimeSpan.FromMinutes(1)
+                            );
+
+                if (!isOk)
+                {
+                    MyLog.Error("Failed to refresh All Windows List");
+                    if (outException != null) throw outException;
+                }
+
+
+                isOk = UIActions.PerformSlowOperation(
+                            "Operation: Refresh All Frames List",
+                            () =>
+                            {
+                                BrowserPageFrame rootFrame = SwdBrowser.GetPageFramesTree();
+                                BrowserPageFrame[] currentPageFrames = rootFrame.ToList().ToArray();
+                                view.UpdatePageFramesList(currentPageFrames);
+                            },
+                                out outException,
+                                null,
+                                TimeSpan.FromMinutes(1)
+                            );
+
+                if (!isOk)
+                {
+                    MyLog.Error("Failed to refresh All Frames List");
+                    if (outException != null) throw outException;
+                }
+
+                view.EnableSwitchToControls();
+            }
+            else
+            {
+                view.DisableSwitchToControls();
+            }
+
         }
 
 
@@ -170,6 +225,7 @@ namespace SwdPageRecorder.UI
         {
             var shouldControlBeEnabled = SwdBrowser.IsWorking;
             view.SetDriverDependingControlsEnabled(shouldControlBeEnabled);
+
         }
 
         public void DisplayLoadingIndicator(bool showLoading)
