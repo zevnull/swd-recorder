@@ -79,6 +79,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrowserPageFrame.cs" />
+    <Compile Include="BrowserWindow.cs" />
     <Compile Include="JsCommand\AddElement.cs" />
     <Compile Include="JsCommand\BrowserCommand.cs" />
     <Compile Include="JsCommand\BrowserCommandParser.cs" />

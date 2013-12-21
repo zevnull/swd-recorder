@@ -13,6 +13,7 @@ using OpenQA.Selenium.Safari;
 using OpenQA.Selenium.PhantomJS;
 using System.Net;
 using SwdPageRecorder.WebDriver.JsCommand;
+using System.Collections.ObjectModel;
 
 using System.Xml;
 
@@ -177,6 +178,119 @@ namespace SwdPageRecorder.WebDriver
         public static void RunStandaloneServer(string pathToStartUpBatFile)
         {
             SeleniumServerProcess.Launch(pathToStartUpBatFile);
+        }
+
+        public static BrowserWindow[] GetBrowserWindows()
+        {
+            var windowHandles = GetDriver().WindowHandles;
+            var result = new List<BrowserWindow>();
+
+            string currentHandle = GetDriver().CurrentWindowHandle;
+            
+            foreach (var winHandle in windowHandles)
+            {
+                var item = new BrowserWindow();
+                item.WindowHandle = winHandle;
+                GetDriver().SwitchTo().Window(winHandle);
+                item.Title = GetDriver().Title;
+                result.Add(item);
+            }
+
+            GetDriver().SwitchTo().Window(currentHandle);
+
+            return result.ToArray();
+        }
+
+        public static IWebElement[] GetAllFrameElements()
+        {
+            var driver = SwdBrowser.GetDriver();
+            var frames = driver.FindElements(By.CssSelector(@"frame, iframe"));
+            return frames.ToArray();
+        }
+
+
+        public static BrowserPageFrame GetPageFramesTree()
+        {
+            BrowserPageFrame root = new BrowserPageFrame()
+            {
+                ChildFrames = null,
+                Index = -1,
+                LocatorNameOrId = "DefaultContent",
+                ParentFrame = null,
+            };
+
+            GetDriver().SwitchTo().DefaultContent();
+            root.ChildFrames = GetPageFramesTree(root);
+
+            return root;
+        }
+
+        public static List<BrowserPageFrame> GetPageFramesTree(BrowserPageFrame parent)
+        {
+
+            List<BrowserPageFrame> children = new List<BrowserPageFrame>();
+            
+            //
+            var driver = SwdBrowser.GetDriver();
+            
+            var allFramesOnThePage = GetAllFrameElements();
+            for (var i = 0; i <  allFramesOnThePage.Length; i++)
+            {
+                var frameElement = allFramesOnThePage[i];
+
+                BrowserPageFrame frameItem = new BrowserPageFrame()
+                {
+                    ChildFrames = null,
+                    Index = i,
+                    LocatorNameOrId = null,
+                    ParentFrame = parent,
+                };
+
+                string elementId = frameElement.GetAttribute("id");
+                string elementName = frameElement.GetAttribute("name");
+                
+                if (!String.IsNullOrEmpty(elementName))
+                {
+                    frameItem.LocatorNameOrId = elementName;
+                }
+                else if (!String.IsNullOrEmpty(elementId))
+                {
+                    frameItem.LocatorNameOrId = elementId;
+                }
+                else 
+                {
+                    frameItem.LocatorNameOrId = String.Empty;
+                }
+
+                GetDriver().SwitchTo().Frame(i);
+                frameItem.ChildFrames = GetPageFramesTree(frameItem);
+
+                List<BrowserPageFrame> frameStack = new List<BrowserPageFrame>();
+                SwdBrowser.GoToFrame(parent, ref frameStack);
+
+                children.Add(frameItem);
+            }
+                        
+            return children;
+        }
+
+        private static void GoToFrame(BrowserPageFrame frame, ref List<BrowserPageFrame> frameStack)
+        {
+            if (frame.ParentFrame == null)
+            {
+                SwdBrowser.GetDriver().SwitchTo().DefaultContent();
+                frameStack.Reverse();
+                foreach (var frameItem in frameStack)
+                {
+                    SwdBrowser.GetDriver().SwitchTo().Frame(frameItem.Index);
+                }
+                return;
+            }
+            else
+            {
+                frameStack.Add(frame);
+                GoToFrame(frame.ParentFrame, ref frameStack);
+            }
         }
     }
 }
