@@ -274,6 +274,12 @@ namespace SwdPageRecorder.WebDriver
             return children;
         }
 
+        
+        public static void GoToFrame(BrowserPageFrame frame)
+        {
+            List<BrowserPageFrame> frameStack = new List<BrowserPageFrame>();
+            GoToFrame(frame, ref frameStack);
+        }
         private static void GoToFrame(BrowserPageFrame frame, ref List<BrowserPageFrame> frameStack)
         {
             if (frame.ParentFrame == null)

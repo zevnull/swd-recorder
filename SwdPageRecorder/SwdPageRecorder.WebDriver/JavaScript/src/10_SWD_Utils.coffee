@@ -91,7 +91,7 @@ getPageXY = (element) ->
 # TODO: Description
 createCommand = (jsonData) ->
     myJSONText = JSON.stringify(jsonData, null, 2)
-    window.swdpr_command = myJSONText
+    document.swdpr_command = myJSONText
 
 # TODO: Description
 addStyle = (str) ->
@@ -121,7 +121,7 @@ preventEvent = (event) ->
 
 # Globals
 prev = undefined
-window.Swd_prevActiveElement = undefined
+document.Swd_prevActiveElement = undefined
 
 # TODO: Description
 handler = (event) ->
@@ -158,6 +158,6 @@ rightClickHandler = (event) ->
 
          createCommand(JsonData)
 
-         window.SWD_Page_Recorder.showPos(event, xpath)
+         document.SWD_Page_Recorder.showPos(event, xpath)
 
          return preventEvent(event)

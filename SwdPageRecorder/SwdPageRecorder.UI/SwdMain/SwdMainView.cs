@@ -165,18 +165,24 @@ namespace SwdPageRecorder.UI
 
         internal void UpdateBrowserWindowsList(BrowserWindow[] currentWindows, string currentWindowHandle)
         {
-            ddlWindows.Items.Clear();
-            ddlWindows.Items.AddRange(currentWindows);
+            ddlWindows.DoInvokeAction(() =>
+            {
+                ddlWindows.Items.Clear();
+                ddlWindows.Items.AddRange(currentWindows);
 
-            ddlWindows.SelectedItem = currentWindows.First(win => (win.WindowHandle == currentWindowHandle));
+                ddlWindows.SelectedItem = currentWindows.First(win => (win.WindowHandle == currentWindowHandle));
+            });
         }
 
         internal void UpdatePageFramesList(BrowserPageFrame[] currentPageFrames)
         {
-            ddlFrames.Items.Clear();
-            ddlFrames.Items.AddRange(currentPageFrames);
+            ddlFrames.DoInvokeAction(() =>
+            {
+                ddlFrames.Items.Clear();
+                ddlFrames.Items.AddRange(currentPageFrames);
 
-            ddlFrames.SelectedItem = currentPageFrames.First();
+                ddlFrames.SelectedItem = currentPageFrames.First();
+            });
 
         }
 
@@ -192,8 +198,6 @@ namespace SwdPageRecorder.UI
 
             ddlWindows.Text = "Press Refresh button";
             ddlFrames.Text = "... please";
-
-
         }
 
         internal void EnableSwitchToControls()
@@ -206,6 +210,15 @@ namespace SwdPageRecorder.UI
         {
             ddlFrames.Enabled = false;
             ddlWindows.Enabled = false;
+        }
+
+        private void ddlFrames_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // HAIRY CODE
+
+            BrowserPageFrame frame = ddlFrames.SelectedItem as BrowserPageFrame;
+            SwdBrowser.GoToFrame(frame);
+            MyLog.Write("FRAME: Switched to frame with Index= " + frame.Index + "; and Full Name:"+ frame.ToString());
         }
     }
 }

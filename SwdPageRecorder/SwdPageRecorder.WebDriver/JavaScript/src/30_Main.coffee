@@ -75,5 +75,5 @@ else
     document.body.onmouseover = rightClickHandler
 
 
-window.SWD_Page_Recorder = new SWD_Page_Recorder()
-window.SWD_Page_Recorder.createElementForm()
+document.SWD_Page_Recorder = new SWD_Page_Recorder()
+document.SWD_Page_Recorder.createElementForm()

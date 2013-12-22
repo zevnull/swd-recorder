@@ -21,6 +21,7 @@
         el.style.zIndex = 2147483647
         console.log "Should be displayed";
 
+
     # TODO: Description 
     showPos : (event, xpath) ->
         
@@ -49,6 +50,7 @@
 
     # TODO: Description 
     createElementForm : () ->
+        debugger;
         console.log "createElementForm <";
         # Create an input type dynamically.
         element = document.createElement("div")
@@ -68,7 +70,7 @@
                             <input type="text" id="SwdPR_PopUp_CodeIDText">
                         </span>
                         <span id="SwdPR_PopUp_CodeClose"></span>
-                        <span id="SwdPR_PopUp_CloseButton" onclick="window.SWD_Page_Recorder.closeForm()">X</span>
+                        <span id="SwdPR_PopUp_CloseButton" onclick="document.SWD_Page_Recorder.closeForm()">X</span>
                      </div>
               </td>
             </tr>
@@ -85,7 +87,7 @@
               <td><span id="SwdPR_PopUp_XPathLocator">Element</span></td>
             </tr>
             </table>
-        <input type="button" value="Add element" onclick="window.SWD_Page_Recorder.addElement()">
+        <input type="button" value="Add element" onclick="document.SWD_Page_Recorder.addElement()">
         '
 
     # TODO: Description  !!!  GLOBAL

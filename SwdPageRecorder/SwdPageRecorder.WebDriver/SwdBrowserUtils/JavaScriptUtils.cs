@@ -52,7 +52,7 @@ namespace SwdPageRecorder.WebDriver.SwdBrowserUtils
 
         public static bool IsVisualSearchScriptInjected(IWebDriver webDriver)
         {
-            string jsCheckScript = @"return window.SWD_Page_Recorder === undefined ? 'false' : 'true';";
+            string jsCheckScript = @"return document.SWD_Page_Recorder === undefined ? 'false' : 'true';";
             IJavaScriptExecutor jsExec = webDriver as IJavaScriptExecutor;
 
             string isInjected = jsExec.ExecuteScript(jsCheckScript) as string;

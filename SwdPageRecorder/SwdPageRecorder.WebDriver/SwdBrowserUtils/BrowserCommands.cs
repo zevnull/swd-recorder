@@ -23,7 +23,7 @@ namespace SwdPageRecorder.WebDriver.SwdBrowserUtils
     public static class BrowserCommands
     {
 
-        const string javaScript_GetCommand = @"return window.swdpr_command === undefined ? '' : window.swdpr_command;";
+        const string javaScript_GetCommand = @"return document.swdpr_command === undefined ? '' : document.swdpr_command;";
         
         private static string lastCommandId = null;
         public static BrowserCommand GetNextCommand(IWebDriver webDriver)

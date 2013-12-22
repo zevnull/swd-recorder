@@ -103,7 +103,7 @@
   createCommand = function(jsonData) {
     var myJSONText;
     myJSONText = JSON.stringify(jsonData, null, 2);
-    return window.swdpr_command = myJSONText;
+    return document.swdpr_command = myJSONText;
   };
 
   addStyle = function(str) {
@@ -132,7 +132,7 @@
 
   prev = void 0;
 
-  window.Swd_prevActiveElement = void 0;
+  document.Swd_prevActiveElement = void 0;
 
   handler = function(event) {
     if (event.target === document.body || prev === event.target) {
@@ -168,7 +168,7 @@
         "XPathValue": xpath
       };
       createCommand(JsonData);
-      window.SWD_Page_Recorder.showPos(event, xpath);
+      document.SWD_Page_Recorder.showPos(event, xpath);
       return preventEvent(event);
     }
   };
@@ -218,6 +218,7 @@
     };
 
     SWD_Page_Recorder.prototype.createElementForm = function() {
+      debugger;
       var closeClickHandler, element;
       console.log("createElementForm <");
       element = document.createElement("div");
@@ -234,7 +235,7 @@
                             <input type="text" id="SwdPR_PopUp_CodeIDText">\
                         </span>\
                         <span id="SwdPR_PopUp_CodeClose"></span>\
-                        <span id="SwdPR_PopUp_CloseButton" onclick="window.SWD_Page_Recorder.closeForm()">X</span>\
+                        <span id="SwdPR_PopUp_CloseButton" onclick="document.SWD_Page_Recorder.closeForm()">X</span>\
                      </div>\
               </td>\
             </tr>\
@@ -251,7 +252,7 @@
               <td><span id="SwdPR_PopUp_XPathLocator">Element</span></td>\
             </tr>\
             </table>\
-        <input type="button" value="Add element" onclick="window.SWD_Page_Recorder.addElement()">\
+        <input type="button" value="Add element" onclick="document.SWD_Page_Recorder.addElement()">\
         ';
     };
 
@@ -314,8 +315,8 @@
     document.body.onmouseover = rightClickHandler;
   }
 
-  window.SWD_Page_Recorder = new SWD_Page_Recorder();
+  document.SWD_Page_Recorder = new SWD_Page_Recorder();
 
-  window.SWD_Page_Recorder.createElementForm();
+  document.SWD_Page_Recorder.createElementForm();
 
 }).call(this);
