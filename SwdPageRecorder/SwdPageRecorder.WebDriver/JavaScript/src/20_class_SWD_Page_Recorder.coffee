@@ -56,7 +56,11 @@
         element = document.createElement("div")
         # Assign different attributes to the element. 
         element.id = 'SwdPR_PopUp'
-        document.getElementsByTagName('body')[0].appendChild(element)
+        
+        if document.body?
+            document.body.appendChild(element)
+        else
+            say "createElementForm Failed to inject element SwdPR_PopUp. The document has no body"
 
         closeClickHandler = ""
         element.innerHTML = 

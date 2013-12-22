@@ -1,5 +1,6 @@
 ﻿############################## MAIN ############################################
 
+
 addStyle ".highlight { background-color:silver !important}"
 addStyle "table#SWDTable { 
             background-color:white; 
@@ -62,18 +63,28 @@ addStyle "div#SwdPR_PopUp {
           }"
 
 
-if document.body.addEventListener
-    document.body.addEventListener 'mouseover',   handler,           false
-    document.addEventListener      'contextmenu', rightClickHandler, false
+### 
+    Important!
+    It wont work if the document has no body, such as top frameset pages. 
+###
 
-else if document.body.attachEvent
-    document.body.attachEvent 'mouseover',     (e) -> handler(e || window.event)
-    document.body.attachEvent 'oncontextmenu', (e) -> rightClickHandler(e || window.event)
+if document.body?
 
+    if document.body.addEventListener
+        document.body.addEventListener 'mouseover',   handler,           false
+        document.addEventListener      'contextmenu', rightClickHandler, false
+
+    else if document.body.attachEvent
+        document.body.attachEvent 'mouseover',     (e) -> handler(e || window.event)
+        document.body.attachEvent 'oncontextmenu', (e) -> rightClickHandler(e || window.event)
+
+    else
+        document.body.onmouseover = handler
+        document.body.onmouseover = rightClickHandler
+
+
+    document.SWD_Page_Recorder = new SWD_Page_Recorder()
+    document.SWD_Page_Recorder.createElementForm()
 else
-    document.body.onmouseover = handler
-    document.body.onmouseover = rightClickHandler
-
-
-document.SWD_Page_Recorder = new SWD_Page_Recorder()
-document.SWD_Page_Recorder.createElementForm()
+    say "Document has no body tag... Injecting empty SWD"
+    document.SWD_Page_Recorder = "STUB. Document has no body tag :("

@@ -99,17 +99,21 @@ createCommand = (jsonData) ->
     bye "createCommand"    
 
 # TODO: Description
-addStyle = (str) ->
+addStyle = (css) ->
     hello "addStyle"    
-    el = document.createElement('style')
-    if el.styleSheet 
-        el.styleSheet.cssText = str
-    else 
-        el.appendChild(document.createTextNode(str))
 
-    domResult = document.getElementsByTagName('head')[0].appendChild(el)
+    head = document.getElementsByTagName('head')[0]
+    style = document.createElement('style')
+
+    style.type = 'text/css'
+    if style.styleSheet
+        style.styleSheet.cssText = css
+    else 
+      style.appendChild(document.createTextNode(css))
+
+
+    head.appendChild(style);
     bye "addStyle"
-    return domResult
 
 # TODO: Description
 preventEvent = (event) -> 

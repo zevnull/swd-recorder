@@ -112,18 +112,19 @@
     return bye("createCommand");
   };
 
-  addStyle = function(str) {
-    var domResult, el;
+  addStyle = function(css) {
+    var head, style;
     hello("addStyle");
-    el = document.createElement('style');
-    if (el.styleSheet) {
-      el.styleSheet.cssText = str;
+    head = document.getElementsByTagName('head')[0];
+    style = document.createElement('style');
+    style.type = 'text/css';
+    if (style.styleSheet) {
+      style.styleSheet.cssText = css;
     } else {
-      el.appendChild(document.createTextNode(str));
+      style.appendChild(document.createTextNode(css));
     }
-    domResult = document.getElementsByTagName('head')[0].appendChild(el);
-    bye("addStyle");
-    return domResult;
+    head.appendChild(style);
+    return bye("addStyle");
   };
 
   preventEvent = function(event) {
@@ -247,7 +248,11 @@
       hello("createElementForm");
       element = document.createElement("div");
       element.id = 'SwdPR_PopUp';
-      document.getElementsByTagName('body')[0].appendChild(element);
+      if (document.body != null) {
+        document.body.appendChild(element);
+      } else {
+        say("createElementForm Failed to inject element SwdPR_PopUp. The document has no body");
+      }
       closeClickHandler = "";
       element.innerHTML = '\
         <table id="SWDTable">\
@@ -327,23 +332,32 @@
 
   addStyle("div#SwdPR_PopUp {             display:none;           }           div#SwdPR_PopUp_Element_Name {             display:table;             width: 100%;           }");
 
-  if (document.body.addEventListener) {
-    document.body.addEventListener('mouseover', handler, false);
-    document.addEventListener('contextmenu', rightClickHandler, false);
-  } else if (document.body.attachEvent) {
-    document.body.attachEvent('mouseover', function(e) {
-      return handler(e || window.event);
-    });
-    document.body.attachEvent('oncontextmenu', function(e) {
-      return rightClickHandler(e || window.event);
-    });
+  /* 
+      Important!
+      It wont work if the document has no body, such as top frameset pages.
+  */
+
+
+  if (document.body != null) {
+    if (document.body.addEventListener) {
+      document.body.addEventListener('mouseover', handler, false);
+      document.addEventListener('contextmenu', rightClickHandler, false);
+    } else if (document.body.attachEvent) {
+      document.body.attachEvent('mouseover', function(e) {
+        return handler(e || window.event);
+      });
+      document.body.attachEvent('oncontextmenu', function(e) {
+        return rightClickHandler(e || window.event);
+      });
+    } else {
+      document.body.onmouseover = handler;
+      document.body.onmouseover = rightClickHandler;
+    }
+    document.SWD_Page_Recorder = new SWD_Page_Recorder();
+    document.SWD_Page_Recorder.createElementForm();
   } else {
-    document.body.onmouseover = handler;
-    document.body.onmouseover = rightClickHandler;
+    say("Document has no body tag... Injecting empty SWD");
+    document.SWD_Page_Recorder = "STUB. Document has no body tag :(";
   }
-
-  document.SWD_Page_Recorder = new SWD_Page_Recorder();
-
-  document.SWD_Page_Recorder.createElementForm();
 
 }).call(this);

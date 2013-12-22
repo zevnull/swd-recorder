@@ -294,6 +294,7 @@
             this.ddlWindows.Name = "ddlWindows";
             this.ddlWindows.Size = new System.Drawing.Size(248, 21);
             this.ddlWindows.TabIndex = 0;
+            this.ddlWindows.SelectedIndexChanged += new System.EventHandler(this.ddlWindows_SelectedIndexChanged);
             // 
             // grpVisualSearch
             // 

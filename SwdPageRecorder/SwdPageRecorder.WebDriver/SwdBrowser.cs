@@ -310,5 +310,15 @@ namespace SwdPageRecorder.WebDriver
         }
 
 
+
+        public static void GotoWindow(BrowserWindow window)
+        {
+            GetDriver().SwitchTo().Window(window.WindowHandle);
+        }
+
+        public static void SwitchToDefaultContent()
+        {
+            GetDriver().SwitchTo().DefaultContent();
+        }
     }
 }

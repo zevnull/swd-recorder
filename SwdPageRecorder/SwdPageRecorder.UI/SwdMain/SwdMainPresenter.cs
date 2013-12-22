@@ -52,62 +52,72 @@ namespace SwdPageRecorder.UI
             view.SetInitialRefreshMessageForSwitchToControls();
         }
 
+        
+        public void RefreshWindowsList()
+        {
+            Exception outException;
+            bool isOk = false;
+
+            isOk = UIActions.PerformSlowOperation(
+                        "Operation: Refresh All Windows List",
+                        () =>
+                        {
+                            BrowserWindow[] currentWindows = SwdBrowser.GetBrowserWindows();
+                            string currentWindowHandle = SwdBrowser.GetCurrentWindowHandle();
+                            view.UpdateBrowserWindowsList(currentWindows, currentWindowHandle);
+                        },
+                            out outException,
+                            null,
+                            TimeSpan.FromMinutes(1)
+                        );
+
+            if (!isOk)
+            {
+                MyLog.Error("Failed to refresh All Windows List");
+                if (outException != null) throw outException;
+            }
+        }
+
+        public void RefreshFramesList()
+        {
+            Exception outException;
+            bool isOk = false;
+            isOk = UIActions.PerformSlowOperation(
+                        "Operation: Refresh All Frames List",
+                        () =>
+                        {
+                            BrowserPageFrame rootFrame = SwdBrowser.GetPageFramesTree();
+                            BrowserPageFrame[] currentPageFrames = rootFrame.ToList().ToArray();
+                            SwdBrowser.SwitchToDefaultContent();
+                            view.UpdatePageFramesList(currentPageFrames);
+                        },
+                            out outException,
+                            null,
+                            TimeSpan.FromMinutes(1)
+                        );
+
+            if (!isOk)
+            {
+                MyLog.Error("Failed to refresh All Frames List");
+                if (outException != null) throw outException;
+            }
+        }
+
+
+        
         public void RefreshSwitchToList()
         {
-
-
-
             if (SwdBrowser.IsWorking)
             {
-                Exception outException;
-                bool isOk = false;
-
-                isOk = UIActions.PerformSlowOperation(
-                            "Operation: Refresh All Windows List",
-                            () =>
-                            {
-                                BrowserWindow[] currentWindows = SwdBrowser.GetBrowserWindows();
-                                string currentWindowHandle = SwdBrowser.GetCurrentWindowHandle();
-                                view.UpdateBrowserWindowsList(currentWindows, currentWindowHandle);
-                            },
-                                out outException,
-                                null,
-                                TimeSpan.FromMinutes(1)
-                            );
-
-                if (!isOk)
-                {
-                    MyLog.Error("Failed to refresh All Windows List");
-                    if (outException != null) throw outException;
-                }
-
-
-                isOk = UIActions.PerformSlowOperation(
-                            "Operation: Refresh All Frames List",
-                            () =>
-                            {
-                                BrowserPageFrame rootFrame = SwdBrowser.GetPageFramesTree();
-                                BrowserPageFrame[] currentPageFrames = rootFrame.ToList().ToArray();
-                                view.UpdatePageFramesList(currentPageFrames);
-                            },
-                                out outException,
-                                null,
-                                TimeSpan.FromMinutes(1)
-                            );
-
-                if (!isOk)
-                {
-                    MyLog.Error("Failed to refresh All Frames List");
-                    if (outException != null) throw outException;
-                }
-
+                view.DisableSwitchToControls();
+                RefreshWindowsList();
+                RefreshFramesList();
                 view.EnableSwitchToControls();
             }
             else
             {
                 view.DisableSwitchToControls();
             }
-
         }
 
 
@@ -259,12 +269,36 @@ namespace SwdPageRecorder.UI
         internal void SwitchToFrame(BrowserPageFrame frame)
         {
             PauseWebElementExplorerProcessing();
-            SwdBrowser.DestroyVisualSearch();
-            SwdBrowser.GoToFrame(frame);
-            MyLog.Write("FRAME: Switched to frame with Index= " + frame.Index + "; and Full Name:" + frame.ToString());
-            ResumeWebElementExplorerProcessing();
+            try
+            {
+                SwdBrowser.DestroyVisualSearch();
+                SwdBrowser.GoToFrame(frame);
+                MyLog.Write("FRAME: Switched to frame with Index= " + frame.Index + "; and Full Name:" + frame.ToString());
+            }
+            finally
+            {
+                ResumeWebElementExplorerProcessing();
+            }
         }
 
 
+
+        internal void SwitchToWindow(BrowserWindow window)
+        {
+            PauseWebElementExplorerProcessing();
+            view.DisableSwitchToControls();
+            try 
+            {
+                SwdBrowser.GotoWindow(window);
+                MyLog.Write("WINDOW: Switched to window/popup with WinID= "
+                            + window.WindowHandle + "; and Title:" + window.Title);
+                RefreshFramesList();
+            }
+            finally 
+            {
+                ResumeWebElementExplorerProcessing();
+                view.EnableSwitchToControls();
+            }
+        }
     }
 }

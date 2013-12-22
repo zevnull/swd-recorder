@@ -34,6 +34,27 @@ namespace SwdPageRecorder.WebDriver.SwdBrowserUtils
         }
 
 
+        private static void InjectJSON2ObjectForWierdBrowsers(IWebDriver webDriver)
+        {
+            MyLog.Write("|-> InjectJSON2ObjectForWierdBrowsers(): Started");
+
+            string javaScript = ReadJavaScriptFromFile(Path.Combine("JavaScript", "json2.js"));
+            string IsJson2ObjectExists = @"try { return JSON === undefined ? 'false' : 'true'; } catch(e) { return 'false';}";
+            IJavaScriptExecutor jsExec = webDriver as IJavaScriptExecutor;
+
+            bool isJsonObjectPresent = (string)(jsExec.ExecuteScript(IsJson2ObjectExists)) == "true";
+            if (!isJsonObjectPresent)
+            {
+                MyLog.Write("|-> InjectJSON2ObjectForWierdBrowsers():  /!isJsonObjectPresent/ very, very outdated browser mode detected.");
+                MyLog.Write("|-> /!isJsonObjectPresent/: Injecting JSON");
+            }
+            else
+            {
+                MyLog.Write("|-> InjectJSON2ObjectForWierdBrowsers(): All fine :D. We are working with a modern browser/mode ^_^");
+            }
+
+            MyLog.Write("|-> InjectJSON2ObjectForWierdBrowsers(): Finished");
+        }
 
         internal static void InjectVisualSearch(IWebDriver webDriver)
         {
@@ -44,6 +65,7 @@ namespace SwdPageRecorder.WebDriver.SwdBrowserUtils
 
             if (!IsVisualSearchScriptInjected(webDriver))
             {
+                InjectJSON2ObjectForWierdBrowsers(webDriver);
                 MyLog.Write("InjectVisualSearch: Was not injected. Perform Inject");
                 jsExec.ExecuteScript(javaScript);
             }
@@ -66,7 +88,8 @@ namespace SwdPageRecorder.WebDriver.SwdBrowserUtils
 
             foreach (var sentencedToDeath in JavaSCriptObjectsToDestroy)
             {
-                deathBuilder.AppendFormat("delete {0};", sentencedToDeath);
+
+                deathBuilder.AppendFormat(@" try {{ delete {0}; }} catch (e) {{ console.log('ERROR: |{0}| --> ' + e.message) }} ", sentencedToDeath);
             }
 
 
@@ -90,6 +113,8 @@ namespace SwdPageRecorder.WebDriver.SwdBrowserUtils
             return isInjected == "true";
             
         }
+
+
 
 
         internal static void HighlightElement(By by, IWebDriver webDriver)

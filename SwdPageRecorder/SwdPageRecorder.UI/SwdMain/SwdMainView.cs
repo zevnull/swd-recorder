@@ -217,5 +217,11 @@ namespace SwdPageRecorder.UI
             BrowserPageFrame frame = ddlFrames.SelectedItem as BrowserPageFrame;
             presenter.SwitchToFrame(frame);
         }
+
+        private void ddlWindows_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BrowserWindow window = ddlWindows.SelectedItem as BrowserWindow;
+            presenter.SwitchToWindow(window);
+        }
     }
 }
