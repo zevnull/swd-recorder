@@ -50,6 +50,37 @@ namespace SwdPageRecorder.WebDriver.SwdBrowserUtils
             MyLog.Write("InjectVisualSearch: Finished");
         }
 
+        internal static void DestroyVisualSearch(IWebDriver webDriver)
+        {
+            MyLog.Write("DestroyVisualSearch: Started");
+            IJavaScriptExecutor jsExec = webDriver as IJavaScriptExecutor;
+
+            string[] JavaSCriptObjectsToDestroy = new string[]
+            {
+                "document.SWD_Page_Recorder",
+                "document.Swd_prevActiveElement",
+                "document.swdpr_command",
+            };
+
+            StringBuilder deathBuilder = new StringBuilder();
+
+            foreach (var sentencedToDeath in JavaSCriptObjectsToDestroy)
+            {
+                deathBuilder.AppendFormat("delete {0};", sentencedToDeath);
+            }
+
+
+            if (IsVisualSearchScriptInjected(webDriver))
+            {
+                MyLog.Write("DestroyVisualSearch: Scripts have been injected previously. Kill'em all!");
+                jsExec.ExecuteScript(deathBuilder.ToString());
+            }
+
+
+            MyLog.Write("DestroyVisualSearch: Finished");
+        }
+
+
         public static bool IsVisualSearchScriptInjected(IWebDriver webDriver)
         {
             string jsCheckScript = @"return document.SWD_Page_Recorder === undefined ? 'false' : 'true';";
@@ -60,10 +91,6 @@ namespace SwdPageRecorder.WebDriver.SwdBrowserUtils
             
         }
 
-        internal static void HighlightElement(By by)
-        {
-            throw new NotImplementedException();
-        }
 
         internal static void HighlightElement(By by, IWebDriver webDriver)
         {

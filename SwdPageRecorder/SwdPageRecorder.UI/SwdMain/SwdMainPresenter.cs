@@ -42,21 +42,21 @@ namespace SwdPageRecorder.UI
             SwdBrowser.OnDriverClosed += InitControls;
 
             SwdBrowser.OnDriverStarted += InitSwitchToControls;
-            
+
             InitControls();
         }
 
         private void InitSwitchToControls()
         {
-            
+
             view.SetInitialRefreshMessageForSwitchToControls();
         }
 
         public void RefreshSwitchToList()
         {
-            
-            
-            
+
+
+
             if (SwdBrowser.IsWorking)
             {
                 Exception outException;
@@ -143,6 +143,19 @@ namespace SwdPageRecorder.UI
         }
 
         bool webElementExplorerStarted = false;
+        bool webElementExplorerThreadPaused = false;
+
+        public void ResumeWebElementExplorerProcessing()
+        {
+            MyLog.Write("ResumeWebElementExplorerProcessing");
+            webElementExplorerThreadPaused = false;
+        }
+
+        public void PauseWebElementExplorerProcessing()
+        {
+            MyLog.Write("PauseWebElementExplorerProcessing");
+            webElementExplorerThreadPaused = true;
+        }
 
         public void VisualSearch_UpdateSearchResult()
         {
@@ -151,20 +164,23 @@ namespace SwdPageRecorder.UI
                 MyLog.Write("VisualSearch_UpdateSearchResult: Started");
                 while (webElementExplorerStarted == true)
                 {
-                    try
+                    if (!webElementExplorerThreadPaused)
                     {
-                        if (!SwdBrowser.IsVisualSearchScriptInjected())
+                        try
                         {
-                            MyLog.Write("VisualSearch_UpdateSearchResult: Found the Visual search is not injected. Injecting");
-                            SwdBrowser.InjectVisualSearch();
-                        }
+                            if (!SwdBrowser.IsVisualSearchScriptInjected())
+                            {
+                                MyLog.Write("VisualSearch_UpdateSearchResult: Found the Visual search is not injected. Injecting");
+                                SwdBrowser.InjectVisualSearch();
+                            }
 
-                        ProcessCommands();
-                    }
-                    catch (Exception e)
-                    {
-                        StopVisualSearch();
-                        MyLog.Exception(e);
+                            ProcessCommands();
+                        }
+                        catch (Exception e)
+                        {
+                            StopVisualSearch();
+                            MyLog.Exception(e);
+                        }
                     }
                     Thread.Sleep(VisualSearchQueryDelayMs);
                 }
@@ -205,10 +221,10 @@ namespace SwdPageRecorder.UI
             }
 
             view.VisuaSearchStarted();
-            
+
         }
 
-        
+
         internal void ChangeVisualSearchRunningState()
         {
             if (webElementExplorerStarted)
@@ -239,5 +255,16 @@ namespace SwdPageRecorder.UI
                 view.HideGlobalLoading();
             }
         }
+
+        internal void SwitchToFrame(BrowserPageFrame frame)
+        {
+            PauseWebElementExplorerProcessing();
+            SwdBrowser.DestroyVisualSearch();
+            SwdBrowser.GoToFrame(frame);
+            MyLog.Write("FRAME: Switched to frame with Index= " + frame.Index + "; and Full Name:" + frame.ToString());
+            ResumeWebElementExplorerProcessing();
+        }
+
+
     }
 }

@@ -49,6 +49,7 @@
 
   getPathTo = function(element) {
     var ELEMENT_NODE_TYPE, elementTagName, ix, sibling, siblingTagName, siblings, _i, _len;
+    hello("getPathTo");
     elementTagName = element.tagName.toLowerCase();
     if (element.id && document.getElementById(element.id) === element) {
       return "id(\"" + element.id + "\")";
@@ -86,10 +87,12 @@
         ix++;
       }
     }
+    return bye("getPathTo");
   };
 
   getPageXY = function(element) {
     var x, y;
+    hello("getPageXY");
     x = 0;
     y = 0;
     while (element) {
@@ -97,27 +100,34 @@
       y += element.offsetTop;
       element = element.offsetParent;
     }
+    bye("getPageXY");
     return [x, y];
   };
 
   createCommand = function(jsonData) {
     var myJSONText;
+    hello("createCommand");
     myJSONText = JSON.stringify(jsonData, null, 2);
-    return document.swdpr_command = myJSONText;
+    document.swdpr_command = myJSONText;
+    return bye("createCommand");
   };
 
   addStyle = function(str) {
-    var el;
+    var domResult, el;
+    hello("addStyle");
     el = document.createElement('style');
     if (el.styleSheet) {
       el.styleSheet.cssText = str;
     } else {
       el.appendChild(document.createTextNode(str));
     }
-    return document.getElementsByTagName('head')[0].appendChild(el);
+    domResult = document.getElementsByTagName('head')[0].appendChild(el);
+    bye("addStyle");
+    return domResult;
   };
 
   preventEvent = function(event) {
+    hello("preventEvent");
     if (event.preventDefault) {
       event.preventDefault();
     }
@@ -127,6 +137,7 @@
     } else {
       event.cancelBubble = true;
     }
+    bye("preventEvent");
     return false;
   };
 
@@ -135,6 +146,10 @@
   document.Swd_prevActiveElement = void 0;
 
   handler = function(event) {
+    hello("handler");
+    if (document.SWD_Page_Recorder == null) {
+      return;
+    }
     if (event.target === document.body || prev === event.target) {
       return;
     }
@@ -144,12 +159,17 @@
     }
     if (event.target && event.ctrlKey) {
       prev = event.target;
-      return prev.className += " highlight";
+      prev.className += " highlight";
     }
+    return bye("handler");
   };
 
   rightClickHandler = function(event) {
-    var JsonData, body, mxy, path, root, target, txy, xpath;
+    var JsonData, body, eventPreventingResult, mxy, path, root, target, txy, xpath;
+    hello("rightClickHandler");
+    if (document.SWD_Page_Recorder == null) {
+      return;
+    }
     if (event.ctrlKey) {
       if (event == null) {
         event = window.event;
@@ -169,7 +189,9 @@
       };
       createCommand(JsonData);
       document.SWD_Page_Recorder.showPos(event, xpath);
-      return preventEvent(event);
+      eventPreventingResult = preventEvent(event);
+      bye("rightClickHandler");
+      return eventPreventingResult;
     }
   };
 
@@ -182,6 +204,7 @@
 
     SWD_Page_Recorder.prototype.displaySwdForm = function(x, y) {
       var el;
+      hello("displaySwdForm");
       el = this.getMainWinElement();
       el.style.background = "white";
       el.style.position = "absolute";
@@ -191,11 +214,12 @@
       el.style.border = "3px solid black";
       el.style.padding = "5px 5px 5px 5px";
       el.style.zIndex = 2147483647;
-      return console.log("Should be displayed");
+      return bye("displaySwdForm");
     };
 
     SWD_Page_Recorder.prototype.showPos = function(event, xpath) {
       var x, y;
+      hello("showPos");
       if (window.event) {
         x = window.event.clientX + document.documentElement.scrollLeft + document.body.scrollLeft;
         y = window.event.clientY + document.documentElement.scrollTop + document.body.scrollTop;
@@ -210,7 +234,8 @@
       document.getElementById("SwdPR_PopUp_XPathLocator").innerHTML = xpath;
       document.getElementById("SwdPR_PopUp_ElementText").innerHTML = pseudoGuid();
       document.getElementById("SwdPR_PopUp_CodeIDText").value = '';
-      return console.log(x + ";" + y);
+      console.log(x + ";" + y);
+      return bye("showPos");
     };
 
     SWD_Page_Recorder.prototype.closeForm = function() {
@@ -218,14 +243,13 @@
     };
 
     SWD_Page_Recorder.prototype.createElementForm = function() {
-      debugger;
       var closeClickHandler, element;
-      console.log("createElementForm <");
+      hello("createElementForm");
       element = document.createElement("div");
       element.id = 'SwdPR_PopUp';
       document.getElementsByTagName('body')[0].appendChild(element);
       closeClickHandler = "";
-      return element.innerHTML = '\
+      element.innerHTML = '\
         <table id="SWDTable">\
             <tr>\
               <td>Code identifier</td>\
@@ -254,10 +278,12 @@
             </table>\
         <input type="button" value="Add element" onclick="document.SWD_Page_Recorder.addElement()">\
         ';
+      return bye("createElementForm");
     };
 
     SWD_Page_Recorder.prototype.addElement = function() {
       var JsonData, XPathLocatorElement, codeIDTextElement;
+      hello("addElement");
       codeIDTextElement = document.getElementById("SwdPR_PopUp_CodeIDText");
       XPathLocatorElement = document.getElementById("SwdPR_PopUp_XPathLocator");
       JsonData = {
@@ -267,7 +293,8 @@
         "ElementCodeName": codeIDTextElement.value,
         "ElementXPath": XPathLocatorElement.firstChild.nodeValue
       };
-      return createCommand(JsonData);
+      createCommand(JsonData);
+      return bye("addElement >");
     };
 
     return SWD_Page_Recorder;

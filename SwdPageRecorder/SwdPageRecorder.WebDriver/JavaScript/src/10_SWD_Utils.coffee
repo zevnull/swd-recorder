@@ -35,6 +35,7 @@ getInputElementsByTypeAndValue = (inputType, inputValue) ->
 
 # TODO: Description 
 getPathTo = (element) ->
+    hello "getPathTo"
     elementTagName = element.tagName.toLowerCase()
 
     # Check if node has ID and this ID is unique over the document
@@ -77,35 +78,42 @@ getPathTo = (element) ->
         elementTagName = element.tagName.toLowerCase()
 
         ix++ if sibling.nodeType is 1 and siblingTagName is elementTagName
-
+    bye "getPathTo"
 # TODO: Description 
 getPageXY = (element) ->
+    hello "getPageXY"
     x = 0
     y = 0;
     while element
         x += element.offsetLeft
         y += element.offsetTop
         element = element.offsetParent
+    bye "getPageXY"
     return [x, y]
 
 # TODO: Description
 createCommand = (jsonData) ->
+    hello "createCommand"
     myJSONText = JSON.stringify(jsonData, null, 2)
     document.swdpr_command = myJSONText
+    bye "createCommand"    
 
 # TODO: Description
 addStyle = (str) ->
+    hello "addStyle"    
     el = document.createElement('style')
     if el.styleSheet 
         el.styleSheet.cssText = str
     else 
         el.appendChild(document.createTextNode(str))
 
-    return document.getElementsByTagName('head')[0].appendChild(el)
+    domResult = document.getElementsByTagName('head')[0].appendChild(el)
+    bye "addStyle"
+    return domResult
 
 # TODO: Description
 preventEvent = (event) -> 
-
+    hello "preventEvent"    
     event.preventDefault() if (event.preventDefault) 
     event.returnValue = false
 
@@ -116,7 +124,7 @@ preventEvent = (event) ->
     # IE8 and Lower
     else
         event.cancelBubble = true
-
+    bye "preventEvent"    
     return false
 
 # Globals
@@ -125,6 +133,8 @@ document.Swd_prevActiveElement = undefined
 
 # TODO: Description
 handler = (event) ->
+   hello "handler"       
+   return unless document.SWD_Page_Recorder?
    return if event.target is document.body or prev is event.target
 
    if prev
@@ -134,30 +144,36 @@ handler = (event) ->
    if event.target and event.ctrlKey
        prev = event.target
        prev.className += " highlight"
+   bye "handler"       
 
 # Ctrl + Right button
 rightClickHandler = (event) -> 
-     if event.ctrlKey
-         event = window.event unless event?  #IE hack
-         target = if 'target' of event then event.target else event.srcElement # another IE hack
+    hello "rightClickHandler"
+    return unless document.SWD_Page_Recorder?
 
-         root = if document.compatMode is 'CSS1Compat' then document.documentElement else document.body
-         mxy  = [event.clientX + root.scrollLeft, event.clientY + root.scrollTop]
+    if event.ctrlKey
+        event = window.event unless event?  #IE hack
+        target = if 'target' of event then event.target else event.srcElement # another IE hack
 
-         path = getPathTo(target)
-         txy  = getPageXY(target)
+        root = if document.compatMode is 'CSS1Compat' then document.documentElement else document.body
+        mxy  = [event.clientX + root.scrollLeft, event.clientY + root.scrollTop]
 
-         body = document.getElementsByTagName('body')[0]
-         xpath = path
+        path = getPathTo(target)
+        txy  = getPageXY(target)
 
-         JsonData = 
-             "Command":   "GetXPathFromElement"
-             "Caller":    "EventListener : mousedown"
-             "CommandId":  pseudoGuid()
-             "XPathValue": xpath
+        body = document.getElementsByTagName('body')[0]
+        xpath = path
 
-         createCommand(JsonData)
+        JsonData = 
+            "Command":   "GetXPathFromElement"
+            "Caller":    "EventListener : mousedown"
+            "CommandId":  pseudoGuid()
+            "XPathValue": xpath
 
-         document.SWD_Page_Recorder.showPos(event, xpath)
+        createCommand(JsonData)
 
-         return preventEvent(event)
+        document.SWD_Page_Recorder.showPos(event, xpath)
+
+        eventPreventingResult = preventEvent(event)
+        bye "rightClickHandler"
+        return eventPreventingResult

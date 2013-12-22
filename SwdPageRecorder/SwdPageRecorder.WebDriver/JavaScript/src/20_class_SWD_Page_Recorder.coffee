@@ -8,7 +8,7 @@
     
     # TODO: Description 
     displaySwdForm : (x, y) ->
-
+        hello "displaySwdForm" 
         el = @getMainWinElement();
 
         el.style.background = "white"
@@ -19,12 +19,12 @@
         el.style.border = "3px solid black"
         el.style.padding = "5px 5px 5px 5px"
         el.style.zIndex = 2147483647
-        console.log "Should be displayed";
+        bye "displaySwdForm"
 
 
     # TODO: Description 
     showPos : (event, xpath) ->
-        
+        hello "showPos"
         if window.event
             x = window.event.clientX + document.documentElement.scrollLeft + document.body.scrollLeft
             y = window.event.clientY + document.documentElement.scrollTop + document.body.scrollTop
@@ -42,6 +42,7 @@
         document.getElementById("SwdPR_PopUp_ElementText").innerHTML = pseudoGuid()
         document.getElementById("SwdPR_PopUp_CodeIDText").value = ''
         console.log(x + ";" + y)
+        bye "showPos"
     
     # TODO: Description    
     closeForm : () ->
@@ -50,8 +51,7 @@
 
     # TODO: Description 
     createElementForm : () ->
-        debugger;
-        console.log "createElementForm <";
+        hello "createElementForm"
         # Create an input type dynamically.
         element = document.createElement("div")
         # Assign different attributes to the element. 
@@ -89,9 +89,11 @@
             </table>
         <input type="button" value="Add element" onclick="document.SWD_Page_Recorder.addElement()">
         '
+        bye "createElementForm"
 
     # TODO: Description  !!!  GLOBAL
     addElement : () -> 
+        hello "addElement"
         codeIDTextElement   = document.getElementById "SwdPR_PopUp_CodeIDText"
         XPathLocatorElement = document.getElementById "SwdPR_PopUp_XPathLocator"
         
@@ -104,3 +106,4 @@
                    "ElementXPath"    : XPathLocatorElement.firstChild.nodeValue
 
         createCommand(JsonData)
+        bye "addElement >"

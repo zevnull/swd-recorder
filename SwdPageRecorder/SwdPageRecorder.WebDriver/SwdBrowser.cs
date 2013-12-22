@@ -95,6 +95,11 @@ namespace SwdPageRecorder.WebDriver
         {
             JavaScriptUtils.InjectVisualSearch(GetDriver());
         }
+        
+        public static void DestroyVisualSearch()
+        {
+            JavaScriptUtils.DestroyVisualSearch(GetDriver());
+        }
 
         public static bool IsVisualSearchScriptInjected()
         {
@@ -303,5 +308,7 @@ namespace SwdPageRecorder.WebDriver
         {
             return GetDriver().CurrentWindowHandle;
         }
+
+
     }
 }

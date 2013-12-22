@@ -214,11 +214,8 @@ namespace SwdPageRecorder.UI
 
         private void ddlFrames_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // HAIRY CODE
-
             BrowserPageFrame frame = ddlFrames.SelectedItem as BrowserPageFrame;
-            SwdBrowser.GoToFrame(frame);
-            MyLog.Write("FRAME: Switched to frame with Index= " + frame.Index + "; and Full Name:"+ frame.ToString());
+            presenter.SwitchToFrame(frame);
         }
     }
 }
