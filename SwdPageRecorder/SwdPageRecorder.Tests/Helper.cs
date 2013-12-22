@@ -32,8 +32,8 @@ namespace SwdPageRecorder.Tests
         {
             WebDriverOptions options = new WebDriverOptions()
             {
-                //BrowserName = WebDriverOptions.browser_Chrome,
-                BrowserName = WebDriverOptions.browser_PhantomJS,
+                BrowserName = WebDriverOptions.browser_Chrome,
+                //BrowserName = WebDriverOptions.browser_PhantomJS,
             };
 
             SwdBrowser.Initialize(options);
@@ -63,6 +63,42 @@ namespace SwdPageRecorder.Tests
             {
                 Console.WriteLine(item.ToString());
             }
+        }
+
+        internal static object JS(string script)
+        {
+            var driver = SwdBrowser.GetDriver();
+            IJavaScriptExecutor jsExec = driver as IJavaScriptExecutor;
+            return jsExec.ExecuteScript(script);
+
+        }
+
+        internal static string JSToString(string script)
+        {
+            return Convert.ToString(JS(script));
+        }
+
+        internal static int JSToInt(string script)
+        {
+            return Convert.ToInt32(JS(script));
+        }
+
+        internal static bool JSToBool(string script)
+        {
+            return Convert.ToBoolean(JS(script));
+        }
+
+
+
+        internal static void JSToConsole(string script)
+        {
+            Console.WriteLine(JSToString(script));
+        }
+
+        internal static void ToFrame(int index)
+        {
+            var driver = SwdBrowser.GetDriver();
+            driver.SwitchTo().Frame(index);
         }
     }
 }

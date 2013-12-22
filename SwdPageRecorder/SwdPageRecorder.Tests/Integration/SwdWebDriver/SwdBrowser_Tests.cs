@@ -10,7 +10,7 @@ using SwdPageRecorder.WebDriver;
 
 using FluentAssertions;
 
-namespace SwdPageRecorder.Tests.Integration.SwdWebDriver
+namespace SwdPageRecorder.Tests.Integration
 {
     [TestClass]
     public class SwdBrowser_Tests : MyTest    
