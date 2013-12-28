@@ -137,6 +137,9 @@ More Ideas
 
 * CodedUI Pageobjects?
 
+* FindElementByJavaScript?
+  http://stackoverflow.com/a/11320472/1126595
+
 
 ==================================================
 Notes
