@@ -10,12 +10,12 @@ namespace SwdPageRecorder.UI
 {
     public class CSharpPageObjectGenerator
     {
-        internal string[] Generate(WebElementDefinition[] definitions, string fullTemplatePath)
+        internal string[] Generate(SwdPageObject pageObject, string fullTemplatePath)
         {
             var template = File.ReadAllText(fullTemplatePath);
             var result = Razor.Parse(template, 
                 new {
-                        WebElementDefinitions = definitions,
+                        PageObject = pageObject,
                         ExternalGenerator = new ExternalGenerator(),
                 
                     });

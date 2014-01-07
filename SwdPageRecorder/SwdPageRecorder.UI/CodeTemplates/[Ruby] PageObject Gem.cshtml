@@ -96,11 +96,11 @@
     }
 }
 
-class GeneratedPage
+class @Raw(@Model.PageObject.PageObjectName)
   include PageObject
 
 
-@foreach (var element in @Model.WebElementDefinitions ) 
+@foreach (var element in @Model.PageObject.Items ) 
 {
       
 <text>  @Raw( RubyWebElement(@element.Name, @element.HtmlTag, @element.Type, @element.How, @element.Locator) )</text>

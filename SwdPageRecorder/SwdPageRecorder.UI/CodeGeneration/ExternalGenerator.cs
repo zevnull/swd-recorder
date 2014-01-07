@@ -10,9 +10,9 @@ namespace SwdPageRecorder.UI.CodeGeneration
 {
     public class ExternalGenerator
     {
-        public void SaveToJSonFile(WebElementDefinition[] definitions, string filePath)
+        public void SaveToJSonFile(SwdPageObject pageObject, string filePath)
         {
-            string json = JsonConvert.SerializeObject(definitions, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(pageObject, Formatting.Indented);
             File.WriteAllText(filePath, json);
         }
 

@@ -102,7 +102,7 @@ namespace SwdPageRecorder.UI
             view.UpdateLastCallStat(statText);
         }
 
-        internal WebElementDefinition[] GetWebElementDefinitionFromTree()
+        internal SwdPageObject GetWebElementDefinitionFromTree()
         {
             return view.GetWebElementDefinitionFromTree();
         }
@@ -197,10 +197,10 @@ namespace SwdPageRecorder.UI
 
         private void SavePageObjectToFile(string targetFullPath)
         {
-            WebElementDefinition[] definitions = GetWebElementDefinitionFromTree();
+            var definitions = GetWebElementDefinitionFromTree();
             using (var stream = File.Create(targetFullPath))
             {
-                var serializer = new XmlSerializer(typeof(WebElementDefinition[]));
+                var serializer = new XmlSerializer(typeof(SwdPageObject));
                 serializer.Serialize(stream, definitions);
             }
 
@@ -222,10 +222,10 @@ namespace SwdPageRecorder.UI
             string pageObjectFile = pageObjectFileName + PoxFileExtension;
             string targetFullPath = Path.Combine(GetDefaultPageObjectsDirectory(), pageObjectFile);
 
-            WebElementDefinition[] definitions = null;
+            SwdPageObject pageObject = null;
             try
             {
-                definitions = LoadPageObjectFromFile(targetFullPath);
+                pageObject = LoadPageObjectFromFile(targetFullPath);
             }
             catch (Exception e)
             {
@@ -235,7 +235,7 @@ namespace SwdPageRecorder.UI
             }
 
             view.ClearPageObjectTree();
-            foreach (var def in definitions)
+            foreach (var def in pageObject.Items)
             {
 
                 UpdatePageDefinition(def, forceAddNew: true);
@@ -246,14 +246,14 @@ namespace SwdPageRecorder.UI
             UpdateControlsState();
         }
 
-        private WebElementDefinition[] LoadPageObjectFromFile(string pageObjectFileName)
+        private SwdPageObject LoadPageObjectFromFile(string pageObjectFileName)
         {
-            WebElementDefinition[] definitions = null;
+            SwdPageObject definitions = null;
 
             using (FileStream stream = File.OpenRead(pageObjectFileName))
             {
-                var serializer = new XmlSerializer(typeof(WebElementDefinition[]));
-                definitions = (WebElementDefinition[])serializer.Deserialize(stream);
+                var serializer = new XmlSerializer(typeof(SwdPageObject));
+                definitions = (SwdPageObject)serializer.Deserialize(stream);
             }
             return definitions;
         }

@@ -17,9 +17,9 @@ using OpenQA.Selenium;
 
 namespace Demo.TestProject
 {
-    public class DemoSWDPageObject : CorePage
+    public class @Raw(@Model.PageObject.PageObjectName) : CorePage
     {
-        @foreach (var element in @Model.WebElementDefinitions ) 
+        @foreach (var element in @Model.PageObject.Items ) 
         {
 
         if(element.ReturnsCollection) 

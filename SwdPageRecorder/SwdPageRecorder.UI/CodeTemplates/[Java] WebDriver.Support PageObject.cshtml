@@ -22,9 +22,9 @@
     }    
 }
 
-public class Page
+public class @Raw(@Model.PageObject.PageObjectName)
 {
-    @foreach (var element in @Model.WebElementDefinitions ) 
+    @foreach (var element in @Model.PageObject.Items ) 
     {
         if(element.ReturnsCollection) 
         {        

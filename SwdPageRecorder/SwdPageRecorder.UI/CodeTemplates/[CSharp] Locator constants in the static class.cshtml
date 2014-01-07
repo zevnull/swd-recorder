@@ -8,9 +8,9 @@
     }
 }
 
-public static class Page
+public static class @Raw(@Model.PageObject.PageObjectName)
 {
-    @foreach (var element in @Model.WebElementDefinitions ) 
+    @foreach (var element in @Model.PageObject.Items ) 
     {
         <text>
             public const string @Raw(@element.Name)_@Raw(@element.How)=@@"@Raw(@QuoteLocator(@element.Locator))";

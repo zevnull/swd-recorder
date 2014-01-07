@@ -117,18 +117,31 @@ namespace SwdPageRecorder.UI
             lblLastCallTime.Text = elapsedTime;
         }
 
-        internal WebElementDefinition[] GetWebElementDefinitionFromTree()
+        internal SwdPageObject GetWebElementDefinitionFromTree()
         {
-            var definitions = new List<WebElementDefinition>();
+            var pageObject = new SwdPageObject();
+
+            string pageObjectName = "MyPage";
+            
+            if (tvWebElements.Nodes.Count > 0)
+            {
+                string rootNodeText = tvWebElements.Nodes[0].Text;
+
+                pageObjectName = String.IsNullOrWhiteSpace(rootNodeText) 
+                                        ? pageObjectName 
+                                        : rootNodeText;
+            }
+
+            pageObject.PageObjectName = pageObjectName;
 
             foreach (var treeNode in tvWebElements.Nodes[0].Nodes)
             {
                 var node = treeNode as TreeNode;
                 var elementDefinition = node.Tag as WebElementDefinition;
-                definitions.Add(elementDefinition);
+                pageObject.Items.Add(elementDefinition);
             }
 
-            return definitions.ToArray();
+            return pageObject;
         }
 
         private void tvWebElements_KeyUp(object sender, KeyEventArgs e)

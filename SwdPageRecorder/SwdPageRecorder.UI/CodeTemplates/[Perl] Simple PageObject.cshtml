@@ -64,7 +64,7 @@ sub driver {
 # ELEMENTS: 
 #--------- 
  
-@foreach (var element in @Model.WebElementDefinitions ) 
+@foreach (var element in @Model.PageObject.Items ) 
 {
 
 if(element.ReturnsCollection) 

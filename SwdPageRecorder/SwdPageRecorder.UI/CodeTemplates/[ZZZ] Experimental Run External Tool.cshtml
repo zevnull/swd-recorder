@@ -4,13 +4,13 @@
 
 @{
 
-    WebElementDefinition[] definitions = Model.WebElementDefinitions;
+    SwdPageObject pageObject = Model.PageObject;
     ExternalGenerator run = Model.ExternalGenerator;
 
 	string jsonFile = "WebElementDefinitions.json";
 	string commandLine = "cscript //Nologo sample_ParserWebElements.js";
 
-	run.SaveToJSonFile(definitions, jsonFile);
+	run.SaveToJSonFile(pageObject, jsonFile);
 
 
 }

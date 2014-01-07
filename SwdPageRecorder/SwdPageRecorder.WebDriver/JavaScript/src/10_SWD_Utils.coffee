@@ -1,7 +1,7 @@
 ﻿# TODO: Description 
-say = (something) -> console.log something
+say = (something) -> console.log something if console?
 
-dbg = (something) -> console.log "DBG:" + something
+dbg = (something) -> console.log "DBG:" + something if console?
 
 hello = (something) -> dbg "(begin): " + something
 bye   = (something) -> dbg "(end): " + something
@@ -56,7 +56,7 @@ getPathTo = (element) ->
         if element.value.match(/^[a-zA-Z0-9 \!\"\#\$\%\&\'\(\)\*\+\,\-\.\/\:\;\<\=\>\?\@\[\\\]\^_\`\{\|\}\~]*$/) 
             return "input[@type='submit' and @value='#{element.value}']"
         else 
-            console.log("SWD: Value skipped: #{element.value}")
+            say "SWD: Value skipped: #{element.value}"
    
 
     if element is document.body

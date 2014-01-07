@@ -3,11 +3,15 @@
   var SWD_Page_Recorder, addStyle, bye, createCommand, dbg, getInputElementsByTypeAndValue, getPageXY, getPathTo, handler, hello, prev, preventEvent, pseudoGuid, rightClickHandler, say;
 
   say = function(something) {
-    return console.log(something);
+    if (typeof console !== "undefined" && console !== null) {
+      return console.log(something);
+    }
   };
 
   dbg = function(something) {
-    return console.log("DBG:" + something);
+    if (typeof console !== "undefined" && console !== null) {
+      return console.log("DBG:" + something);
+    }
   };
 
   hello = function(something) {
@@ -64,7 +68,7 @@
       if (element.value.match(/^[a-zA-Z0-9 \!\"\#\$\%\&\'\(\)\*\+\,\-\.\/\:\;\<\=\>\?\@\[\\\]\^_\`\{\|\}\~]*$/)) {
         return "input[@type='submit' and @value='" + element.value + "']";
       } else {
-        console.log("SWD: Value skipped: " + element.value);
+        say("SWD: Value skipped: " + element.value);
       }
     }
     if (element === document.body) {
@@ -235,7 +239,7 @@
       document.getElementById("SwdPR_PopUp_XPathLocator").innerHTML = xpath;
       document.getElementById("SwdPR_PopUp_ElementText").innerHTML = pseudoGuid();
       document.getElementById("SwdPR_PopUp_CodeIDText").value = '';
-      console.log(x + ";" + y);
+      say(x + ";" + y);
       return bye("showPos");
     };
 

@@ -25,12 +25,12 @@
     }
 }
 
-public class Page
+public class @Raw(@Model.PageObject.PageObjectName)
 {
     // Initialize Driver in any convenient way: Constructor, shared static class etc...
     protected IWebDriver Driver { get; set; }
 
-@foreach (var element in @Model.WebElementDefinitions ) 
+@foreach (var element in @Model.PageObject.Items ) 
 {
     if(element.ReturnsCollection) 
     {

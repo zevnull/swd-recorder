@@ -41,7 +41,7 @@
         document.getElementById("SwdPR_PopUp_XPathLocator").innerHTML = xpath
         document.getElementById("SwdPR_PopUp_ElementText").innerHTML = pseudoGuid()
         document.getElementById("SwdPR_PopUp_CodeIDText").value = ''
-        console.log(x + ";" + y)
+        say(x + ";" + y)
         bye "showPos"
     
     # TODO: Description    

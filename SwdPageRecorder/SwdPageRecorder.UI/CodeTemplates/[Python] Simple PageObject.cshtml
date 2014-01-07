@@ -29,7 +29,7 @@ class MyPage(object):
         self.driver = driver
 
 
-    @foreach (var element in @Model.WebElementDefinitions ) 
+    @foreach (var element in @Model.PageObject.Items ) 
     {
         
     <text>

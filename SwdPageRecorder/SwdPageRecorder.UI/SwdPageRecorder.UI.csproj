@@ -171,6 +171,7 @@
     </Compile>
     <Compile Include="SwdMain\TravelNode.cs" />
     <Compile Include="SwdMain\WebElementDefinition.cs" />
+    <Compile Include="SwdMain\SwdPageObject.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="SwdMain\WebElementLocator.cs" />
     <Compile Include="WinFromsExtensions.cs" />

@@ -14,14 +14,19 @@ function includeFile (filename)
 }
 
 includeFile("sample_ParserWebElements.lib.json2.js");
-var webElementJson = readAllFile("WebElementDefinitions.json");
+var pageObjectJson = readAllFile("WebElementDefinitions.json");
 
-var webElements = JSON.parse(webElementJson);
+var pageObject = JSON.parse(pageObjectJson);
+
+WScript.Echo("Page: " + pageObject.PageObjectName    + "\n");
+WScript.Echo("================================\n");
+
+var webElements = pageObject.Items;
 
 for (var i = 0; i < webElements.length; i++)
 {
     var element = webElements[i];
-    WScript.Echo("Element: " + element.Name    + "\n");
-    WScript.Echo("Locator: " + element.Locator + "\n");
-    WScript.Echo("================================\n");
+    WScript.Echo("    Element: " + element.Name    + "\n");
+    WScript.Echo("    Locator: " + element.Locator + "\n");
+    WScript.Echo("    ~ ~ ~ ~ ~\n");
 }
