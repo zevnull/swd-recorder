@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FastColoredTextBoxNS;
 
 namespace SwdPageRecorder.UI
 {
@@ -27,7 +28,9 @@ namespace SwdPageRecorder.UI
 
         internal void FillHtmlCodeBox(string[] htmlLines)
         {
-            txtHtmlPageSource.Lines = htmlLines;
+            txtHtmlPageSource.Clear();
+            txtHtmlPageSource.Language = Language.HTML;
+            txtHtmlPageSource.Text = String.Join(Environment.NewLine, htmlLines);
         }
 
         private void txtHtmlPageSource_KeyDown(object sender, KeyEventArgs e)

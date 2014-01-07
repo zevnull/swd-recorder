@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FastColoredTextBoxNS;
 
 namespace SwdPageRecorder.UI
 {
@@ -28,9 +29,11 @@ namespace SwdPageRecorder.UI
             presenter.GenerateSourceCodeForPageObject();
         }
 
-        internal void DisplayGeneratedCode(string[] code)
+        internal void DisplayGeneratedCode(string[] codeLines)
         {
-            txtSourceCode.Lines = code;
+            txtSourceCode.Clear();
+            txtSourceCode.Language = Language.CSharp;
+            txtSourceCode.Text = String.Join(Environment.NewLine, codeLines);
         }
 
         internal void SetPageObjectFiles(string[] files)

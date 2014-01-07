@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtHtmlPageSource = new System.Windows.Forms.TextBox();
+            this.txtHtmlPageSource = new FastColoredTextBoxNS.FastColoredTextBox();
             this.btnGetHtmlSource = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -41,7 +41,7 @@
             this.txtHtmlPageSource.Location = new System.Drawing.Point(3, 31);
             this.txtHtmlPageSource.Multiline = true;
             this.txtHtmlPageSource.Name = "txtHtmlPageSource";
-            this.txtHtmlPageSource.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+//            this.txtHtmlPageSource.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtHtmlPageSource.Size = new System.Drawing.Size(548, 356);
             this.txtHtmlPageSource.TabIndex = 3;
             this.txtHtmlPageSource.WordWrap = false;
@@ -72,7 +72,7 @@
 
         #endregion
 
-        public System.Windows.Forms.TextBox txtHtmlPageSource;
+        public FastColoredTextBoxNS.FastColoredTextBox txtHtmlPageSource;
         public System.Windows.Forms.Button btnGetHtmlSource;
     }
 }
