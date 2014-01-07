@@ -109,8 +109,8 @@
       <Link>phantomjs.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\webdrivers\selenium-server-standalone-2.37.0.jar">
-      <Link>selenium-server-standalone-2.37.0.jar</Link>
+    <Content Include="..\webdrivers\selenium-server-standalone-2.39.0.jar">
+      <Link>selenium-server-standalone-2.39.0.jar</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="JavaScript\json2.js">
