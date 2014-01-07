@@ -39,14 +39,15 @@ namespace SwdPageRecorder.WebDriver.SwdBrowserUtils
             MyLog.Write("|-> InjectJSON2ObjectForWierdBrowsers(): Started");
 
             string javaScript = ReadJavaScriptFromFile(Path.Combine("JavaScript", "json2.js"));
-            string IsJson2ObjectExists = @"try { return JSON === undefined ? 'false' : 'true'; } catch(e) { return 'false';}";
+            string IsJson2ObjectExists = @"return typeof JSON === 'object';";
             IJavaScriptExecutor jsExec = webDriver as IJavaScriptExecutor;
 
-            bool isJsonObjectPresent = (string)(jsExec.ExecuteScript(IsJson2ObjectExists)) == "true";
+            bool isJsonObjectPresent = (bool)(jsExec.ExecuteScript(IsJson2ObjectExists));
             if (!isJsonObjectPresent)
             {
                 MyLog.Write("|-> InjectJSON2ObjectForWierdBrowsers():  /!isJsonObjectPresent/ very, very outdated browser mode detected.");
                 MyLog.Write("|-> /!isJsonObjectPresent/: Injecting JSON");
+                jsExec.ExecuteScript(javaScript);
             }
             else
             {
