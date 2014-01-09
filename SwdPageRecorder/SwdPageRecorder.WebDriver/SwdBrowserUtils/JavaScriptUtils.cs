@@ -26,7 +26,6 @@ namespace SwdPageRecorder.WebDriver.SwdBrowserUtils
     public static class JavaScriptUtils
     {
 
-
         public static string ReadJavaScriptFromFile(string filePath)
         {
             string contents = File.ReadAllText(filePath);
@@ -90,7 +89,7 @@ namespace SwdPageRecorder.WebDriver.SwdBrowserUtils
             foreach (var sentencedToDeath in JavaSCriptObjectsToDestroy)
             {
 
-                deathBuilder.AppendFormat(@" try {{ delete {0}; }} catch (e) {{ console.log('ERROR: |{0}| --> ' + e.message) }} ", sentencedToDeath);
+                deathBuilder.AppendFormat(@" try {{ delete {0}; }} catch (e) {{ if (console) {{ console.log('ERROR: |{0}| --> ' + e.message)}} }} ", sentencedToDeath);
             }
 
 

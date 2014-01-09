@@ -18,6 +18,11 @@ namespace SwdPageRecorder.UI.CodeGeneration
 
         public string RunExternalProcess(string fullCommandLine)
         {
+            return RunExternalProcess(fullCommandLine, true);
+        }
+
+        public string RunExternalProcess(string fullCommandLine, bool waitForExit)
+        {
             Process compiler = new Process();
             compiler.StartInfo.FileName = "cmd.exe";
             compiler.StartInfo.Arguments = "/C " + fullCommandLine;
@@ -27,7 +32,8 @@ namespace SwdPageRecorder.UI.CodeGeneration
 
             string output = compiler.StandardOutput.ReadToEnd();
 
-            compiler.WaitForExit();
+            if (waitForExit) compiler.WaitForExit();
+
             return output;
         }
     }
