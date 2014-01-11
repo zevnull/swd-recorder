@@ -54,6 +54,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSourceCode.AutoScrollMinSize = new System.Drawing.Size(27, 12);
             this.txtSourceCode.BackBrush = null;
+            this.txtSourceCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSourceCode.CharHeight = 12;
             this.txtSourceCode.CharWidth = 8;
             this.txtSourceCode.Cursor = System.Windows.Forms.Cursors.IBeam;

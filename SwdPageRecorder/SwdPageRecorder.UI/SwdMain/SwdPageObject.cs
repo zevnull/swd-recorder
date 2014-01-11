@@ -17,11 +17,22 @@ namespace SwdPageRecorder.UI
 
         public List<WebElementDefinition> Items { get; set; }
 
+        public string FrameDisplayName { get; set; }
+        public string FrameInternalName { get; set; }
+
+        public string PageTitle { get; set; }
+
         public SwdPageObject()
         {
             PageObjectName = "SwdPageObjectClass";
             Items = new List<WebElementDefinition>();
-            Version = 1;
+
+            FrameDisplayName = String.Empty;
+            FrameInternalName = String.Empty;
+
+            PageTitle = String.Empty;
+
+            Version = 2;
         }
     }
 }

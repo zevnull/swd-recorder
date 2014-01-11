@@ -39,6 +39,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.browserSettingsTab1 = new SwdPageRecorder.UI.BrowserSettingsTabView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.grpSwitchTo = new System.Windows.Forms.GroupBox();
             this.btnRefresh = new System.Windows.Forms.Button();
@@ -52,14 +53,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnStartVisualSearch = new System.Windows.Forms.Button();
             this.txtVisualSearchResult = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.browserSettingsTab1 = new SwdPageRecorder.UI.BrowserSettingsTabView();
             this.selectorsEditView = new SwdPageRecorder.UI.SelectorsEditView();
             this.htmlDomTesterView1 = new SwdPageRecorder.UI.HtmlDomTesterView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.pageObjectSourceCodeView1 = new SwdPageRecorder.UI.PageObjectSourceCodeView();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.fullHtmlSourceTabView1 = new SwdPageRecorder.UI.FullHtmlSourceTabView();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.javaScriptEditorView1 = new SwdPageRecorder.UI.JavaScriptEditorView();
             this.pageObjectDefinitionView = new SwdPageRecorder.UI.PageObjectDefinitionView();
             this.groupBox1.SuspendLayout();
@@ -208,6 +208,16 @@
             this.tabPage1.Text = "Browser Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // browserSettingsTab1
+            // 
+            this.browserSettingsTab1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.browserSettingsTab1.Location = new System.Drawing.Point(6, 6);
+            this.browserSettingsTab1.Name = "browserSettingsTab1";
+            this.browserSettingsTab1.Size = new System.Drawing.Size(728, 392);
+            this.browserSettingsTab1.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.grpSwitchTo);
@@ -351,49 +361,6 @@
             this.txtVisualSearchResult.Size = new System.Drawing.Size(313, 20);
             this.txtVisualSearchResult.TabIndex = 0;
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.pageObjectSourceCodeView1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(740, 404);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Source Code";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.fullHtmlSourceTabView1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(740, 404);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "HTML Source";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.javaScriptEditorView1);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(740, 404);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "JavaScript Snippets";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // browserSettingsTab1
-            // 
-            this.browserSettingsTab1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.browserSettingsTab1.Location = new System.Drawing.Point(6, 6);
-            this.browserSettingsTab1.Name = "browserSettingsTab1";
-            this.browserSettingsTab1.Size = new System.Drawing.Size(728, 392);
-            this.browserSettingsTab1.TabIndex = 0;
-            // 
             // selectorsEditView
             // 
             this.selectorsEditView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -415,6 +382,17 @@
             this.htmlDomTesterView1.Size = new System.Drawing.Size(727, 145);
             this.htmlDomTesterView1.TabIndex = 5;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.pageObjectSourceCodeView1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(740, 404);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Source Code";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // pageObjectSourceCodeView1
             // 
             this.pageObjectSourceCodeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -425,6 +403,17 @@
             this.pageObjectSourceCodeView1.Size = new System.Drawing.Size(732, 398);
             this.pageObjectSourceCodeView1.TabIndex = 0;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.fullHtmlSourceTabView1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(740, 404);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "HTML Source";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // fullHtmlSourceTabView1
             // 
             this.fullHtmlSourceTabView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -434,6 +423,17 @@
             this.fullHtmlSourceTabView1.Name = "fullHtmlSourceTabView1";
             this.fullHtmlSourceTabView1.Size = new System.Drawing.Size(728, 392);
             this.fullHtmlSourceTabView1.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.javaScriptEditorView1);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(740, 404);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "JavaScript Snippets";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // javaScriptEditorView1
             // 
@@ -465,7 +465,7 @@
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SwdMainView";
-            this.Text = "SWD Page Recorder v0.1 beta 02 (December 22, 2013)";
+            this.Text = "SWD Page Recorder v0.1 beta 03 (January 11, 2014)";
             this.Shown += new System.EventHandler(this.SwdMainView_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

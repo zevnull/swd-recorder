@@ -41,8 +41,6 @@ namespace SwdPageRecorder.UI
         [Browsable(false)]
         public string Arg3 { get; set; }
 
-        [Browsable(false)]
-        public string HtmlFrameId { get; set; }
 
         public WebElementDefinition()
         {
@@ -97,7 +95,6 @@ namespace SwdPageRecorder.UI
                 Arg1 = Arg1,
                 Arg2 = Arg2,
                 Arg3 = Arg3,
-                HtmlFrameId = HtmlFrameId,
                 AllHtmlTagProperties = new WebElementHtmlAttributes(),
                 AlternativeFindBys = null,
             };
