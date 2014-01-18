@@ -117,9 +117,9 @@ namespace SwdPageRecorder.WebDriver
         }
 
 
-        public static string GetTidyHtml()
+        public static string GetHtml()
         {
-            return HtmlPageUtils.GetTidyHtml(GetDriver());
+            return GetDriver().PageSource;
         }
 
 
@@ -319,6 +319,12 @@ namespace SwdPageRecorder.WebDriver
         public static void SwitchToDefaultContent()
         {
             GetDriver().SwitchTo().DefaultContent();
+        }
+
+        public static string Url 
+        { 
+            get { return SwdBrowser.GetDriver().Url;   } 
+            set {  SwdBrowser.GetDriver().Url = value; }
         }
     }
 }

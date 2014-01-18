@@ -1,4 +1,7 @@
 ﻿using System;
+
+using System.IO;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +21,7 @@ using System.Xml.Linq;
 
 using System.Windows.Forms;
 using System.Diagnostics;
+
 
 namespace SwdPageRecorder.UI
 {
@@ -44,13 +48,25 @@ namespace SwdPageRecorder.UI
 
         internal void DisplayHtmlPageSource()
         {
-            string singleLineSource = SwdBrowser.GetTidyHtml();
-            string[] htmlLines = Utils.SplitSingleLineToMultyLine(singleLineSource);
-            view.FillHtmlCodeBox(htmlLines);
+            string htmlSource = SwdBrowser.GetHtml();
+            view.FillHtmlCodeBox(htmlSource);
         }
 
 
+        internal void SendContentToBrowser(string htmlContent)
+        {
+            byte[] bytes = new byte[htmlContent.Length * sizeof(char)];
+            Buffer.BlockCopy(htmlContent.ToCharArray(), 0, bytes, 0, bytes.Length);
+            string base64 = Convert.ToBase64String(bytes);
+            string dataUri = "data:text/html;base64," + base64;
 
+            SwdBrowser.Url = dataUri;
+        }
 
+        internal void TidyHtml(string htmlContent)
+        {
+
+            throw new NotImplementedException();
+        }
     }
 }

@@ -19,6 +19,8 @@ namespace SwdPageRecorder.UI
 
             this.presenter = Presenters.PageObjectSourceCodePresenter;
             presenter.InitWithView(this);
+
+            txtHtmlPageSource.Language = Language.HTML;
         }
 
         private void btnGetHtmlSource_Click(object sender, EventArgs e)
@@ -26,11 +28,10 @@ namespace SwdPageRecorder.UI
             presenter.DisplayHtmlPageSource();
         }
 
-        internal void FillHtmlCodeBox(string[] htmlLines)
+        internal void FillHtmlCodeBox(string htmlText)
         {
             txtHtmlPageSource.Clear();
-            txtHtmlPageSource.Language = Language.HTML;
-            txtHtmlPageSource.Text = String.Join(Environment.NewLine, htmlLines);
+            txtHtmlPageSource.Text = htmlText;
         }
 
         private void txtHtmlPageSource_KeyDown(object sender, KeyEventArgs e)
@@ -39,6 +40,17 @@ namespace SwdPageRecorder.UI
             {
                 txtHtmlPageSource.SelectAll();
             }
+        }
+
+        private void btnSendDataUri_Click(object sender, EventArgs e)
+        {
+            presenter.SendContentToBrowser(txtHtmlPageSource.Text);
+        }
+
+        private void btnTidyHtml_Click(object sender, EventArgs e)
+        {
+            string htmlContent = txtHtmlPageSource.Text;
+            presenter.TidyHtml(htmlContent);
         }
     }
 }

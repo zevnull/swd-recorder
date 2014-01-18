@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserSettingsTabView));
             this.label3 = new System.Windows.Forms.Label();
             this.chkUseRemoteHub = new System.Windows.Forms.CheckBox();
             this.grpRemoteConnection = new System.Windows.Forms.GroupBox();
+            this.chkAutomaticallyStartServer = new System.Windows.Forms.CheckBox();
             this.lblRemoteHubStatus = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnTestRemoteHub = new System.Windows.Forms.Button();
@@ -43,9 +45,12 @@
             this.grpDesiredCaps = new System.Windows.Forms.GroupBox();
             this.btnLoadCapabilities = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.chkAutomaticallyStartServer = new System.Windows.Forms.CheckBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lnkSeleniumDownloadPage = new System.Windows.Forms.LinkLabel();
             this.grpRemoteConnection.SuspendLayout();
             this.grpDesiredCaps.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -84,6 +89,16 @@
             this.grpRemoteConnection.TabIndex = 7;
             this.grpRemoteConnection.TabStop = false;
             this.grpRemoteConnection.Text = "Remote Driver Configuration";
+            // 
+            // chkAutomaticallyStartServer
+            // 
+            this.chkAutomaticallyStartServer.AutoSize = true;
+            this.chkAutomaticallyStartServer.Location = new System.Drawing.Point(73, 72);
+            this.chkAutomaticallyStartServer.Name = "chkAutomaticallyStartServer";
+            this.chkAutomaticallyStartServer.Size = new System.Drawing.Size(325, 17);
+            this.chkAutomaticallyStartServer.TabIndex = 5;
+            this.chkAutomaticallyStartServer.Text = "Run \"start_selenium_server.bat\" if Remote Driver is unavailable";
+            this.chkAutomaticallyStartServer.UseVisualStyleBackColor = true;
             // 
             // lblRemoteHubStatus
             // 
@@ -172,7 +187,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdDesiredCapabilities.Location = new System.Drawing.Point(6, 49);
             this.grdDesiredCapabilities.Name = "grdDesiredCapabilities";
-            this.grdDesiredCapabilities.Size = new System.Drawing.Size(667, 152);
+            this.grdDesiredCapabilities.Size = new System.Drawing.Size(667, 150);
             this.grdDesiredCapabilities.TabIndex = 10;
             // 
             // grpDesiredCaps
@@ -182,9 +197,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpDesiredCaps.Controls.Add(this.btnLoadCapabilities);
             this.grpDesiredCaps.Controls.Add(this.grdDesiredCapabilities);
-            this.grpDesiredCaps.Location = new System.Drawing.Point(6, 189);
+            this.grpDesiredCaps.Location = new System.Drawing.Point(6, 191);
             this.grpDesiredCaps.Name = "grpDesiredCaps";
-            this.grpDesiredCaps.Size = new System.Drawing.Size(679, 234);
+            this.grpDesiredCaps.Size = new System.Drawing.Size(679, 232);
             this.grpDesiredCaps.TabIndex = 11;
             this.grpDesiredCaps.TabStop = false;
             this.grpDesiredCaps.Text = "Capabilities";
@@ -202,26 +217,49 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 168);
+            this.label4.Location = new System.Drawing.Point(40, 160);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(693, 13);
+            this.label4.Size = new System.Drawing.Size(591, 13);
             this.label4.TabIndex = 12;
-            this.label4.Text = "Note: if you are going to use a browser other than Firefox, please download appro" +
-    "priate driver executable and put it near the SWD Page Recorder";
+            this.label4.Text = "Note: if you are going to use a browser other than Firefox (e.g. Chrome or IE), p" +
+    "lease download appropriate driver executable";
             // 
-            // chkAutomaticallyStartServer
+            // pictureBox2
             // 
-            this.chkAutomaticallyStartServer.AutoSize = true;
-            this.chkAutomaticallyStartServer.Location = new System.Drawing.Point(73, 72);
-            this.chkAutomaticallyStartServer.Name = "chkAutomaticallyStartServer";
-            this.chkAutomaticallyStartServer.Size = new System.Drawing.Size(325, 17);
-            this.chkAutomaticallyStartServer.TabIndex = 5;
-            this.chkAutomaticallyStartServer.Text = "Run \"start_selenium_server.bat\" if Remote Driver is unavailable";
-            this.chkAutomaticallyStartServer.UseVisualStyleBackColor = true;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(13, 161);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(21, 24);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 13;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(69, 178);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(203, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "and put it near the SWD Page Recorder. ";
+            // 
+            // lnkSeleniumDownloadPage
+            // 
+            this.lnkSeleniumDownloadPage.AutoSize = true;
+            this.lnkSeleniumDownloadPage.Location = new System.Drawing.Point(267, 178);
+            this.lnkSeleniumDownloadPage.Name = "lnkSeleniumDownloadPage";
+            this.lnkSeleniumDownloadPage.Size = new System.Drawing.Size(151, 13);
+            this.lnkSeleniumDownloadPage.TabIndex = 15;
+            this.lnkSeleniumDownloadPage.TabStop = true;
+            this.lnkSeleniumDownloadPage.Text = "See Selenium Download Page";
+            this.lnkSeleniumDownloadPage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkSeleniumDownloadPage_LinkClicked);
             // 
             // BrowserSettingsTabView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.Controls.Add(this.lnkSeleniumDownloadPage);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.grpDesiredCaps);
             this.Controls.Add(this.lblWebDriverStatus);
@@ -235,6 +273,7 @@
             this.grpRemoteConnection.ResumeLayout(false);
             this.grpRemoteConnection.PerformLayout();
             this.grpDesiredCaps.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,5 +297,8 @@
         private System.Windows.Forms.Button btnLoadCapabilities;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chkAutomaticallyStartServer;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.LinkLabel lnkSeleniumDownloadPage;
     }
 }

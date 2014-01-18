@@ -186,5 +186,10 @@ namespace SwdPageRecorder.UI
         {
             btnStartWebDriver.DoInvokeAction(() => btnStartWebDriver.PerformClick());
         }
+
+        private void lnkSeleniumDownloadPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"http://docs.seleniumhq.org/download/");
+        }
     }
 }

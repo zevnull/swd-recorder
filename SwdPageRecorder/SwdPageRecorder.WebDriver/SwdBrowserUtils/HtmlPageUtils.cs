@@ -36,10 +36,5 @@ namespace SwdPageRecorder.WebDriver.SwdBrowserUtils
             return htmlDoc;
         }
 
-        internal static string GetTidyHtml(IWebDriver webDriver)
-        {
-            var html = GetPageSource(webDriver);
-            return html.DocumentNode.OuterHtml;
-        }
     }
 }
