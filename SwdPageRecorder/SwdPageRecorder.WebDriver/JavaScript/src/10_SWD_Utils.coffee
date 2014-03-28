@@ -46,18 +46,6 @@ getPathTo = (element) ->
     else if element.name and document.getElementsByName(element.name).length is 1
         return "//#{elementTagName}[@name='#{element.name}']"
     
-    # Submit value
-    else if elementTagName is "input" and getInputElementsByTypeAndValue("submit", element.value).length is 1
-        ### 
-        Avoid using Russian in @value. Allow only English
-        Bug #18 - ERROR Object reference not set to an instance of an object.
-        ### 
-        
-        if element.value.match(/^[a-zA-Z0-9 \!\"\#\$\%\&\'\(\)\*\+\,\-\.\/\:\;\<\=\>\?\@\[\\\]\^_\`\{\|\}\~]*$/) 
-            return "input[@type='submit' and @value='#{element.value}']"
-        else 
-            say "SWD: Value skipped: #{element.value}"
-   
 
     if element is document.body
         return "/html/#{elementTagName}"

@@ -59,17 +59,6 @@
       return "id(\"" + element.id + "\")";
     } else if (element.name && document.getElementsByName(element.name).length === 1) {
       return "//" + elementTagName + "[@name='" + element.name + "']";
-    } else if (elementTagName === "input" && getInputElementsByTypeAndValue("submit", element.value).length === 1) {
-      /* 
-      Avoid using Russian in @value. Allow only English
-      Bug #18 - ERROR Object reference not set to an instance of an object.
-      */
-
-      if (element.value.match(/^[a-zA-Z0-9 \!\"\#\$\%\&\'\(\)\*\+\,\-\.\/\:\;\<\=\>\?\@\[\\\]\^_\`\{\|\}\~]*$/)) {
-        return "input[@type='submit' and @value='" + element.value + "']";
-      } else {
-        say("SWD: Value skipped: " + element.value);
-      }
     }
     if (element === document.body) {
       return "/html/" + elementTagName;
