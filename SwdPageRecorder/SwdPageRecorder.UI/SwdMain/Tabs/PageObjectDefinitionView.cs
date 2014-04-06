@@ -114,7 +114,10 @@ namespace SwdPageRecorder.UI
 
         internal void UpdateLastCallStat(string elapsedTime)
         {
-            lblLastCallTime.Text = elapsedTime;
+            lblLastCallTime.DoInvokeAction(() =>
+            {
+                lblLastCallTime.Text = elapsedTime;
+            });
         }
 
         internal SwdPageObject GetWebElementDefinitionFromTree()
@@ -200,23 +203,29 @@ namespace SwdPageRecorder.UI
 
         internal void SetPageObjectFiles(string[] files)
         {
-            cbPageObjectFiles.Items.Clear();
-            cbPageObjectFiles.Items.AddRange(files);
+            cbPageObjectFiles.DoInvokeAction(() =>
+            {
+                    cbPageObjectFiles.Items.Clear();
+                    cbPageObjectFiles.Items.AddRange(files);
+            });
         }
 
         public void UpdatePageTreeFromFileName()
         {
-            var firstNode = tvWebElements.Nodes[0];
-            var currentName = cbPageObjectFiles.Text;
-            if (!String.IsNullOrWhiteSpace(currentName))
+            cbPageObjectFiles.DoInvokeAction(() =>
             {
-                firstNode.Text = currentName;
-                presenter.NotifyOnChanges();
-            }
-            else
-            {
-                firstNode.Text = "No Name";
-            }
+                var firstNode = tvWebElements.Nodes[0];
+                var currentName = cbPageObjectFiles.Text;
+                if (!String.IsNullOrWhiteSpace(currentName))
+                {
+                    firstNode.Text = currentName;
+                    presenter.NotifyOnChanges();
+                }
+                else
+                {
+                    firstNode.Text = "No Name";
+                }
+            });
         }
 
         private void cbPageObjectFiles_TextChanged(object sender, EventArgs e)
@@ -250,8 +259,11 @@ namespace SwdPageRecorder.UI
 
         private void cbPageObjectFiles_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            string selectedItemText = cbPageObjectFiles.SelectedItem as string;
-            presenter.LoadPageObject(selectedItemText);
+            cbPageObjectFiles.DoInvokeAction(() =>
+            {
+                string selectedItemText = cbPageObjectFiles.SelectedItem as string;
+                presenter.LoadPageObject(selectedItemText);
+            });
         }
 
 
@@ -265,15 +277,21 @@ namespace SwdPageRecorder.UI
 
         internal void ClearPageObjectTree()
         {
-            tvWebElements.Nodes[0].Nodes.Clear();
-            UpdatePageTreeFromFileName();
+            tvWebElements.DoInvokeAction(() =>
+            {
+                tvWebElements.Nodes[0].Nodes.Clear();
+                UpdatePageTreeFromFileName();
+            });
         }
 
         private void btnNewPageObject_Click(object sender, EventArgs e)
         {
-            cbPageObjectFiles.Text = "";
-            ClearPageObjectTree();
-            presenter.NotifyOnChanges();
+            cbPageObjectFiles.DoInvokeAction(() =>
+            {
+                cbPageObjectFiles.Text = "";
+                ClearPageObjectTree();
+                presenter.NotifyOnChanges();
+            });
         }
 
         private void btnViewInWindowsExplorer_Click(object sender, EventArgs e)
@@ -281,5 +299,16 @@ namespace SwdPageRecorder.UI
             presenter.OpenDefaultFolderInWindowsExplorer();
         }
 
+
+        internal string GetPageObjectName()
+        {
+            string pageObjectName = "";
+            cbPageObjectFiles.DoInvokeAction(() =>
+            {
+                pageObjectName = cbPageObjectFiles.Text;
+            });
+
+            return pageObjectName;
+        }
     }
 }

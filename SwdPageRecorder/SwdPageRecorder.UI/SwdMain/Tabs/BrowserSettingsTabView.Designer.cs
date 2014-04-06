@@ -48,6 +48,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lnkSeleniumDownloadPage = new System.Windows.Forms.LinkLabel();
+            this.chkMaximizeBrowserWindow = new System.Windows.Forms.CheckBox();
             this.grpRemoteConnection.SuspendLayout();
             this.grpDesiredCaps.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -254,9 +255,22 @@
             this.lnkSeleniumDownloadPage.Text = "See Selenium Download Page";
             this.lnkSeleniumDownloadPage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkSeleniumDownloadPage_LinkClicked);
             // 
+            // chkMaximizeBrowserWindow
+            // 
+            this.chkMaximizeBrowserWindow.AutoSize = true;
+            this.chkMaximizeBrowserWindow.Checked = true;
+            this.chkMaximizeBrowserWindow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMaximizeBrowserWindow.Location = new System.Drawing.Point(272, 140);
+            this.chkMaximizeBrowserWindow.Name = "chkMaximizeBrowserWindow";
+            this.chkMaximizeBrowserWindow.Size = new System.Drawing.Size(148, 17);
+            this.chkMaximizeBrowserWindow.TabIndex = 16;
+            this.chkMaximizeBrowserWindow.Text = "Maximize browser window";
+            this.chkMaximizeBrowserWindow.UseVisualStyleBackColor = true;
+            // 
             // BrowserSettingsTabView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.Controls.Add(this.chkMaximizeBrowserWindow);
             this.Controls.Add(this.lnkSeleniumDownloadPage);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pictureBox2);
@@ -300,5 +314,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.LinkLabel lnkSeleniumDownloadPage;
+        private System.Windows.Forms.CheckBox chkMaximizeBrowserWindow;
     }
 }

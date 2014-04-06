@@ -43,11 +43,10 @@ namespace SwdPageRecorder.WebDriver
 
         public static IWebDriver GetDriver()
         {
-            lock (lockObject)
-            {
-                if (_driver == null) throw new ArgumentNullException("_driver", @"GetDriver was not initialized. Make sure you called Initialize before using Browser.");
-                return _driver;
-            }
+
+            if (_driver == null) throw new ArgumentNullException("_driver", @"GetDriver was not initialized. Make sure you called Initialize before using Browser.");
+            return _driver;
+
         }
 
         public static void Initialize(WebDriverOptions browserOptions)
@@ -77,61 +76,88 @@ namespace SwdPageRecorder.WebDriver
         public static void CloseDriver()
         {
 
-            if (_driver != null)
+            lock (lockObject)
             {
-                _driver.Dispose();
-
-                // Fire OnDriverClosed
-                if (OnDriverClosed != null)
+                if (_driver != null)
                 {
-                    OnDriverClosed();
-                    
+                    _driver.Dispose();
+
+                    // Fire OnDriverClosed
+                    if (OnDriverClosed != null)
+                    {
+                        OnDriverClosed();
+
+                    }
                 }
+                Started = false;
             }
-            Started = false;
         }
 
         public static void InjectVisualSearch()
         {
-            JavaScriptUtils.InjectVisualSearch(GetDriver());
+            lock (lockObject)
+            {
+                JavaScriptUtils.InjectVisualSearch(GetDriver());
+            }
         }
         
         public static void DestroyVisualSearch()
         {
-            JavaScriptUtils.DestroyVisualSearch(GetDriver());
+            lock (lockObject)
+            {
+                JavaScriptUtils.DestroyVisualSearch(GetDriver());
+            }
         }
 
         public static bool IsVisualSearchScriptInjected()
         {
-            return JavaScriptUtils.IsVisualSearchScriptInjected(GetDriver());
+            lock (lockObject)
+            {
+                return JavaScriptUtils.IsVisualSearchScriptInjected(GetDriver());
+            }
         }
 
         public static void HighlightElement(By by)
         {
-            JavaScriptUtils.HighlightElement(by, GetDriver());
+            lock (lockObject)
+            {
+                JavaScriptUtils.HighlightElement(by, GetDriver());
+            }
         }
 
         public static HtmlDocument GetPageSource()
         {
-            return HtmlPageUtils.GetPageSource(GetDriver());
+            lock (lockObject)
+            {
+                return HtmlPageUtils.GetPageSource(GetDriver());
+            }
         }
 
 
         public static string GetHtml()
         {
-            return GetDriver().PageSource;
+            lock (lockObject)
+            {
+                return GetDriver().PageSource;
+            }
         }
 
 
         public static BrowserCommand GetNextCommand() // Returns null if no new commands received
         {
-            return BrowserCommands.GetNextCommand(GetDriver());
+            lock (lockObject)
+            {
+                return BrowserCommands.GetNextCommand(GetDriver());
+            }
         }
 
 
         public static string GetElementXPath(IWebElement webElement)
         {
-            return JavaScriptUtils.GetElementXPath(webElement, GetDriver());
+            lock (lockObject)
+            {
+                return JavaScriptUtils.GetElementXPath(webElement, GetDriver());
+            }
         }
 
         
@@ -140,30 +166,36 @@ namespace SwdPageRecorder.WebDriver
         {
             get
             {
-                bool result = true;
-                if (_driver != null)
+                lock (lockObject)
                 {
-                    try
+                    bool result = true;
+                    if (_driver != null)
                     {
-                        // Try to get page title
-                        var title = _driver.Title;
+                        try
+                        {
+                            // Try to get page title
+                            var title = _driver.Title;
+                        }
+                        catch
+                        {
+                            result = false;
+                        }
                     }
-                    catch
+                    else // When driver is Null it definitely not working
                     {
                         result = false;
                     }
+                    return result;
                 }
-                else // When driver is Null it definitely not working
-                {
-                    result = false;
-                }
-                return result;
             }
         }
 
         public static Dictionary<string, string> ReadElementAttributes(By by)
         {
-            return JavaScriptUtils.ReadElementAttributes(by, GetDriver());
+            lock (lockObject)
+            {
+                return JavaScriptUtils.ReadElementAttributes(by, GetDriver());
+            }
         }
 
         static readonly Finalizer finalizer = new Finalizer();
@@ -187,103 +219,118 @@ namespace SwdPageRecorder.WebDriver
 
         public static BrowserWindow[] GetBrowserWindows()
         {
-            var windowHandles = GetDriver().WindowHandles;
-            var result = new List<BrowserWindow>();
-
-            string currentHandle = GetDriver().CurrentWindowHandle;
-            
-            foreach (var winHandle in windowHandles)
+            lock (lockObject)
             {
-                var item = new BrowserWindow();
-                item.WindowHandle = winHandle;
-                GetDriver().SwitchTo().Window(winHandle);
-                item.Title = GetDriver().Title;
-                result.Add(item);
+                var windowHandles = GetDriver().WindowHandles;
+                var result = new List<BrowserWindow>();
+
+                string currentHandle = GetDriver().CurrentWindowHandle;
+
+                foreach (var winHandle in windowHandles)
+                {
+                    var item = new BrowserWindow();
+                    item.WindowHandle = winHandle;
+                    GetDriver().SwitchTo().Window(winHandle);
+                    item.Title = GetDriver().Title;
+                    result.Add(item);
+                }
+
+                GetDriver().SwitchTo().Window(currentHandle);
+
+                return result.ToArray();
             }
-
-            GetDriver().SwitchTo().Window(currentHandle);
-
-            return result.ToArray();
         }
 
         public static IWebElement[] GetAllFrameElements()
         {
-            var driver = SwdBrowser.GetDriver();
-            var frames = driver.FindElements(By.CssSelector(@"frame, iframe"));
-            return frames.ToArray();
+            lock (lockObject)
+            {
+                var driver = SwdBrowser.GetDriver();
+                var frames = driver.FindElements(By.CssSelector(@"frame, iframe"));
+                return frames.ToArray();
+            }
         }
 
 
         public static BrowserPageFrame GetPageFramesTree()
         {
-            BrowserPageFrame root = new BrowserPageFrame()
+            lock (lockObject)
             {
-                ChildFrames = null,
-                Index = -1,
-                LocatorNameOrId = "DefaultContent",
-                ParentFrame = null,
-            };
+                BrowserPageFrame root = new BrowserPageFrame()
+                {
+                    ChildFrames = null,
+                    Index = -1,
+                    LocatorNameOrId = "DefaultContent",
+                    ParentFrame = null,
+                };
 
-            GetDriver().SwitchTo().DefaultContent();
-            root.ChildFrames = GetPageFramesTree(root);
+                GetDriver().SwitchTo().DefaultContent();
+                root.ChildFrames = GetPageFramesTree(root);
 
-            return root;
+                return root;
+            }
         }
 
         public static List<BrowserPageFrame> GetPageFramesTree(BrowserPageFrame parent)
         {
 
-            List<BrowserPageFrame> children = new List<BrowserPageFrame>();
-            
-            //
-            var driver = SwdBrowser.GetDriver();
-            
-            var allFramesOnThePage = GetAllFrameElements();
-            for (var i = 0; i <  allFramesOnThePage.Length; i++)
+            lock (lockObject)
             {
-                var frameElement = allFramesOnThePage[i];
+                List<BrowserPageFrame> children = new List<BrowserPageFrame>();
 
-                BrowserPageFrame frameItem = new BrowserPageFrame()
-                {
-                    ChildFrames = null,
-                    Index = i,
-                    LocatorNameOrId = null,
-                    ParentFrame = parent,
-                };
+                //
+                var driver = SwdBrowser.GetDriver();
 
-                string elementId = frameElement.GetAttribute("id");
-                string elementName = frameElement.GetAttribute("name");
-                
-                if (!String.IsNullOrEmpty(elementName))
+                var allFramesOnThePage = GetAllFrameElements();
+                for (var i = 0; i < allFramesOnThePage.Length; i++)
                 {
-                    frameItem.LocatorNameOrId = elementName;
+                    var frameElement = allFramesOnThePage[i];
+
+                    BrowserPageFrame frameItem = new BrowserPageFrame()
+                    {
+                        ChildFrames = null,
+                        Index = i,
+                        LocatorNameOrId = null,
+                        ParentFrame = parent,
+                    };
+
+                    string elementId = frameElement.GetAttribute("id");
+                    string elementName = frameElement.GetAttribute("name");
+
+                    if (!String.IsNullOrEmpty(elementName))
+                    {
+                        frameItem.LocatorNameOrId = elementName;
+                    }
+                    else if (!String.IsNullOrEmpty(elementId))
+                    {
+                        frameItem.LocatorNameOrId = elementId;
+                    }
+                    else
+                    {
+                        frameItem.LocatorNameOrId = String.Empty;
+                    }
+
+                    GetDriver().SwitchTo().Frame(i);
+                    frameItem.ChildFrames = GetPageFramesTree(frameItem);
+
+                    List<BrowserPageFrame> frameStack = new List<BrowserPageFrame>();
+                    SwdBrowser.GoToFrame(parent, ref frameStack);
+
+                    children.Add(frameItem);
                 }
-                else if (!String.IsNullOrEmpty(elementId))
-                {
-                    frameItem.LocatorNameOrId = elementId;
-                }
-                else 
-                {
-                    frameItem.LocatorNameOrId = String.Empty;
-                }
 
-                GetDriver().SwitchTo().Frame(i);
-                frameItem.ChildFrames = GetPageFramesTree(frameItem);
-
-                List<BrowserPageFrame> frameStack = new List<BrowserPageFrame>();
-                SwdBrowser.GoToFrame(parent, ref frameStack);
-
-                children.Add(frameItem);
+                return children;
             }
-                        
-            return children;
         }
 
         
         public static void GoToFrame(BrowserPageFrame frame)
         {
-            List<BrowserPageFrame> frameStack = new List<BrowserPageFrame>();
-            GoToFrame(frame, ref frameStack);
+            lock (lockObject)
+            {
+                List<BrowserPageFrame> frameStack = new List<BrowserPageFrame>();
+                GoToFrame(frame, ref frameStack);
+            }
         }
         private static void GoToFrame(BrowserPageFrame frame, ref List<BrowserPageFrame> frameStack)
         {
@@ -306,25 +353,52 @@ namespace SwdPageRecorder.WebDriver
 
         public static string GetCurrentWindowHandle()
         {
-            return GetDriver().CurrentWindowHandle;
+            lock (lockObject)
+            {
+                return GetDriver().CurrentWindowHandle;
+            }
         }
 
 
 
         public static void GotoWindow(BrowserWindow window)
         {
-            GetDriver().SwitchTo().Window(window.WindowHandle);
+            lock (lockObject)
+            {
+                GetDriver().SwitchTo().Window(window.WindowHandle);
+            }
         }
 
         public static void SwitchToDefaultContent()
         {
-            GetDriver().SwitchTo().DefaultContent();
+            lock (lockObject)
+            {
+                GetDriver().SwitchTo().DefaultContent();
+            }
         }
 
         public static string Url 
         { 
-            get { return SwdBrowser.GetDriver().Url;   } 
-            set {  SwdBrowser.GetDriver().Url = value; }
+            get {
+                    lock (lockObject)
+                    {
+                        return SwdBrowser.GetDriver().Url;
+                    }
+                } 
+            set {
+                    lock (lockObject)
+                    {
+                        SwdBrowser.GetDriver().Url = value;
+                    }
+                }
+        }
+
+        public static void Maximize()
+        {
+            lock (lockObject)
+            {
+                SwdBrowser.GetDriver().Manage().Window.Maximize();
+            }
         }
     }
 }

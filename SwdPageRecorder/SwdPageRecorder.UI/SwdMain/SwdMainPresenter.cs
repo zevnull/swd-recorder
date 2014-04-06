@@ -184,11 +184,15 @@ namespace SwdPageRecorder.UI
                                 SwdBrowser.InjectVisualSearch();
                             }
 
-                            ProcessCommands();
+                            if (!webElementExplorerThreadPaused)
+                            {
+                                ProcessCommands();
+                            }
                         }
                         catch (Exception e)
                         {
                             StopVisualSearch();
+                            MyLog.Error("Visual search stopped:");
                             MyLog.Exception(e);
                         }
                     }
@@ -237,13 +241,24 @@ namespace SwdPageRecorder.UI
 
         internal void ChangeVisualSearchRunningState()
         {
-            if (webElementExplorerStarted)
+            view.DisableWebElementExplorerRunButton();
+
+            try
             {
-                StopVisualSearch();
+                if (webElementExplorerStarted)
+                {
+                    StopVisualSearch();
+                    view.DisableWebElementExplorerResultsField();
+                }
+                else
+                {
+                    StartVisualSearch();
+                    view.EnableWebElementExplorerResultsField();
+                }
             }
-            else
+            finally
             {
-                StartVisualSearch();
+                view.EnableWebElementExplorerRunButton();
             }
         }
 

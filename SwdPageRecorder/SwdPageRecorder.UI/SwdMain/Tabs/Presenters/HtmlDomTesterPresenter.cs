@@ -75,46 +75,78 @@ namespace SwdPageRecorder.UI
             return result;
         }
 
-        internal void TestLocators()
+        public void TestLocators()
         {
 
-            var searchMethod = Presenters.SelectorsEditPresenter.GetLocatorSearchMethod();
-            var locator = Presenters.SelectorsEditPresenter.GetLocatorText();
+            MyLog.Write("TestLocators - Entered");
 
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            var elements = FindElements(searchMethod, locator);
-            sw.Stop();
+            Presenters.SwdMainPresenter.PauseWebElementExplorerProcessing();
 
-            
-            Presenters.PageObjectDefinitionPresenter.UpdateLastCallStat(sw.ElapsedMilliseconds.ToString() + " ms");
-
-            List<ResultElement> displayList = new List<ResultElement>();
-            foreach (var el in elements)
+            view.DisableTestLocatorsButton();
+            try
             {
-                ResultElement displayItem = new ResultElement();
+                var searchMethod = Presenters.SelectorsEditPresenter.GetLocatorSearchMethod();
+                var locator = Presenters.SelectorsEditPresenter.GetLocatorText();
 
-                string tagName = el.TagName;
-                string elementId = el.GetAttribute("id") ?? "n/a";
-                string elementName = el.GetAttribute("name") ?? "n/a";
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
 
-                if (tagName == "input")
+                var elements = FindElements(searchMethod, locator);
+
+                List<ResultElement> displayList = new List<ResultElement>();
+                foreach (var el in elements)
                 {
-                    var elementType = el.GetAttribute("type") ?? "n/a";
-                    var elementValue = el.GetAttribute("value") ?? "n/a";
-                    displayItem.DisplayString = String.Format("{0}[type=\'{4}\'] id=\"{1}\"; name=\"{2}\"; value=\"{3}\"", el.TagName, elementId, elementName, elementValue, elementType);
-                }
-                else
-                {
-                    string elementText = el.Text ?? "n/a";
-                    displayItem.DisplayString = String.Format("{0} id=\"{1}\"; name=\"{2}\"; text(\"{3}\")", el.TagName, elementId, elementName, elementText);
+                    var displayItem = ReadWebElementProperties(el);
+                    displayList.Add(displayItem);
                 }
 
-                displayItem.WebElement = el;
-                displayList.Add(displayItem);
+                sw.Stop();
+                Presenters.PageObjectDefinitionPresenter.UpdateLastCallStat(sw.ElapsedMilliseconds.ToString() + " ms");
+
+                view.DisplaySearchResults(displayList);
+
+            }
+            catch (Exception e)
+            {
+                MyLog.Error("TestLocators. Error:");
+                MyLog.Exception(e);
+                throw;
+            }
+            finally
+            {
+                view.EnableTestLocatorsButton();
             }
 
-            view.DisplaySearchResults(displayList);
+            Presenters.SwdMainPresenter.ResumeWebElementExplorerProcessing();
+
+            MyLog.Write("TestLocators - Exited");
+        }
+
+        private ResultElement ReadWebElementProperties(IWebElement el)
+        {
+            MyLog.Write("ReadWebElementProperties - Entered");
+
+            ResultElement displayItem = new ResultElement();
+            
+            string tagName = el.TagName;
+            string elementId = el.GetAttribute("id") ?? "n/a";
+            string elementName = el.GetAttribute("name") ?? "n/a";
+
+            if (tagName == "input")
+            {
+                var elementType = el.GetAttribute("type") ?? "n/a";
+                var elementValue = el.GetAttribute("value") ?? "n/a";
+                displayItem.DisplayString = String.Format("{0}[type=\'{4}\'] id=\"{1}\"; name=\"{2}\"; value=\"{3}\"", el.TagName, elementId, elementName, elementValue, elementType);
+            }
+            else
+            {
+                string elementText = el.Text ?? "n/a";
+                displayItem.DisplayString = String.Format("{0} id=\"{1}\"; name=\"{2}\"; text(\"{3}\")", el.TagName, elementId, elementName, elementText);
+            }
+
+            displayItem.WebElement = el;
+            MyLog.Write("ReadWebElementProperties - Exited");
+            return displayItem;
         }
 
         private void ParseHtmlNodes(TreeNode tnode, HAP.HtmlNodeCollection htmlNodes, string parentXPath)
@@ -185,9 +217,11 @@ namespace SwdPageRecorder.UI
 
         internal void UpdateTestHtmlDocumentView()
         {
-            var doc = SwdBrowser.GetPageSource();
+            Presenters.SwdMainPresenter.PauseWebElementExplorerProcessing();
 
-            var root = doc.DocumentNode.ChildNodes.FindFirst(@"html");
+            HAP.HtmlDocument doc = SwdBrowser.GetPageSource();
+            HAP.HtmlNode root = doc.DocumentNode.ChildNodes.FindFirst(@"html");
+
             var treeRootNode = new TreeNode(root.Name);
             treeRootNode.Name = root.Name.ToLower();
             treeRootNode.Tag = new HtmlTreeNodeData()
@@ -199,6 +233,7 @@ namespace SwdPageRecorder.UI
 
             view.AddTestHtmlNodes(treeRootNode);
 
+            Presenters.SwdMainPresenter.ResumeWebElementExplorerProcessing();
 
         }
 

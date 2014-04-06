@@ -356,6 +356,7 @@
             // 
             this.txtVisualSearchResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtVisualSearchResult.Enabled = false;
             this.txtVisualSearchResult.Location = new System.Drawing.Point(6, 20);
             this.txtVisualSearchResult.Name = "txtVisualSearchResult";
             this.txtVisualSearchResult.Size = new System.Drawing.Size(313, 20);

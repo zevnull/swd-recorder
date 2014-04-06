@@ -53,15 +53,6 @@ namespace SwdPageRecorder.UI
         }
 
 
-        internal void SendContentToBrowser(string htmlContent)
-        {
-            byte[] bytes = new byte[htmlContent.Length * sizeof(char)];
-            Buffer.BlockCopy(htmlContent.ToCharArray(), 0, bytes, 0, bytes.Length);
-            string base64 = Convert.ToBase64String(bytes);
-            string dataUri = "data:text/html;base64," + base64;
-
-            SwdBrowser.Url = dataUri;
-        }
 
         internal void TidyHtml(string htmlContent)
         {

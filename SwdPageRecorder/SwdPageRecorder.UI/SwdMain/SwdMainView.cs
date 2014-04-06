@@ -223,5 +223,42 @@ namespace SwdPageRecorder.UI
             BrowserWindow window = ddlWindows.SelectedItem as BrowserWindow;
             presenter.SwitchToWindow(window);
         }
+
+        internal void DisableWebElementExplorerRunButton()
+        {
+            btnStartVisualSearch.DoInvokeAction(() =>
+            {
+                btnStartVisualSearch.Enabled = false;
+
+            });
+        }
+
+        internal void EnableWebElementExplorerRunButton()
+        {
+            btnStartVisualSearch.DoInvokeAction(() =>
+            {
+                btnStartVisualSearch.Enabled = true;
+
+            });
+        }
+
+        internal void DisableWebElementExplorerResultsField()
+        {
+            txtVisualSearchResult.DoInvokeAction(() =>
+            {
+                txtVisualSearchResult.Enabled = false;
+
+            });
+        }
+
+        internal void EnableWebElementExplorerResultsField()
+        {
+            txtVisualSearchResult.DoInvokeAction(() =>
+            {
+                txtVisualSearchResult.Enabled = true;
+
+            });
+
+        }
     }
 }

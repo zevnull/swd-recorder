@@ -107,5 +107,21 @@ namespace SwdPageRecorder.UI
                 MessageBox.Show("Tree: Element was not found");
             }
         }
+
+        internal void DisableTestLocatorsButton()
+        {
+            btnTestLocator.DoInvokeAction(() =>
+            {
+                btnTestLocator.Enabled = false;
+            });
+        }
+
+        internal void EnableTestLocatorsButton()
+        {
+            btnTestLocator.DoInvokeAction(() =>
+            {
+                btnTestLocator.Enabled = true;
+            });
+        }
     }
 }

@@ -42,15 +42,5 @@ namespace SwdPageRecorder.UI
             }
         }
 
-        private void btnSendDataUri_Click(object sender, EventArgs e)
-        {
-            presenter.SendContentToBrowser(txtHtmlPageSource.Text);
-        }
-
-        private void btnTidyHtml_Click(object sender, EventArgs e)
-        {
-            string htmlContent = txtHtmlPageSource.Text;
-            presenter.TidyHtml(htmlContent);
-        }
     }
 }

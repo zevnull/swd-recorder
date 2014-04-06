@@ -46,6 +46,7 @@ namespace SwdPageRecorder.UI
         {
             var isRemoteDriver = chkUseRemoteHub.Checked;
             var startSeleniumServerIfNotStarted = chkAutomaticallyStartServer.Checked;
+            var shouldMaximizeBrowserWindow = chkMaximizeBrowserWindow.Checked;
 
             var browserOptions = new WebDriverOptions()
             {
@@ -55,7 +56,7 @@ namespace SwdPageRecorder.UI
             };
 
 
-            Presenter.StartNewBrowser(browserOptions, startSeleniumServerIfNotStarted); 
+            Presenter.StartNewBrowser(browserOptions, startSeleniumServerIfNotStarted, shouldMaximizeBrowserWindow); 
         }
 
         private void HandleRemoteDriverSettingsEnabledStatus()
@@ -190,6 +191,23 @@ namespace SwdPageRecorder.UI
         private void lnkSeleniumDownloadPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(@"http://docs.seleniumhq.org/download/");
+        }
+
+        internal void DisableMaximizeBrowserChackBox()
+        {
+            chkMaximizeBrowserWindow.DoInvokeAction(() =>
+            {
+                chkMaximizeBrowserWindow.Enabled = false;
+            });
+            
+        }
+
+        internal void EnableMaximizeBrowserChackBox()
+        {
+            chkMaximizeBrowserWindow.DoInvokeAction(() =>
+            {
+                chkMaximizeBrowserWindow.Enabled = true;
+            });
         }
     }
 }

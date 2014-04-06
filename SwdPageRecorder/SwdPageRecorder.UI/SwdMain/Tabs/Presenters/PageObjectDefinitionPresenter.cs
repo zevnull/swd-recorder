@@ -147,7 +147,7 @@ namespace SwdPageRecorder.UI
             bool buttonSaveShouldBeEnabled = true;
 
             // When the PageObject name is empty
-            if (string.IsNullOrWhiteSpace(view.cbPageObjectFiles.Text))
+            if (string.IsNullOrWhiteSpace(view.GetPageObjectName()))
             {
                 buttonSaveShouldBeEnabled = false;
             }
@@ -208,7 +208,7 @@ namespace SwdPageRecorder.UI
 
         private string GetPageObjectFileName()
         {
-            string fileName = view.cbPageObjectFiles.Text.Trim();
+            string fileName = view.GetPageObjectName().Trim();
             if (!fileName.ToLower().EndsWith(PoxFileExtension))
             {
                 fileName += PoxFileExtension;

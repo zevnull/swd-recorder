@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.txtHtmlPageSource = new FastColoredTextBoxNS.FastColoredTextBox();
             this.btnGetHtmlSource = new System.Windows.Forms.Button();
-            this.btnSendDataUri = new System.Windows.Forms.Button();
-            this.btnTidyHtml = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtHtmlPageSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,33 +70,9 @@
             this.btnGetHtmlSource.UseVisualStyleBackColor = true;
             this.btnGetHtmlSource.Click += new System.EventHandler(this.btnGetHtmlSource_Click);
             // 
-            // btnSendDataUri
-            // 
-            this.btnSendDataUri.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSendDataUri.Location = new System.Drawing.Point(409, 3);
-            this.btnSendDataUri.Name = "btnSendDataUri";
-            this.btnSendDataUri.Size = new System.Drawing.Size(140, 23);
-            this.btnSendDataUri.TabIndex = 4;
-            this.btnSendDataUri.Text = "Send HTML to Browser";
-            this.btnSendDataUri.UseVisualStyleBackColor = true;
-            this.btnSendDataUri.Click += new System.EventHandler(this.btnSendDataUri_Click);
-            // 
-            // btnTidyHtml
-            // 
-            this.btnTidyHtml.Enabled = false;
-            this.btnTidyHtml.Location = new System.Drawing.Point(136, 3);
-            this.btnTidyHtml.Name = "btnTidyHtml";
-            this.btnTidyHtml.Size = new System.Drawing.Size(75, 23);
-            this.btnTidyHtml.TabIndex = 5;
-            this.btnTidyHtml.Text = "Tidy HTML";
-            this.btnTidyHtml.UseVisualStyleBackColor = true;
-            this.btnTidyHtml.Click += new System.EventHandler(this.btnTidyHtml_Click);
-            // 
             // FullHtmlSourceTabView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.Controls.Add(this.btnTidyHtml);
-            this.Controls.Add(this.btnSendDataUri);
             this.Controls.Add(this.txtHtmlPageSource);
             this.Controls.Add(this.btnGetHtmlSource);
             this.Name = "FullHtmlSourceTabView";
@@ -112,7 +86,5 @@
 
         public FastColoredTextBoxNS.FastColoredTextBox txtHtmlPageSource;
         public System.Windows.Forms.Button btnGetHtmlSource;
-        private System.Windows.Forms.Button btnSendDataUri;
-        private System.Windows.Forms.Button btnTidyHtml;
     }
 }

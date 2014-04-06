@@ -48,17 +48,18 @@ namespace SwdPageRecorder.UI
             if (driverIsRunning)
             {
                 view.SetStatus("Running");
+                view.DisableMaximizeBrowserChackBox();
             }
             else
             {
                 view.SetStatus("Not running");
+                view.EnableMaximizeBrowserChackBox();
             }
-            
         }
 
 
         public bool wasBrowserStarted = false;
-        public void StartNewBrowser(WebDriverOptions browserOptions, bool startSeleniumServerIfNotStarted)
+        public void StartNewBrowser(WebDriverOptions browserOptions, bool startSeleniumServerIfNotStarted, bool shouldMaximizeBrowserWindow)
         {
             if (wasBrowserStarted)
             {
@@ -89,14 +90,16 @@ namespace SwdPageRecorder.UI
                     }
 
                 }
-                
-                StartDriver(browserOptions);
+
+                StartDriver(browserOptions, shouldMaximizeBrowserWindow);
             }
         }
 
-        public void StartDriver(WebDriverOptions browserOptions)
+        public void StartDriver(WebDriverOptions browserOptions, bool shouldMaximizeBrowserWindow)
         {
-            
+
+            MyLog.Write("StartDriver - Entered");
+
             wasBrowserStarted = false;
             
             view.DisableDriverStartButton();
@@ -109,6 +112,12 @@ namespace SwdPageRecorder.UI
                                 {
                                     SwdBrowser.Initialize(browserOptions);
                                     wasBrowserStarted = true;
+
+                                    if (shouldMaximizeBrowserWindow)
+                                    {
+                                        SwdBrowser.Maximize();
+                                    }
+
                                 },
                                     out threadException,
                                     null,
@@ -123,6 +132,8 @@ namespace SwdPageRecorder.UI
                 view.DriverWasStarted();
             }
             else if (threadException != null) throw threadException;
+
+            MyLog.Write("StartDriver - Exited");
         }
 
         private void SetDesiredCapabilities(WebDriverOptions browserOptions)
@@ -141,11 +152,11 @@ namespace SwdPageRecorder.UI
                     break;
             }
             
-            
         }
 
         public void StopDriver()
         {
+            MyLog.Write("StopDriver - Entered");
             view.DisableDriverStartButton();
             
             view.DriverIsStopping();
@@ -156,6 +167,7 @@ namespace SwdPageRecorder.UI
                         "Operation: Stop WebDriver instance",
                         () =>
                         {
+                            Presenters.SwdMainPresenter.StopVisualSearch();
                             SwdBrowser.CloseDriver();
                         },
                             out threadException,
@@ -163,9 +175,15 @@ namespace SwdPageRecorder.UI
                             TimeSpan.FromMinutes(10)
                         );
 
+            if (threadException != null)
+            {
+                MyLog.Exception(threadException);
+            }
+
             view.EnableDriverStartButton();
             
             wasBrowserStarted = false;
+            MyLog.Write("StopDriver - Exited");
         }
 
         internal void InitDesiredCapabilities()
